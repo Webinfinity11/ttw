@@ -280,3 +280,17 @@
     transform: none;
   }
 }
+
+/* Полоса автопрокрутки слайдера */
+@keyframes slide-progress {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+.slide-progress {
+  transform-origin: left;
+  animation: slide-progress 5s linear both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .slide-progress { animation: none; transform: scaleX(1); }
+}

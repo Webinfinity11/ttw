@@ -1,8 +1,11 @@
+'use client';
+
 import Image from 'next/image';
 import Link from 'next/link';
+import { useCallback, useEffect, useState } from 'react';
 import { ArrowRight } from 'lucide-react';
 import { QuoteButton } from './quote-dialog';
-import { TileBoard, TileStrip } from './tile-board';
+import { MaterialSlider, MaterialSliderMobile, SLIDES } from './material-slider';
 
 const HEADLINE = ['Укладка', 'плитки', 'и', 'керамогранита'];
 
@@ -13,7 +16,24 @@ const STATS = [
   { value: '160×320', suffix: 'см', label: 'формат плит' },
 ];
 
+const AUTOPLAY_MS = 5000;
+
 export function Hero({ phone }: { phone: string }) {
+  const [slide, setSlide] = useState(0);
+  const [paused, setPaused] = useState(false);
+
+  const next = useCallback(() => setSlide((value) => (value + 1) % SLIDES.length), []);
+  const prev = useCallback(
+    () => setSlide((value) => (value - 1 + SLIDES.length) % SLIDES.length),
+    [],
+  );
+
+  useEffect(() => {
+    if (paused) return;
+    const timer = window.setTimeout(next, AUTOPLAY_MS);
+    return () => window.clearTimeout(timer);
+  }, [slide, paused, next]);
+
   return (
     <>
       <section className="relative overflow-hidden bg-graphite-950">
@@ -26,7 +46,6 @@ export function Hero({ phone }: { phone: string }) {
           sizes="100vw"
           className="object-cover opacity-100 contrast-[1.18] brightness-[1.06]"
         />
-        {/* затемнение только слева — справа мрамор виден в полную силу */}
         <div className="absolute inset-0 bg-gradient-to-r from-graphite-950 via-graphite-950/78 to-graphite-950/20" />
         <div className="absolute inset-0 bg-gradient-to-t from-graphite-950/70 via-transparent to-graphite-950/40" />
         <div className="absolute inset-0 tile-grid" />
@@ -39,11 +58,15 @@ export function Hero({ phone }: { phone: string }) {
           </span>
         </div>
 
-        {/* Счётчик слайдов */}
+        {/* Счётчик слайдов — связан со слайдером */}
         <div className="absolute bottom-0 left-10 hidden bg-white px-7 py-5 text-center font-display leading-tight xl:block">
-          <div className="text-2xl font-extrabold text-accent-500">1</div>
+          <div className="text-2xl font-extrabold text-accent-500">
+            {String(slide + 1).padStart(2, '0')}
+          </div>
           <div className="text-lg text-graphite-300">/</div>
-          <div className="text-2xl font-extrabold text-graphite-950">3</div>
+          <div className="text-2xl font-extrabold text-graphite-950">
+            {String(SLIDES.length).padStart(2, '0')}
+          </div>
         </div>
 
         <div className="container relative grid items-center gap-16 py-20 lg:grid-cols-[1.15fr_0.85fr] lg:py-28 xl:pl-[150px]">
@@ -52,14 +75,12 @@ export function Hero({ phone }: { phone: string }) {
               <span className="animate-fade-in inline-block" style={{ animationDelay: '0.05s' }}>
                 Плиточная мастерская · Тбилиси
               </span>
-              {/* линия под надписью прочерчивается слева направо */}
               <span
                 className="line-draw absolute inset-x-0 bottom-0 h-0.5 bg-accent-500"
                 style={{ animationDelay: '0.25s' }}
               />
             </span>
 
-            {/* заголовок поднимается словом за словом из-под маски */}
             <h1 className="display mt-8 text-[3rem] leading-[1.03] text-white sm:text-6xl xl:text-[5.2rem]">
               {HEADLINE.map((word, index) => (
                 <span key={word} className="inline-block overflow-hidden pb-[0.08em] align-bottom">
@@ -94,11 +115,16 @@ export function Hero({ phone }: { phone: string }) {
               </QuoteButton>
             </div>
 
-            <TileStrip />
+            <MaterialSliderMobile active={slide} onSelect={setSlide} />
           </div>
 
-          {/* Наклонённая выкладка образцов с анимированным входом */}
-          <TileBoard />
+          <MaterialSlider
+            active={slide}
+            onSelect={setSlide}
+            onPrev={prev}
+            onNext={next}
+            onHoverChange={setPaused}
+          />
         </div>
       </section>
 
