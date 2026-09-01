@@ -11,9 +11,9 @@ export function CtaSection({ settings }: { settings: SiteSettings }) {
         alt=""
         fill
         sizes="100vw"
-        className="object-cover opacity-45 [object-position:50%_70%]"
+        className="object-cover opacity-70 contrast-[1.15] [object-position:50%_70%]"
       />
-      <div className="absolute inset-0 bg-gradient-to-r from-graphite-950 via-graphite-950/90 to-graphite-950/70" />
+      <div className="absolute inset-0 bg-gradient-to-r from-graphite-950 via-graphite-950/82 to-graphite-950/45" />
       <div className="absolute inset-0 tile-grid-lg" />
       <div className="absolute inset-0 bg-[radial-gradient(90%_120%_at_85%_50%,rgba(14,138,118,0.3),transparent_60%)]" />
 

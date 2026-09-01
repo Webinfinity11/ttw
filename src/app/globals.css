@@ -153,3 +153,153 @@
     transition: none;
   }
 }
+
+/* --- Вход плиток в hero: сначала верхние две, затем нижние --- */
+@keyframes tile-in-left {
+  from {
+    opacity: 0;
+    transform: translate3d(-110px, -50px, 0) rotate(-14deg) scale(0.82);
+    filter: blur(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    filter: blur(0);
+  }
+}
+
+@keyframes tile-in-top {
+  from {
+    opacity: 0;
+    transform: translate3d(70px, -120px, 0) rotate(12deg) scale(0.82);
+    filter: blur(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    filter: blur(0);
+  }
+}
+
+@keyframes tile-in-bottom {
+  from {
+    opacity: 0;
+    transform: translate3d(-60px, 130px, 0) rotate(10deg) scale(0.82);
+    filter: blur(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    filter: blur(0);
+  }
+}
+
+@keyframes tile-in-right {
+  from {
+    opacity: 0;
+    transform: translate3d(120px, 70px, 0) rotate(-12deg) scale(0.82);
+    filter: blur(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    filter: blur(0);
+  }
+}
+
+/* Рамка панели проявляется первой */
+@keyframes frame-in {
+  from {
+    opacity: 0;
+    transform: scale(0.94);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Блик пробегает по панели, когда все плитки встали */
+@keyframes board-shine {
+  0% {
+    opacity: 0;
+    transform: translateX(-130%) skewX(-18deg);
+  }
+  12% {
+    opacity: 1;
+  }
+  85% {
+    opacity: 0.9;
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(230%) skewX(-18deg);
+  }
+}
+
+.tile-enter {
+  animation-duration: 0.85s;
+  animation-timing-function: cubic-bezier(0.18, 0.82, 0.25, 1.06);
+  animation-fill-mode: both;
+}
+
+.tile-enter-1 { animation-name: tile-in-left; animation-delay: 0.15s; }
+.tile-enter-2 { animation-name: tile-in-top; animation-delay: 0.3s; }
+.tile-enter-3 { animation-name: tile-in-bottom; animation-delay: 0.62s; }
+.tile-enter-4 { animation-name: tile-in-right; animation-delay: 0.78s; }
+
+.frame-enter {
+  animation: frame-in 0.7s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+}
+
+.board-shine {
+  animation: board-shine 1.5s ease-in-out 1.75s both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tile-enter,
+  .frame-enter,
+  .board-shine {
+    animation: none !important;
+    opacity: 1;
+  }
+}
+
+/* --- Вход текста в hero --- */
+@keyframes word-rise {
+  from {
+    opacity: 0;
+    transform: translateY(115%);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes line-draw {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.word-rise {
+  animation: word-rise 0.9s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+}
+
+.line-draw {
+  transform-origin: left;
+  animation: line-draw 0.8s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .word-rise,
+  .line-draw {
+    animation: none !important;
+    opacity: 1;
+    transform: none;
+  }
+}

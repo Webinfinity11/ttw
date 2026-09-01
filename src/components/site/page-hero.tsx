@@ -20,9 +20,9 @@ export function PageHero({ eyebrow, title, description, breadcrumbs = [], childr
         fill
         priority
         sizes="100vw"
-        className="object-cover opacity-50 [object-position:50%_35%]"
+        className="object-cover opacity-75 contrast-[1.15] [object-position:50%_35%]"
       />
-      <div className="absolute inset-0 bg-gradient-to-r from-graphite-950 via-graphite-950/88 to-graphite-950/60" />
+      <div className="absolute inset-0 bg-gradient-to-r from-graphite-950 via-graphite-950/80 to-graphite-950/40" />
       <div className="absolute inset-0 tile-grid-lg" />
       <div className="absolute inset-0 bg-[radial-gradient(100%_120%_at_80%_40%,rgba(14,138,118,0.28),transparent_62%)]" />
 
