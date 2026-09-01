@@ -52,3 +52,9 @@ pat-4.jpg | Ted Balmer | rYe0pSNm34o | a close up of a tiled floor with hexagona
 pat-5.jpg | Darren Richardson | 1zKFtv-TmWM | black and silver round analog watch on white ceramic wall ti
 pat-6.jpg | Mitchell Luo | _NzW-__ohkM | brown wooden parquet floor tiles
 pat-7.jpg | Colin Watts | y8q16Yzlufc | square beige and brown textured wall tiles with grout
+
+--- single slabs ---
+slab-1.jpg | Augustine Wong | LfU6_b3Oj4E | a white marble counter top with a long shadow
+slab-2.jpg | Zoshua Colah | gOAv_st16GM | a close up view of a textured surface of cement
+slab-3.jpg | Annie Spratt | ctXf1GVyf9A | a close up of a gray concrete surface
+slab-4.jpg | Declan Sun | RaTyAZrysv4 | a display of various marble and stone samples
