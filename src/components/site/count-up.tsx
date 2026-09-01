@@ -1,43 +1,53 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 
 /**
  * Число в показателях набегает от нуля.
- * Значение вида «480+» или «160×320» — цифры анимируются, хвост остаётся.
+ * Значение вида «480+» — цифры анимируются, хвост остаётся как есть.
  */
 export function CountUp({
   value,
   delay = 0,
-  duration = 1200,
+  duration = 900,
 }: {
   value: string;
   delay?: number;
   duration?: number;
 }) {
-  const match = value.match(/^(\d+)(.*)$/);
-  const target = match ? Number(match[1]) : 0;
-  const suffix = match ? match[2] : value;
+  // Разбор значения мемоизирован: иначе новый результат match на каждом
+  // рендере перезапускал бы эффект и анимация зависала на середине.
+  const { target, suffix, animatable } = useMemo(() => {
+    const parsed = value.match(/^(\d+)(.*)$/);
+    return parsed
+      ? { target: Number(parsed[1]), suffix: parsed[2], animatable: true }
+      : { target: 0, suffix: '', animatable: false };
+  }, [value]);
 
-  const [current, setCurrent] = useState(match ? 0 : target);
+  const [current, setCurrent] = useState(0);
   const frame = useRef<number | null>(null);
 
   useEffect(() => {
-    if (!match) return;
+    if (!animatable) return;
+
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       setCurrent(target);
       return;
     }
 
-    let start: number | null = null;
+    let startTime: number | null = null;
+
     const timer = window.setTimeout(() => {
       const step = (time: number) => {
-        if (start === null) start = time;
-        const ratio = Math.min((time - start) / duration, 1);
-        // мягкое замедление к концу
+        if (startTime === null) startTime = time;
+        const ratio = Math.min((time - startTime) / duration, 1);
         const eased = 1 - Math.pow(1 - ratio, 3);
         setCurrent(Math.round(target * eased));
-        if (ratio < 1) frame.current = window.requestAnimationFrame(step);
+        if (ratio < 1) {
+          frame.current = window.requestAnimationFrame(step);
+        } else {
+          setCurrent(target);
+        }
       };
       frame.current = window.requestAnimationFrame(step);
     }, delay);
@@ -46,7 +56,9 @@ export function CountUp({
       window.clearTimeout(timer);
       if (frame.current !== null) window.cancelAnimationFrame(frame.current);
     };
-  }, [match, target, delay, duration]);
+  }, [animatable, target, delay, duration]);
+
+  if (!animatable) return <>{value}</>;
 
   return (
     <>
