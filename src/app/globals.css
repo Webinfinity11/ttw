@@ -294,3 +294,16 @@
 @media (prefers-reduced-motion: reduce) {
   .slide-progress { animation: none; transform: scaleX(1); }
 }
+
+/* Прогресс автопрокрутки карусели hero */
+@keyframes hero-progress {
+  from { width: 0%; }
+  to { width: 100%; }
+}
+.hero-progress {
+  animation: hero-progress 6.5s linear both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-progress { animation: none; width: 100%; }
+}

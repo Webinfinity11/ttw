@@ -1,7 +1,8 @@
 import { AboutSection } from '@/components/site/about-section';
 import { Advantages } from '@/components/site/advantages';
 import { CtaSection } from '@/components/site/cta-section';
-import { Hero } from '@/components/site/hero';
+import { HeroCarousel } from '@/components/site/hero-carousel';
+import { HeroStats } from '@/components/site/hero-stats';
 import { PortfolioSection } from '@/components/site/portfolio-section';
 import { PricesSection } from '@/components/site/prices-section';
 import { Process } from '@/components/site/process';
@@ -20,7 +21,8 @@ export default async function HomePage() {
 
   return (
     <>
-      <Hero phone={settings.phone} />
+      <HeroCarousel phone={settings.phone} />
+      <HeroStats />
       <ServicesSection services={services} />
       <AboutSection />
       <PortfolioSection projects={projects} />
