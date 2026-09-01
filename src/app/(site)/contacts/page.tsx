@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { ContactForm } from '@/components/site/contact-form';
+import { MapBlock } from '@/components/site/map-block';
 import { PageHero } from '@/components/site/page-hero';
 import { Reveal } from '@/components/ui/reveal';
 import { getServices, getSettings } from '@/lib/data/content';
@@ -98,11 +99,8 @@ export default async function ContactsPage() {
             ))}
           </div>
 
-          <Reveal className="mt-10 flex h-64 items-center justify-center border border-graphite-700 bg-graphite-900">
-            <div className="text-center">
-              <p className="display text-[22px] uppercase">{settings.city}</p>
-              <p className="meta mt-2">ЗДЕСЬ БУДЕТ КАРТА</p>
-            </div>
+          <Reveal className="mt-10">
+            <MapBlock address={settings.address} city={settings.city} />
           </Reveal>
         </div>
 

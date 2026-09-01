@@ -253,3 +253,11 @@
     clip-path: none;
   }
 }
+
+/* Карта: светлые тайлы приводим к тёмной теме сайта */
+.map-frame {
+  filter: invert(0.92) hue-rotate(180deg) saturate(0.75) brightness(1.05) contrast(0.95);
+}
+.theme-light .map-frame {
+  filter: none;
+}
