@@ -1,0 +1,155 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-sans: 'Barlow', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-display: 'Archivo', 'Barlow', system-ui, sans-serif;
+}
+
+@layer base {
+  * {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-stone-50 text-graphite-900 font-sans;
+  }
+
+  ::selection {
+    @apply bg-accent-200/60;
+  }
+
+  h1,
+  h2,
+  h3 {
+    @apply text-balance;
+  }
+}
+
+@layer components {
+  /* Заголовки: широкий тяжёлый Archivo с плотным трекингом */
+  .display {
+    @apply font-display font-black tracking-tightest;
+  }
+
+  .field-label {
+    @apply mb-1.5 block text-[13px] font-medium text-graphite-700;
+  }
+
+  .field-input {
+    @apply w-full rounded-none border border-graphite-100 bg-white px-3.5 py-2.5 text-sm text-graphite-900
+           outline-none transition placeholder:text-graphite-300
+           focus:border-accent-400 focus:ring-4 focus:ring-accent-100/70;
+  }
+
+  /* Кнопки — прямоугольные, капслок, разрядка */
+  .btn {
+    @apply inline-flex select-none items-center justify-center gap-2.5 font-display text-[13px]
+           font-bold uppercase tracking-[0.09em] transition-all duration-200
+           disabled:pointer-events-none disabled:opacity-50;
+  }
+
+  .btn-dark {
+    @apply btn bg-graphite-950 px-8 py-4 text-white hover:bg-accent-500;
+  }
+
+  .btn-accent {
+    @apply btn bg-accent-500 px-8 py-4 text-white hover:bg-graphite-950;
+  }
+
+  .btn-light {
+    @apply btn bg-white px-8 py-4 text-graphite-950 hover:bg-accent-500 hover:text-white;
+  }
+
+  .btn-outline {
+    @apply btn border border-graphite-950/20 px-8 py-4 text-graphite-950 hover:border-accent-500 hover:text-accent-600;
+  }
+
+  .btn-outline-light {
+    @apply btn border border-white/30 px-8 py-4 text-white hover:border-accent-400 hover:text-accent-300;
+  }
+
+  .btn-ghost {
+    @apply btn px-3 py-2 text-graphite-500 hover:bg-graphite-50 hover:text-graphite-900;
+  }
+
+  /* Ссылка-подчёркивание в стиле «ВСЕ УСЛУГИ» */
+  .link-underline {
+    @apply inline-flex items-center gap-2 border-b-2 border-accent-500 pb-1.5 font-display text-[13px]
+           font-bold uppercase tracking-[0.09em] text-graphite-950 transition-colors hover:text-accent-600;
+  }
+
+  .eyebrow {
+    @apply inline-flex items-center gap-2.5 font-display text-[13px] font-semibold uppercase
+           tracking-[0.16em] text-accent-500;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* Сетка плиточных швов поверх тёмных секций */
+  .tile-grid {
+    background-image:
+      linear-gradient(to right, rgba(255, 255, 255, 0.055) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.055) 1px, transparent 1px);
+    background-size: 92px 92px;
+  }
+
+  /* Более крупная раскладка — для узких баннеров */
+  .tile-grid-lg {
+    background-image:
+      linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    background-size: 150px 150px;
+  }
+
+  .grid-lines {
+    background-image: linear-gradient(to right, rgba(11, 16, 15, 0.05) 1px, transparent 1px);
+    background-size: 25% 100%;
+  }
+
+  .scrollbar-slim::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  .scrollbar-slim::-webkit-scrollbar-thumb {
+    background: rgba(11, 16, 15, 0.18);
+    border-radius: 999px;
+  }
+  .scrollbar-slim::-webkit-scrollbar-track {
+    background: transparent;
+  }
+}
+
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(22px);
+  transition:
+    opacity 0.75s cubic-bezier(0.22, 0.61, 0.36, 1),
+    transform 0.75s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+[data-reveal='shown'] {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

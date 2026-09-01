@@ -1,0 +1,26 @@
+import type { PriceItem } from '@/lib/types';
+
+export const mockPrices: PriceItem[] = [
+  { id: 'prc-01', title: 'Укладка керамической плитки', price: 65, unit: 'м²', category: 'Укладка', published: true, order: 1 },
+  { id: 'prc-02', title: 'Укладка керамогранита', price: 80, unit: 'м²', category: 'Укладка', published: true, order: 2 },
+  { id: 'prc-03', title: 'Укладка XXL-керамогранита (от 120×260)', price: 140, unit: 'м²', category: 'Укладка', note: 'Работа в две пары рук, рама и присоски', published: true, order: 3 },
+  { id: 'prc-04', title: 'Укладка мозаики', price: 120, unit: 'м²', category: 'Укладка', published: true, order: 4 },
+  { id: 'prc-05', title: 'Укладка плитки «кабанчик»', price: 95, unit: 'м²', category: 'Укладка', published: true, order: 5 },
+  { id: 'prc-06', title: 'Кухонный фартук', price: 85, unit: 'м²', category: 'Укладка', published: true, order: 6 },
+  { id: 'prc-07', title: 'Облицовка ступеней', price: 60, unit: 'п.м.', category: 'Укладка', published: true, order: 7 },
+  { id: 'prc-08', title: 'Плитка на террасе / балконе', price: 90, unit: 'м²', category: 'Укладка', published: true, order: 8 },
+  { id: 'prc-09', title: 'Выравнивание стен по маякам', price: 35, unit: 'м²', category: 'Подготовка', published: true, order: 9 },
+  { id: 'prc-10', title: 'Стяжка пола', price: 45, unit: 'м²', category: 'Подготовка', published: true, order: 10 },
+  { id: 'prc-11', title: 'Изготовление ниши', price: 250, unit: 'шт.', category: 'Подготовка', published: true, order: 11 },
+  { id: 'prc-12', title: 'Короб под стояк', price: 180, unit: 'шт.', category: 'Подготовка', published: true, order: 12 },
+  { id: 'prc-13', title: 'Гидроизоляция в два слоя', price: 40, unit: 'м²', category: 'Гидроизоляция', published: true, order: 13 },
+  { id: 'prc-14', title: 'Гидроизоляционная лента в углах', price: 20, unit: 'п.м.', category: 'Гидроизоляция', published: true, order: 14 },
+  { id: 'prc-15', title: 'Цементная затирка швов', price: 20, unit: 'м²', category: 'Обработка', published: true, order: 15 },
+  { id: 'prc-16', title: 'Эпоксидная затирка швов', price: 55, unit: 'м²', category: 'Обработка', published: true, order: 16 },
+  { id: 'prc-17', title: 'Запил плитки под 45°', price: 30, unit: 'п.м.', category: 'Обработка', published: true, order: 17 },
+  { id: 'prc-18', title: 'Отверстие под розетку / смеситель', price: 15, unit: 'шт.', category: 'Обработка', published: true, order: 18 },
+  { id: 'prc-19', title: 'Герметизация примыканий', price: 18, unit: 'п.м.', category: 'Обработка', published: true, order: 19 },
+  { id: 'prc-20', title: 'Демонтаж старой плитки', price: 25, unit: 'м²', category: 'Демонтаж', published: true, order: 20 },
+  { id: 'prc-21', title: 'Вынос строительного мусора', price: 15, unit: 'мешок', category: 'Демонтаж', published: false, order: 21 },
+  { id: 'prc-22', title: 'Ванная комната под ключ', price: 1800, unit: 'объект', category: 'Под ключ', note: 'Итоговая смета — после замера', published: true, order: 22 },
+];
