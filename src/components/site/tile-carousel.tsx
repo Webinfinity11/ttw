@@ -101,7 +101,7 @@ export function TileCarousel() {
                 'flex h-14 w-14 items-center justify-center border text-[26px] font-light leading-none transition-all duration-300',
                 canPrev
                   ? 'border-graphite-700 text-stone-100 hover:border-stone-100 hover:bg-stone-100 hover:text-graphite-950'
-                  : 'border-graphite-800 text-graphite-700',
+                  : 'border-graphite-800 text-graphite-500',
               )}
             >
               ‹
@@ -114,7 +114,7 @@ export function TileCarousel() {
                 'flex h-14 w-14 items-center justify-center border text-[26px] font-light leading-none transition-all duration-300',
                 canNext
                   ? 'border-graphite-700 text-stone-100 hover:border-stone-100 hover:bg-stone-100 hover:text-graphite-950'
-                  : 'border-graphite-800 text-graphite-700',
+                  : 'border-graphite-800 text-graphite-500',
               )}
             >
               ›

@@ -43,7 +43,7 @@ export default async function AboutPage() {
         breadcrumbs={[{ label: 'О компании' }]}
       />
 
-      <section className="bg-stone-50 py-16 lg:py-24">
+      <section className="bg-graphite-950 py-16 lg:py-24">
         <div className="container grid items-center gap-14 lg:grid-cols-2 lg:gap-20">
           <Reveal className="relative">
             <div className="relative aspect-[4/5] overflow-hidden rounded-none">
@@ -55,9 +55,9 @@ export default async function AboutPage() {
                 className="object-cover"
               />
             </div>
-            <div className="absolute -right-4 bottom-8 w-44 rounded-none border border-stone-200 bg-white p-5 shadow-card lg:-right-10">
+            <div className="absolute -right-4 bottom-8 w-44 rounded-none border border-graphite-700 bg-graphite-900 p-5 shadow-card lg:-right-10">
               <p className="font-display text-4xl font-black tracking-tightest">12</p>
-              <p className="mt-1 text-xs leading-snug text-graphite-500">
+              <p className="mt-1 text-xs leading-snug text-stone-200">
                 лет с плиткой, из них 6 — в Тбилиси
               </p>
             </div>
@@ -69,7 +69,7 @@ export default async function AboutPage() {
               title="Мастерская, которая выросла из ремонта своей квартиры"
               description="Начали с частных ванных, сегодня закрываем полный цикл плиточных работ — от стяжки и гидроизоляции до крупноформатных плит 160×320 см."
             />
-            <div className="mt-8 space-y-5 text-[16px] leading-relaxed text-graphite-500">
+            <div className="mt-8 space-y-5 text-[16px] leading-relaxed text-stone-200">
               <p>
                 Мы не берём десять объектов одновременно. В работе одновременно два-три адреса —
                 этого достаточно, чтобы держать сроки и не терять качество на мелочах: совпадении
@@ -87,9 +87,9 @@ export default async function AboutPage() {
                 { value: '96%', label: 'клиентов по рекомендации' },
                 { value: '3 года', label: 'гарантии' },
               ].map((item) => (
-                <div key={item.label} className="border-l border-stone-300 pl-5">
+                <div key={item.label} className="border-l border-graphite-700 pl-5">
                   <p className="font-display text-3xl font-black tracking-tightest">{item.value}</p>
-                  <p className="mt-1 text-sm text-graphite-500">{item.label}</p>
+                  <p className="mt-1 text-sm text-stone-200">{item.label}</p>
                 </div>
               ))}
             </div>
@@ -97,7 +97,7 @@ export default async function AboutPage() {
         </div>
       </section>
 
-      <section className="bg-white py-20 lg:py-28">
+      <section className="bg-graphite-900 py-20 lg:py-28">
         <div className="container">
           <SectionHeading eyebrow="Принципы" title="Как мы относимся к работе" align="center" />
           <div className="mt-14 grid gap-6 md:grid-cols-3">
@@ -105,13 +105,13 @@ export default async function AboutPage() {
               <Reveal
                 key={value.title}
                 delay={index * 70}
-                className="rounded-none border border-stone-200 bg-stone-50 p-8 lg:p-10"
+                className="rounded-none border border-graphite-700 bg-graphite-950 p-8 lg:p-10"
               >
-                <span className="flex h-12 w-12 items-center justify-center rounded-none bg-white text-stone-100">
+                <span className="flex h-12 w-12 items-center justify-center rounded-none bg-graphite-900 text-stone-100">
                   <value.icon className="h-5 w-5" />
                 </span>
                 <h3 className="mt-7 text-lg font-semibold tracking-tight">{value.title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-graphite-500">{value.text}</p>
+                <p className="mt-3 text-sm leading-relaxed text-stone-200">{value.text}</p>
               </Reveal>
             ))}
           </div>

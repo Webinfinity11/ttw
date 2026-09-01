@@ -41,7 +41,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
         breadcrumbs={[{ href: '/projects', label: 'Проекты' }, { label: project.title }]}
       />
 
-      <section className="bg-stone-50 py-16 lg:py-20">
+      <section className="bg-graphite-950 py-16 lg:py-20">
         <div className="container">
           <div className="relative aspect-[16/10] overflow-hidden rounded-none">
             <Image
@@ -54,10 +54,10 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
             />
           </div>
 
-          <div className="mt-6 grid gap-px overflow-hidden rounded-none border border-stone-200 bg-stone-200 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-6 grid gap-px overflow-hidden rounded-none border border-graphite-700 bg-graphite-800 sm:grid-cols-2 lg:grid-cols-4">
             {facts.map((fact) => (
-              <div key={fact.label} className="bg-white px-6 py-6">
-                <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-graphite-300">
+              <div key={fact.label} className="bg-graphite-900 px-6 py-6">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-stone-400">
                   {fact.label}
                 </p>
                 <p className="mt-2 font-display text-2xl font-black tracking-tight">{fact.value}</p>
@@ -85,9 +85,9 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
             </div>
 
             <aside className="space-y-6">
-              <div className="rounded-none border border-stone-200 bg-white p-8">
+              <div className="rounded-none border border-graphite-700 bg-graphite-900 p-8">
                 <h2 className="font-display text-2xl font-black tracking-tight">Материалы</h2>
-                <p className="mt-4 text-sm leading-relaxed text-graphite-500">{project.materials}</p>
+                <p className="mt-4 text-sm leading-relaxed text-stone-200">{project.materials}</p>
               </div>
 
               <div className="rounded-none bg-graphite-950 p-8 text-stone-50">
@@ -108,7 +108,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
       </section>
 
       {related.length > 0 && (
-        <section className="bg-white py-20">
+        <section className="bg-graphite-900 py-20">
           <div className="container">
             <div className="flex items-end justify-between gap-6">
               <h2 className="font-display text-3xl font-black tracking-tightest">Другие проекты</h2>

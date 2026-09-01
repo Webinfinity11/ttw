@@ -91,10 +91,10 @@ function QuoteDialog({
       <button
         aria-label="Закрыть"
         onClick={onClose}
-        className="absolute inset-0 bg-graphite-950/50  animate-fade-in"
+        className="absolute inset-0 bg-graphite-950/80 animate-fade-in"
       />
-      <div className="relative z-10 w-full max-w-lg animate-scale-in overflow-hidden rounded-none bg-white shadow-lift sm:rounded-none">
-        <div className="flex items-start justify-between gap-6 border-b border-stone-200 px-7 py-6">
+      <div className="relative z-10 w-full max-w-lg animate-scale-in overflow-hidden rounded-none border border-graphite-700 bg-graphite-900 shadow-lift sm:rounded-none">
+        <div className="flex items-start justify-between gap-6 border-b border-graphite-700 px-7 py-6">
           <div>
             <span className="eyebrow">Заявка</span>
             <h3 className="mt-2 font-display text-3xl font-black leading-tight">
@@ -103,7 +103,7 @@ function QuoteDialog({
           </div>
           <button
             onClick={onClose}
-            className="rounded-full p-2 text-graphite-300 transition hover:bg-stone-100 hover:text-graphite-900"
+            className="rounded-full p-2 text-stone-400 transition hover:bg-graphite-800 hover:text-stone-100"
             aria-label="Закрыть"
           >
             <X className="h-5 w-5" />
@@ -112,11 +112,11 @@ function QuoteDialog({
 
         {state === 'sent' ? (
           <div className="px-7 py-12 text-center">
-            <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-stone-100 text-stone-100">
+            <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-stone-100 text-graphite-950">
               <Check className="h-7 w-7" />
             </div>
             <h4 className="mt-6 font-display text-2xl font-black">Заявка принята</h4>
-            <p className="mx-auto mt-3 max-w-sm text-sm leading-relaxed text-graphite-500">
+            <p className="mx-auto mt-3 max-w-sm text-sm leading-relaxed text-stone-200">
               Свяжемся с вами в течение рабочего дня, уточним детали и предложим удобное время
               для бесплатного замера.
             </p>
@@ -128,33 +128,33 @@ function QuoteDialog({
           <form onSubmit={handleSubmit} className="px-7 py-6">
             <div className="grid gap-4 sm:grid-cols-2">
               <div>
-                <label className="field-label">Имя</label>
+                <label className="field-label-dark">Имя</label>
                 <input
                   required
                   value={form.name}
                   onChange={(e) => setForm({ ...form, name: e.target.value })}
-                  className="field-input"
+                  className="field-dark"
                   placeholder="Как к вам обращаться"
                 />
               </div>
               <div>
-                <label className="field-label">Телефон</label>
+                <label className="field-label-dark">Телефон</label>
                 <input
                   required
                   value={form.phone}
                   onChange={(e) => setForm({ ...form, phone: e.target.value })}
-                  className="field-input"
+                  className="field-dark"
                   placeholder="+995 5__ __ __ __"
                 />
               </div>
             </div>
 
             <div className="mt-4">
-              <label className="field-label">Услуга</label>
+              <label className="field-label-dark">Услуга</label>
               <select
                 value={form.service}
                 onChange={(e) => setForm({ ...form, service: e.target.value })}
-                className="field-input"
+                className="field-dark"
               >
                 {services.map((service) => (
                   <option key={service}>{service}</option>
@@ -163,12 +163,12 @@ function QuoteDialog({
             </div>
 
             <div className="mt-4">
-              <label className="field-label">Комментарий</label>
+              <label className="field-label-dark">Комментарий</label>
               <textarea
                 rows={3}
                 value={form.message}
                 onChange={(e) => setForm({ ...form, message: e.target.value })}
-                className="field-input resize-none"
+                className="field-dark resize-none"
                 placeholder="Площадь, формат плитки, сроки"
               />
             </div>
@@ -189,7 +189,7 @@ function QuoteDialog({
 
             <a
               href={`tel:${phone.replace(/\s/g, '')}`}
-              className="mt-4 flex items-center justify-center gap-2 text-sm text-graphite-500 transition hover:text-graphite-900"
+              className="mt-4 flex items-center justify-center gap-2 text-sm text-stone-200 transition hover:text-stone-100"
             >
               <Phone className="h-4 w-4" /> или позвоните: {phone}
             </a>

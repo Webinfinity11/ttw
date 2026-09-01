@@ -8,12 +8,14 @@ export default async function SiteLayout({ children }: { children: React.ReactNo
   const [settings, services] = await Promise.all([getSettings(), getServices()]);
 
   return (
-    <QuoteProvider services={services.map((s) => s.title)} phone={settings.phone}>
-      <ThemeShell>
+    // ThemeShell снаружи: модальное окно заявки рендерится внутри него
+    // и наследует цветовые переменные выбранной темы.
+    <ThemeShell>
+      <QuoteProvider services={services.map((s) => s.title)} phone={settings.phone}>
         <Header phone={settings.phone} companyName={settings.companyName} />
         <main className="flex-1">{children}</main>
         <Footer settings={settings} services={services} />
-      </ThemeShell>
-    </QuoteProvider>
+      </QuoteProvider>
+    </ThemeShell>
   );
 }

@@ -48,41 +48,41 @@ export default async function ContactsPage() {
         breadcrumbs={[{ label: 'Контакты' }]}
       />
 
-      <section className="bg-stone-50 py-16 lg:py-24">
+      <section className="bg-graphite-950 py-16 lg:py-24">
         <div className="container grid gap-10 lg:grid-cols-[1fr_1.1fr] lg:gap-16">
           <div>
-            <div className="grid gap-px overflow-hidden rounded-none border border-stone-200 bg-stone-200 sm:grid-cols-2">
+            <div className="grid gap-px overflow-hidden rounded-none border border-graphite-700 bg-graphite-800 sm:grid-cols-2">
               {channels.map((channel) => (
                 <a
                   key={channel.label}
                   href={channel.href}
-                  className="group bg-white p-7 transition-colors hover:bg-graphite-900"
+                  className="group bg-graphite-900 p-7 transition-colors hover:bg-graphite-900"
                 >
-                  <span className="flex h-11 w-11 items-center justify-center rounded-none bg-stone-100 text-stone-100 transition-colors group-hover:bg-stone-100 group-hover:text-white">
+                  <span className="flex h-11 w-11 items-center justify-center rounded-none bg-graphite-800 text-stone-100 transition-colors group-hover:bg-stone-100 group-hover:text-graphite-950">
                     <channel.icon className="h-5 w-5" />
                   </span>
-                  <p className="mt-6 text-[11px] font-semibold uppercase tracking-[0.2em] text-graphite-300">
+                  <p className="mt-6 text-[11px] font-semibold uppercase tracking-[0.2em] text-stone-400">
                     {channel.label}
                   </p>
-                  <p className="mt-2 text-[15px] font-medium text-graphite-900">{channel.value}</p>
+                  <p className="mt-2 text-[15px] font-medium text-stone-100">{channel.value}</p>
                 </a>
               ))}
             </div>
 
-            <div className="mt-6 rounded-none border border-stone-200 bg-white p-8">
+            <div className="mt-6 rounded-none border border-graphite-700 bg-graphite-900 p-8">
               <div className="flex items-start gap-4">
                 <MapPin className="mt-0.5 h-5 w-5 shrink-0 text-stone-100" />
                 <div>
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-graphite-300">
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-stone-400">
                     Адрес
                   </p>
                   <p className="mt-2 text-[15px]">{settings.address}</p>
                 </div>
               </div>
-              <div className="mt-6 flex items-start gap-4 border-t border-stone-200 pt-6">
+              <div className="mt-6 flex items-start gap-4 border-t border-graphite-700 pt-6">
                 <Clock className="mt-0.5 h-5 w-5 shrink-0 text-stone-100" />
                 <div>
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-graphite-300">
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-stone-400">
                     Часы работы
                   </p>
                   <p className="mt-2 text-[15px]">{settings.workingHours}</p>
@@ -90,12 +90,12 @@ export default async function ContactsPage() {
               </div>
             </div>
 
-            <Reveal className="mt-6 overflow-hidden rounded-none border border-stone-200">
-              <div className="relative flex h-64 items-center justify-center bg-stone-200">
+            <Reveal className="mt-6 overflow-hidden rounded-none border border-graphite-700">
+              <div className="relative flex h-64 items-center justify-center bg-graphite-800">
                 <div className="absolute inset-0 grid-lines opacity-60" />
                 <div className="relative text-center">
                   <MapPin className="mx-auto h-8 w-8 text-stone-100" />
-                  <p className="mt-3 text-sm text-graphite-500">
+                  <p className="mt-3 text-sm text-stone-200">
                     Здесь будет карта {settings.city}
                   </p>
                 </div>

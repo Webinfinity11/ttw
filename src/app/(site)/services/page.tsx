@@ -23,7 +23,7 @@ export default async function ServicesPage() {
         breadcrumbs={[{ label: 'Услуги' }]}
       />
 
-      <section className="bg-stone-50 py-16 lg:py-24">
+      <section className="bg-graphite-950 py-16 lg:py-24">
         <div className="container space-y-20">
           {categories.map((category) => {
             const items = services.filter((service) => service.category === category);
@@ -32,7 +32,7 @@ export default async function ServicesPage() {
                 <div className="flex items-center gap-5">
                   <h2 className="font-display text-3xl font-black tracking-tightest">{category}</h2>
                   <span className="h-px flex-1 bg-stone-300" />
-                  <span className="text-sm text-graphite-300">{items.length}</span>
+                  <span className="text-sm text-stone-400">{items.length}</span>
                 </div>
 
                 <div className="mt-8 grid gap-6 md:grid-cols-2 xl:grid-cols-3">

@@ -25,7 +25,7 @@ export function Logo({
     <span
       className={cn(
         'flex items-center gap-2.5',
-        tone === 'dark' ? 'text-stone-50' : 'text-graphite-900',
+        tone === 'dark' ? 'text-stone-50' : 'text-stone-100',
       )}
     >
       <LogoMark className={tone === 'dark' ? 'text-stone-200' : 'text-stone-100'} />
@@ -35,7 +35,7 @@ export function Logo({
           <span
             className={cn(
               'mt-1 text-[10px] uppercase tracking-[0.3em]',
-              tone === 'dark' ? 'text-stone-200/50' : 'text-graphite-300',
+              tone === 'dark' ? 'text-stone-200/50' : 'text-stone-400',
             )}
           >
             {rest.join(' ')}

@@ -22,25 +22,25 @@ export default async function PricesPage() {
         breadcrumbs={[{ label: 'Цены' }]}
       />
 
-      <section className="bg-stone-50 py-16 lg:py-24">
+      <section className="bg-graphite-950 py-16 lg:py-24">
         <div className="container">
           <PricesTable prices={prices} />
 
-          <div className="mt-10 rounded-none border border-stone-200 bg-white p-8 text-sm leading-relaxed text-graphite-500 lg:p-10">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-graphite-300">
+          <div className="mt-10 rounded-none border border-graphite-700 bg-graphite-900 p-8 text-sm leading-relaxed text-stone-200 lg:p-10">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-stone-400">
               Что влияет на цену
             </p>
             <div className="mt-6 grid gap-6 md:grid-cols-3">
               <p>
-                <strong className="text-graphite-900">Формат плитки.</strong> Мелкий формат и XXL
+                <strong className="text-stone-100">Формат плитки.</strong> Мелкий формат и XXL
                 дороже стандартного: больше подрезов или больше рук на плиту.
               </p>
               <p>
-                <strong className="text-graphite-900">Основание.</strong> Если стены и пол уходят
+                <strong className="text-stone-100">Основание.</strong> Если стены и пол уходят
                 от плоскости, добавляется выравнивание или стяжка.
               </p>
               <p>
-                <strong className="text-graphite-900">Раскладка.</strong> Диагональ, ёлочка,
+                <strong className="text-stone-100">Раскладка.</strong> Диагональ, ёлочка,
                 смещение и подбор рисунка увеличивают трудоёмкость.
               </p>
             </div>
@@ -48,7 +48,7 @@ export default async function PricesPage() {
         </div>
       </section>
 
-      <section className="bg-white py-20 lg:py-28">
+      <section className="bg-graphite-900 py-20 lg:py-28">
         <div className="container">
           <SectionHeading eyebrow="FAQ" title="Частые вопросы" />
           <div className="mt-12">

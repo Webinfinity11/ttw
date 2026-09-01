@@ -20,7 +20,7 @@ export default async function ProjectsPage() {
         breadcrumbs={[{ label: 'Проекты' }]}
       />
 
-      <section className="bg-stone-50 py-16 lg:py-20">
+      <section className="bg-graphite-950 py-16 lg:py-20">
         <div className="container">
           <ProjectsGallery projects={projects} />
         </div>

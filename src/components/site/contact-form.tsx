@@ -17,12 +17,12 @@ export function ContactForm({ services }: { services: string[] }) {
 
   if (state === 'sent') {
     return (
-      <div className="flex h-full min-h-[380px] flex-col items-center justify-center rounded-none border border-stone-200 bg-white p-10 text-center">
-        <span className="flex h-14 w-14 items-center justify-center rounded-full bg-stone-100 text-stone-100">
+      <div className="flex h-full min-h-[380px] flex-col items-center justify-center rounded-none border border-graphite-700 bg-graphite-900 p-10 text-center">
+        <span className="flex h-14 w-14 items-center justify-center rounded-full bg-graphite-800 text-stone-100">
           <Check className="h-7 w-7" />
         </span>
         <h3 className="mt-6 font-display text-2xl font-black">Спасибо, заявка отправлена</h3>
-        <p className="mt-3 max-w-sm text-sm leading-relaxed text-graphite-500">
+        <p className="mt-3 max-w-sm text-sm leading-relaxed text-stone-200">
           Мы свяжемся с вами в рабочее время и предложим удобную дату замера.
         </p>
         <button onClick={() => setState('idle')} className="btn-outline mt-8">
@@ -33,41 +33,41 @@ export function ContactForm({ services }: { services: string[] }) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="rounded-none border border-stone-200 bg-white p-8 lg:p-10">
+    <form onSubmit={handleSubmit} className="rounded-none border border-graphite-700 bg-graphite-900 p-8 lg:p-10">
       <h3 className="font-display text-3xl font-black tracking-tight">Оставить заявку</h3>
-      <p className="mt-3 text-sm text-graphite-500">
+      <p className="mt-3 text-sm text-stone-200">
         Ответим в рабочее время и договоримся о бесплатном замере.
       </p>
 
       <div className="mt-8 grid gap-4 sm:grid-cols-2">
         <div>
-          <label className="field-label">Имя</label>
+          <label className="field-label-dark">Имя</label>
           <input
             required
             value={form.name}
             onChange={(e) => setForm({ ...form, name: e.target.value })}
-            className="field-input"
+            className="field-dark"
             placeholder="Как к вам обращаться"
           />
         </div>
         <div>
-          <label className="field-label">Телефон</label>
+          <label className="field-label-dark">Телефон</label>
           <input
             required
             value={form.phone}
             onChange={(e) => setForm({ ...form, phone: e.target.value })}
-            className="field-input"
+            className="field-dark"
             placeholder="+995 5__ __ __ __"
           />
         </div>
       </div>
 
       <div className="mt-4">
-        <label className="field-label">Услуга</label>
+        <label className="field-label-dark">Услуга</label>
         <select
           value={form.service}
           onChange={(e) => setForm({ ...form, service: e.target.value })}
-          className="field-input"
+          className="field-dark"
         >
           {services.map((service) => (
             <option key={service}>{service}</option>
@@ -76,12 +76,12 @@ export function ContactForm({ services }: { services: string[] }) {
       </div>
 
       <div className="mt-4">
-        <label className="field-label">Комментарий</label>
+        <label className="field-label-dark">Комментарий</label>
         <textarea
           rows={4}
           value={form.message}
           onChange={(e) => setForm({ ...form, message: e.target.value })}
-          className="field-input resize-none"
+          className="field-dark resize-none"
           placeholder="Площадь помещения, формат плитки, желаемые сроки"
         />
       </div>
@@ -98,7 +98,7 @@ export function ContactForm({ services }: { services: string[] }) {
         )}
       </button>
 
-      <p className="mt-4 text-center text-xs text-graphite-300">
+      <p className="mt-4 text-center text-xs text-stone-400">
         Нажимая кнопку, вы соглашаетесь на обработку контактных данных.
       </p>
     </form>

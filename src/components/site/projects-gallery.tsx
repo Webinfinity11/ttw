@@ -46,15 +46,15 @@ export function ProjectsGallery({ projects }: { projects: Project[] }) {
               className={cn(
                 'shrink-0 rounded-full border px-5 py-2.5 text-sm transition-all duration-200',
                 active === tab
-                  ? 'border-graphite-900 bg-graphite-900 text-white'
-                  : 'border-stone-300 bg-white text-graphite-500 hover:border-graphite-900/40 hover:text-graphite-900',
+                  ? 'border-stone-100 bg-stone-100 text-graphite-950'
+                  : 'border-graphite-700 bg-graphite-900 text-stone-200 hover:border-stone-300 hover:text-stone-100',
               )}
             >
               {tab}
               <span
                 className={cn(
                   'ml-2 text-xs',
-                  active === tab ? 'text-white/50' : 'text-graphite-300',
+                  active === tab ? 'text-graphite-950/50' : 'text-stone-400',
                 )}
               >
                 {count}
@@ -73,7 +73,7 @@ export function ProjectsGallery({ projects }: { projects: Project[] }) {
       </div>
 
       {filtered.length === 0 && (
-        <p className="py-20 text-center text-graphite-500">
+        <p className="py-20 text-center text-stone-200">
           В этой категории пока нет опубликованных проектов.
         </p>
       )}
