@@ -1,6 +1,7 @@
 import { Footer } from '@/components/site/footer';
 import { Header } from '@/components/site/header';
 import { QuoteProvider } from '@/components/site/quote-dialog';
+import { ThemeShell } from '@/components/site/theme';
 import { getServices, getSettings } from '@/lib/data/content';
 
 export default async function SiteLayout({ children }: { children: React.ReactNode }) {
@@ -8,11 +9,11 @@ export default async function SiteLayout({ children }: { children: React.ReactNo
 
   return (
     <QuoteProvider services={services.map((s) => s.title)} phone={settings.phone}>
-      <div className="flex min-h-screen flex-col">
+      <ThemeShell>
         <Header phone={settings.phone} companyName={settings.companyName} />
         <main className="flex-1">{children}</main>
         <Footer settings={settings} services={services} />
-      </div>
+      </ThemeShell>
     </QuoteProvider>
   );
 }

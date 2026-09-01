@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 import { Menu, X } from 'lucide-react';
 import { cn } from '@/lib/cn';
 import { useQuote } from './quote-dialog';
+import { ThemeToggle } from './theme';
 
 const NAV = [
   { href: '/', label: 'Главная' },
@@ -66,6 +67,7 @@ export function Header({ phone }: { phone: string; companyName: string }) {
           >
             Смета
           </button>
+          <ThemeToggle />
           <button
             onClick={() => setMenuOpen((value) => !value)}
             className="text-stone-100 lg:hidden"

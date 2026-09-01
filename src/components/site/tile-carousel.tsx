@@ -5,58 +5,79 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { galleryPhoto } from '@/lib/images';
 import { cn } from '@/lib/cn';
 
-interface Card {
-  src: string;
-  title: string;
-  note: string;
-}
-
-const CARDS: Card[] = [
-  { src: galleryPhoto('hero-bath-1.jpg'), title: 'Мрамор в душевой', note: 'Крупный формат · книжный подбор' },
-  { src: '/tiles/marble-black-gold.webp', title: 'Чёрный мрамор', note: 'Золотые прожилки · полировка' },
-  { src: galleryPhoto('pat-1.jpg'), title: 'Цементный орнамент', note: 'Ручная раскладка · шов 2 мм' },
-  { src: galleryPhoto('mosaic-2.jpg'), title: 'Мозаика', note: '25×25 · эпоксидная затирка' },
-  { src: galleryPhoto('pat-4.jpg'), title: 'Шестиугольник', note: 'Гексагон · пол и стены' },
-  { src: galleryPhoto('floor-5.jpg'), title: 'Мрамор на полу', note: 'Полировка · минимальный шов' },
-  { src: galleryPhoto('pat-6.jpg'), title: 'Ёлочка под дерево', note: 'Керамогранит 20×120' },
-  { src: galleryPhoto('bath-1.jpg'), title: 'Тёмный керамогранит', note: 'Санузел · скрытые люки' },
-  { src: galleryPhoto('pat-3.jpg'), title: 'Марокканский узор', note: 'Акцентная стена' },
-  { src: '/tiles/terrazzo.jpg', title: 'Натуральный камень', note: 'Патчворк · травертин' },
+const PHOTOS = [
+  galleryPhoto('hero-bath-1.jpg'),
+  '/tiles/marble-black-gold.webp',
+  galleryPhoto('pat-1.jpg'),
+  galleryPhoto('mosaic-2.jpg'),
+  galleryPhoto('pat-4.jpg'),
+  galleryPhoto('floor-5.jpg'),
+  galleryPhoto('pat-6.jpg'),
+  galleryPhoto('bath-1.jpg'),
+  galleryPhoto('pat-3.jpg'),
+  '/tiles/terrazzo.jpg',
+  galleryPhoto('hero-bath-2.jpg'),
+  galleryPhoto('bath-4.jpg'),
 ];
 
+/**
+ * Крупная лента фактур без подписей.
+ * Карточки «дышат»: чем ближе кадр к центру экрана, тем он крупнее и ярче.
+ */
 export function TileCarousel() {
   const trackRef = useRef<HTMLDivElement>(null);
+  const frame = useRef<number | null>(null);
+  const drag = useRef<{ startX: number; startLeft: number; moved: boolean } | null>(null);
+
   const [progress, setProgress] = useState(0);
   const [canPrev, setCanPrev] = useState(false);
   const [canNext, setCanNext] = useState(true);
-  const drag = useRef<{ startX: number; startLeft: number } | null>(null);
 
-  const sync = useCallback(() => {
+  const paint = useCallback(() => {
     const node = trackRef.current;
     if (!node) return;
+
     const max = node.scrollWidth - node.clientWidth;
     setProgress(max > 0 ? node.scrollLeft / max : 0);
     setCanPrev(node.scrollLeft > 8);
     setCanNext(node.scrollLeft < max - 8);
+
+    const center = window.innerWidth / 2;
+    node.querySelectorAll<HTMLElement>('[data-card]').forEach((card) => {
+      const box = card.getBoundingClientRect();
+      const distance = Math.abs(box.left + box.width / 2 - center);
+      const ratio = Math.min(distance / (window.innerWidth * 0.6), 1);
+      card.style.transform = `scale(${(1 - ratio * 0.07).toFixed(3)})`;
+      card.style.opacity = `${(1 - ratio * 0.45).toFixed(3)}`;
+    });
   }, []);
 
+  const schedule = useCallback(() => {
+    if (frame.current !== null) return;
+    frame.current = window.requestAnimationFrame(() => {
+      frame.current = null;
+      paint();
+    });
+  }, [paint]);
+
   useEffect(() => {
-    sync();
+    paint();
     const node = trackRef.current;
     if (!node) return;
-    node.addEventListener('scroll', sync, { passive: true });
-    window.addEventListener('resize', sync);
+    node.addEventListener('scroll', schedule, { passive: true });
+    window.addEventListener('resize', schedule);
     return () => {
-      node.removeEventListener('scroll', sync);
-      window.removeEventListener('resize', sync);
+      node.removeEventListener('scroll', schedule);
+      window.removeEventListener('resize', schedule);
+      if (frame.current !== null) window.cancelAnimationFrame(frame.current);
     };
-  }, [sync]);
+  }, [paint, schedule]);
 
   const scrollBy = useCallback((direction: 1 | -1) => {
     const node = trackRef.current;
     if (!node) return;
     const card = node.querySelector('[data-card]') as HTMLElement | null;
-    const step = (card?.offsetWidth ?? 360) + 24;
+    const step = (card?.offsetWidth ?? 420) + 20;
     node.scrollBy({ left: step * direction, behavior: 'smooth' });
   }, []);
 
@@ -67,11 +88,10 @@ export function TileCarousel() {
           <div>
             <span className="meta">ФАКТУРЫ И МАТЕРИАЛЫ</span>
             <h2 className="display mt-4 text-[12vw] uppercase leading-[0.94] sm:text-[8vw] lg:text-[4.2rem]">
-              Что мы кладём
+              Галерея
             </h2>
           </div>
 
-          {/* Стрелки */}
           <div className="flex gap-2.5">
             <button
               onClick={() => scrollBy(-1)}
@@ -80,7 +100,7 @@ export function TileCarousel() {
               className={cn(
                 'flex h-14 w-14 items-center justify-center border text-[26px] font-light leading-none transition-all duration-300',
                 canPrev
-                  ? 'border-graphite-700 text-stone-100 hover:border-stone-300 hover:bg-stone-100 hover:text-graphite-950'
+                  ? 'border-graphite-700 text-stone-100 hover:border-stone-100 hover:bg-stone-100 hover:text-graphite-950'
                   : 'border-graphite-800 text-graphite-700',
               )}
             >
@@ -93,7 +113,7 @@ export function TileCarousel() {
               className={cn(
                 'flex h-14 w-14 items-center justify-center border text-[26px] font-light leading-none transition-all duration-300',
                 canNext
-                  ? 'border-graphite-700 text-stone-100 hover:border-stone-300 hover:bg-stone-100 hover:text-graphite-950'
+                  ? 'border-graphite-700 text-stone-100 hover:border-stone-100 hover:bg-stone-100 hover:text-graphite-950'
                   : 'border-graphite-800 text-graphite-700',
               )}
             >
@@ -103,70 +123,65 @@ export function TileCarousel() {
         </div>
       </div>
 
-      {/* Лента карточек — тянется за курсором, скроллится колесом и свайпом */}
       <div
         ref={trackRef}
         onPointerDown={(event) => {
           const node = trackRef.current;
           if (!node) return;
-          drag.current = { startX: event.clientX, startLeft: node.scrollLeft };
+          drag.current = { startX: event.clientX, startLeft: node.scrollLeft, moved: false };
           node.setPointerCapture(event.pointerId);
+          node.style.cursor = 'grabbing';
+          node.style.scrollSnapType = 'none';
         }}
         onPointerMove={(event) => {
           const node = trackRef.current;
           if (!node || !drag.current) return;
-          node.scrollLeft = drag.current.startLeft - (event.clientX - drag.current.startX);
+          const delta = event.clientX - drag.current.startX;
+          if (Math.abs(delta) > 4) drag.current.moved = true;
+          node.scrollLeft = drag.current.startLeft - delta;
         }}
         onPointerUp={() => {
+          const node = trackRef.current;
           drag.current = null;
+          if (!node) return;
+          node.style.cursor = 'grab';
+          node.style.scrollSnapType = '';
         }}
         onPointerCancel={() => {
           drag.current = null;
+          if (trackRef.current) trackRef.current.style.cursor = 'grab';
         }}
-        className="scrollbar-slim mt-12 flex snap-x snap-mandatory gap-6 overflow-x-auto px-5 pb-6 lg:px-10 [&::-webkit-scrollbar]:hidden"
+        className="mt-12 flex snap-x snap-mandatory gap-5 overflow-x-auto px-5 pb-8 lg:gap-6 lg:px-10 [&::-webkit-scrollbar]:hidden"
         style={{ scrollbarWidth: 'none', cursor: 'grab' }}
       >
-        {CARDS.map((card, index) => (
-          <figure
-            key={card.src}
+        {PHOTOS.map((src, index) => (
+          <div
+            key={src}
             data-card
-            className="group relative w-[76vw] shrink-0 snap-start sm:w-[46vw] lg:w-[27vw] xl:w-[22vw]"
+            className="group relative aspect-[4/5] w-[80vw] shrink-0 snap-center overflow-hidden rounded-2xl bg-graphite-900 transition-[transform,opacity] duration-500 ease-out sm:aspect-[4/3] sm:w-[58vw] lg:w-[42vw] xl:w-[36vw]"
           >
-            <div className="relative aspect-[3/4] overflow-hidden rounded-2xl bg-graphite-900">
-              <Image
-                src={card.src}
-                alt={card.title}
-                fill
-                sizes="(max-width: 640px) 76vw, (max-width: 1024px) 46vw, 24vw"
-                className="select-none object-cover transition-transform duration-[1100ms] ease-out group-hover:scale-[1.07]"
-                draggable={false}
-              />
-              <span className="pointer-events-none absolute inset-0 bg-gradient-to-t from-graphite-950/85 via-graphite-950/10 to-transparent opacity-90 transition-opacity duration-500 group-hover:opacity-100" />
-
-              <span className="absolute left-5 top-5 text-[12px] uppercase tracking-[0.1em] text-stone-200 opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100 [transform:translateY(-6px)]">
-                {String(index + 1).padStart(2, '0')} / {String(CARDS.length).padStart(2, '0')}
-              </span>
-
-              <figcaption className="absolute inset-x-5 bottom-5">
-                <p className="text-[20px] font-medium leading-tight text-stone-100">{card.title}</p>
-                <p className="mt-1.5 max-h-0 overflow-hidden text-[13px] text-stone-300 opacity-0 transition-all duration-500 group-hover:max-h-10 group-hover:opacity-100">
-                  {card.note}
-                </p>
-              </figcaption>
-            </div>
-          </figure>
+            <Image
+              src={src}
+              alt=""
+              fill
+              priority={index < 2}
+              sizes="(max-width: 640px) 80vw, (max-width: 1024px) 58vw, 40vw"
+              className="select-none object-cover transition-transform duration-[1400ms] ease-out group-hover:scale-[1.06]"
+              draggable={false}
+            />
+            <span className="pointer-events-none absolute inset-0 bg-gradient-to-t from-graphite-950/45 via-transparent to-transparent opacity-70 transition-opacity duration-700 group-hover:opacity-0" />
+            <span className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-white/10" />
+          </div>
         ))}
       </div>
 
-      {/* Полоса прокрутки */}
-      <div className="container mt-4">
+      <div className="container">
         <div className="h-px w-full bg-graphite-700">
           <span
-            className="block h-px bg-stone-100 transition-all duration-200"
-            style={{ width: `${Math.max(progress * 100, 6)}%` }}
+            className="block h-px bg-stone-100 transition-[width] duration-200 ease-out"
+            style={{ width: `${Math.max(progress * 100, 5)}%` }}
           />
         </div>
-        <p className="meta mt-4">ПОТЯНИТЕ ЛЕНТУ ИЛИ ЛИСТАЙТЕ СТРЕЛКАМИ</p>
       </div>
     </section>
   );

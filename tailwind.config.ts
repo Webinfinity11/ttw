@@ -10,26 +10,28 @@ const config: Config = {
     },
     extend: {
       colors: {
-        // Светлые холодные нейтрали (фон, границы, плашки)
+        /**
+         * Палитра вынесена в CSS-переменные (globals.css).
+         * Это позволяет переключать тему сайта, не трогая классы:
+         * `.theme-light` переопределяет те же переменные.
+         */
         stone: {
-          50: '#FBF9F4',
-          100: '#F4F0E6',
-          200: '#DDD8CB',
-          300: '#CFCABC',
-          400: '#A9A497',
+          50: 'rgb(var(--s-50) / <alpha-value>)',
+          100: 'rgb(var(--s-100) / <alpha-value>)',
+          200: 'rgb(var(--s-200) / <alpha-value>)',
+          300: 'rgb(var(--s-300) / <alpha-value>)',
+          400: 'rgb(var(--s-400) / <alpha-value>)',
         },
-        // Тёмная база — почти чёрный с холодным подтоном
         graphite: {
-          50: '#F7F5F1',
-          100: '#E9E5DD',
-          300: '#A9A497',
-          500: '#6E6A5F',
-          700: '#3A3833',
-          800: '#22211E',
-          900: '#161513',
-          950: '#111110',
+          50: 'rgb(var(--g-50) / <alpha-value>)',
+          100: 'rgb(var(--g-100) / <alpha-value>)',
+          300: 'rgb(var(--g-300) / <alpha-value>)',
+          500: 'rgb(var(--g-500) / <alpha-value>)',
+          700: 'rgb(var(--g-700) / <alpha-value>)',
+          800: 'rgb(var(--g-800) / <alpha-value>)',
+          900: 'rgb(var(--g-900) / <alpha-value>)',
+          950: 'rgb(var(--g-950) / <alpha-value>)',
         },
-        // Акцент — глубокий изумрудно-бирюзовый
         accent: {
           50: '#FBF9F4',
           100: '#F4F0E6',
