@@ -1,24 +1,21 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { Check } from 'lucide-react';
 import { galleryPhoto } from '@/lib/images';
 import { Reveal } from '@/components/ui/reveal';
 
-const PERKS = [
-  'Фиксированная смета',
-  'Свой профессиональный инструмент',
-  'Гидроизоляция по технологии',
-  'Гарантия 3 года',
-  'Запил под 45° без уголков',
-  'Уборка после работ',
+const PERKS: Array<[string, string]> = [
+  ['ФИКСИРОВАННАЯ СМЕТА', 'Объёмы считаем на замере и пишем в договор — цена не растёт.'],
+  ['ОДИН МАСТЕР НА ОБЪЕКТЕ', 'Ведёт работу от демонтажа до сдачи, почерк укладки не меняется.'],
+  ['ТЕХНОЛОГИЯ МОКРЫХ ЗОН', 'Гидроизоляция в два слоя, ленты в углах, манжеты на трубах.'],
+  ['ГАРАНТИЯ 3 ГОДА', 'На укладку, гидроизоляцию и затирку. Возвращаемся при любой претензии.'],
 ];
 
 export function AboutSection() {
   return (
-    <section className="bg-white">
-      <div className="container grid items-center gap-16 py-24 lg:grid-cols-2 lg:gap-20 lg:py-28">
+    <section className="container pt-32 lg:pt-44">
+      <div className="grid gap-14 lg:grid-cols-2 lg:gap-20">
         <Reveal className="relative">
-          <div className="relative h-[420px] w-full lg:h-[560px]">
+          <div className="relative h-[420px] w-full overflow-hidden rounded-2xl lg:h-[560px]">
             <Image
               src={galleryPhoto('work-1.jpg')}
               alt="Затирка швов на уложенной плитке"
@@ -27,33 +24,31 @@ export function AboutSection() {
               className="object-cover"
             />
           </div>
-          <div className="absolute -bottom-8 right-0 bg-accent-500 px-10 py-8 font-display text-white lg:-right-8">
-            <div className="text-5xl font-black leading-none">12</div>
-            <div className="mt-1.5 text-[15px] font-medium tracking-[0.06em]">лет на рынке</div>
-          </div>
         </Reveal>
 
         <div>
-          <span className="eyebrow">О компании</span>
-          <h2 className="display mt-4 text-4xl leading-[1.1] sm:text-5xl">
+          <span className="meta">О КОМПАНИИ</span>
+          <h2 className="display mt-5 text-[10vw] uppercase leading-[0.95] sm:text-[7vw] lg:text-[3.4rem]">
             Ровный шов и честный срок
           </h2>
-          <p className="mt-6 text-[18px] leading-[1.8] text-graphite-500">
-            Мастер с профильным опытом, собственный инструмент и контроль на каждом этапе. Смету
-            фиксируем до начала работ — скрытых доплат нет.
+          <p className="mt-6 max-w-lg text-[16px] leading-[1.75] text-stone-200">
+            Мастерская плиточных работ в Тбилиси. Не берём десять объектов сразу — в работе два-три
+            адреса, чтобы держать сроки и не терять качество на мелочах: совпадении швов, ровности
+            примыканий, аккуратной герметизации углов.
           </p>
 
-          <div className="mt-9 grid gap-4 sm:grid-cols-2">
-            {PERKS.map((perk) => (
-              <div key={perk} className="flex items-start gap-3 text-[17px] text-graphite-900">
-                <Check className="mt-1 h-5 w-5 shrink-0 text-accent-500" />
-                {perk}
+          <div className="mt-10 border-t border-graphite-700">
+            {PERKS.map(([title, text]) => (
+              <div key={title} className="grid gap-2 border-b border-graphite-700 py-6 lg:grid-cols-[240px_1fr] lg:gap-8">
+                <span className="meta">{title}</span>
+                <p className="text-[15px] leading-[1.6] text-stone-200">{text}</p>
               </div>
             ))}
           </div>
 
-          <Link href="/about" className="btn-dark mt-10">
-            Подробнее о нас
+          <Link href="/about" className="link-underline mt-9">
+            <span>ПОДРОБНЕЕ О НАС</span>
+            <span className="text-[22px] font-light">↘</span>
           </Link>
         </div>
       </div>

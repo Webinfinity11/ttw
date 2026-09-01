@@ -63,7 +63,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
                   key={feature}
                   className="rounded-none border border-stone-200 bg-white px-5 py-6"
                 >
-                  <Check className="h-5 w-5 text-accent-500" />
+                  <Check className="h-5 w-5 text-stone-100" />
                   <p className="mt-4 text-sm font-medium leading-snug">{feature}</p>
                 </div>
               ))}
@@ -115,7 +115,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
               <h2 className="font-display text-3xl font-black tracking-tightest">
                 Смежные услуги
               </h2>
-              <Link href="/services" className="text-sm text-accent-600 transition hover:text-accent-500">
+              <Link href="/services" className="text-sm text-stone-100 transition hover:text-stone-100">
                 Все услуги →
               </Link>
             </div>

@@ -3,8 +3,8 @@
 @tailwind utilities;
 
 :root {
-  --font-sans: 'Barlow', system-ui, -apple-system, 'Segoe UI', sans-serif;
-  --font-display: 'Archivo', 'Barlow', system-ui, sans-serif;
+  --font-sans: 'Poppins', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-display: 'Poppins', system-ui, sans-serif;
 }
 
 @layer base {
@@ -17,12 +17,13 @@
     scroll-behavior: smooth;
   }
 
+  /* Сайт тёмный; админка перекрывает своим светлым слоем */
   body {
-    @apply bg-stone-50 text-graphite-900 font-sans;
+    @apply bg-graphite-950 text-stone-100 font-sans;
   }
 
   ::selection {
-    @apply bg-accent-200/60;
+    @apply bg-stone-100 text-graphite-950;
   }
 
   h1,
@@ -33,9 +34,18 @@
 }
 
 @layer components {
-  /* Заголовки: широкий тяжёлый Archivo с плотным трекингом */
+  /* Крупные заголовки: очень жирный Poppins с плотным трекингом */
   .display {
-    @apply font-display font-black tracking-tightest;
+    @apply font-display font-extrabold tracking-[-0.02em];
+  }
+
+  /* Разделительная линия секций */
+  .rule {
+    @apply border-graphite-700;
+  }
+
+  .meta {
+    @apply text-[13px] uppercase tracking-[0.08em] text-stone-400;
   }
 
   .field-label {
@@ -45,49 +55,64 @@
   .field-input {
     @apply w-full rounded-none border border-graphite-100 bg-white px-3.5 py-2.5 text-sm text-graphite-900
            outline-none transition placeholder:text-graphite-300
-           focus:border-accent-400 focus:ring-4 focus:ring-accent-100/70;
+           focus:border-graphite-500 focus:ring-4 focus:ring-graphite-100;
   }
 
-  /* Кнопки — прямоугольные, капслок, разрядка */
+  .field-label-dark {
+    @apply mb-2 block text-[12px] uppercase tracking-[0.1em] text-stone-400;
+  }
+
+  .field-dark {
+    @apply w-full rounded-none border border-graphite-700 bg-graphite-900 px-4 py-3.5 text-[15px] text-stone-100
+           outline-none transition placeholder:text-graphite-500 focus:border-stone-300;
+  }
+
   .btn {
-    @apply inline-flex select-none items-center justify-center gap-2.5 font-display text-[13px]
-           font-bold uppercase tracking-[0.09em] transition-all duration-200
-           disabled:pointer-events-none disabled:opacity-50;
+    @apply inline-flex select-none items-center justify-center gap-2.5 text-[14px] font-medium
+           tracking-[0.02em] transition-all duration-200 disabled:pointer-events-none disabled:opacity-50;
   }
 
-  .btn-dark {
-    @apply btn bg-graphite-950 px-8 py-4 text-white hover:bg-accent-500;
+  /* Основная кнопка — кремовая заливка на тёмном */
+  .btn-light {
+    @apply btn bg-stone-100 px-9 py-4 text-graphite-950 hover:bg-stone-200;
   }
 
   .btn-accent {
-    @apply btn bg-accent-500 px-8 py-4 text-white hover:bg-graphite-950;
-  }
-
-  .btn-light {
-    @apply btn bg-white px-8 py-4 text-graphite-950 hover:bg-accent-500 hover:text-white;
-  }
-
-  .btn-outline {
-    @apply btn border border-graphite-950/20 px-8 py-4 text-graphite-950 hover:border-accent-500 hover:text-accent-600;
+    @apply btn-light;
   }
 
   .btn-outline-light {
-    @apply btn border border-white/30 px-8 py-4 text-white hover:border-accent-400 hover:text-accent-300;
+    @apply btn border border-graphite-700 px-9 py-4 text-stone-100 hover:border-stone-300;
+  }
+
+  .btn-outline {
+    @apply btn-outline-light;
+  }
+
+  /* Тёмная кнопка — для светлой админки */
+  .btn-dark {
+    @apply btn bg-graphite-950 px-8 py-3.5 text-stone-100 hover:bg-graphite-800;
   }
 
   .btn-ghost {
     @apply btn px-3 py-2 text-graphite-500 hover:bg-graphite-50 hover:text-graphite-900;
   }
 
-  /* Ссылка-подчёркивание в стиле «ВСЕ УСЛУГИ» */
+  /* Подчёркнутая ссылка «SEE ALL …» */
   .link-underline {
-    @apply inline-flex items-center gap-2 border-b-2 border-accent-500 pb-1.5 font-display text-[13px]
-           font-bold uppercase tracking-[0.09em] text-graphite-950 transition-colors hover:text-accent-600;
+    @apply inline-flex items-center gap-3 text-[17px] text-stone-100 transition-colors hover:text-stone-300;
+  }
+
+  .link-underline > span:first-child {
+    @apply underline underline-offset-[6px];
   }
 
   .eyebrow {
-    @apply inline-flex items-center gap-2.5 font-display text-[13px] font-semibold uppercase
-           tracking-[0.16em] text-accent-500;
+    @apply inline-flex items-center gap-3 text-[13px] uppercase tracking-[0.1em] text-stone-400;
+  }
+
+  .index-num {
+    @apply text-[13px] uppercase tracking-[0.08em] text-stone-400;
   }
 }
 
@@ -96,25 +121,9 @@
     text-wrap: balance;
   }
 
-  /* Сетка плиточных швов поверх тёмных секций */
-  .tile-grid {
-    background-image:
-      linear-gradient(to right, rgba(255, 255, 255, 0.055) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(255, 255, 255, 0.055) 1px, transparent 1px);
-    background-size: 92px 92px;
-  }
-
-  /* Более крупная раскладка — для узких баннеров */
-  .tile-grid-lg {
-    background-image:
-      linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
-    background-size: 150px 150px;
-  }
-
-  .grid-lines {
-    background-image: linear-gradient(to right, rgba(11, 16, 15, 0.05) 1px, transparent 1px);
-    background-size: 25% 100%;
+  /* Шестиугольная плитка из макета */
+  .hex-mask {
+    clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
   }
 
   .scrollbar-slim::-webkit-scrollbar {
@@ -122,7 +131,7 @@
     height: 8px;
   }
   .scrollbar-slim::-webkit-scrollbar-thumb {
-    background: rgba(11, 16, 15, 0.18);
+    background: rgba(244, 240, 230, 0.25);
     border-radius: 999px;
   }
   .scrollbar-slim::-webkit-scrollbar-track {
@@ -143,167 +152,26 @@
   transform: none;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-  [data-reveal] {
-    opacity: 1;
-    transform: none;
-    transition: none;
-  }
-}
-
-/* --- Вход плиток в hero: сначала верхние две, затем нижние --- */
-@keyframes tile-in-left {
-  from {
-    opacity: 0;
-    transform: translate3d(-110px, -50px, 0) rotate(-14deg) scale(0.82);
-    filter: blur(6px);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-    filter: blur(0);
-  }
-}
-
-@keyframes tile-in-top {
-  from {
-    opacity: 0;
-    transform: translate3d(70px, -120px, 0) rotate(12deg) scale(0.82);
-    filter: blur(6px);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-    filter: blur(0);
-  }
-}
-
-@keyframes tile-in-bottom {
-  from {
-    opacity: 0;
-    transform: translate3d(-60px, 130px, 0) rotate(10deg) scale(0.82);
-    filter: blur(6px);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-    filter: blur(0);
-  }
-}
-
-@keyframes tile-in-right {
-  from {
-    opacity: 0;
-    transform: translate3d(120px, 70px, 0) rotate(-12deg) scale(0.82);
-    filter: blur(6px);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-    filter: blur(0);
-  }
-}
-
-/* Рамка панели проявляется первой */
-@keyframes frame-in {
-  from {
-    opacity: 0;
-    transform: scale(0.94);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
-}
-
-.tile-enter {
-  animation-duration: 0.85s;
-  animation-timing-function: cubic-bezier(0.18, 0.82, 0.25, 1.06);
-  animation-fill-mode: both;
-}
-
-.tile-enter-1 { animation-name: tile-in-left; animation-delay: 0.15s; }
-.tile-enter-2 { animation-name: tile-in-top; animation-delay: 0.3s; }
-.tile-enter-3 { animation-name: tile-in-bottom; animation-delay: 0.62s; }
-.tile-enter-4 { animation-name: tile-in-right; animation-delay: 0.78s; }
-
-.frame-enter {
-  animation: frame-in 0.7s cubic-bezier(0.22, 0.61, 0.36, 1) both;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .tile-enter,
-  .frame-enter {
-    animation: none !important;
-    opacity: 1;
-  }
-}
-
-/* --- Вход текста в hero --- */
 @keyframes word-rise {
-  from {
-    opacity: 0;
-    transform: translateY(115%);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
+  from { opacity: 0; transform: translateY(115%); }
+  to { opacity: 1; transform: none; }
 }
-
 @keyframes line-draw {
-  from {
-    transform: scaleX(0);
-  }
-  to {
-    transform: scaleX(1);
-  }
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
 }
 
 .word-rise {
   animation: word-rise 0.9s cubic-bezier(0.22, 0.61, 0.36, 1) both;
 }
-
 .line-draw {
   transform-origin: left;
   animation: line-draw 0.8s cubic-bezier(0.22, 0.61, 0.36, 1) both;
 }
 
 @media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  [data-reveal] { opacity: 1; transform: none; transition: none; }
   .word-rise,
-  .line-draw {
-    animation: none !important;
-    opacity: 1;
-    transform: none;
-  }
-}
-
-/* Полоса автопрокрутки слайдера */
-@keyframes slide-progress {
-  from { transform: scaleX(0); }
-  to { transform: scaleX(1); }
-}
-.slide-progress {
-  transform-origin: left;
-  animation: slide-progress 5s linear both;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .slide-progress { animation: none; transform: scaleX(1); }
-}
-
-/* Прогресс автопрокрутки карусели hero */
-@keyframes hero-progress {
-  from { width: 0%; }
-  to { width: 100%; }
-}
-.hero-progress {
-  animation: hero-progress 6.5s linear both;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .hero-progress { animation: none; width: 100%; }
+  .line-draw { animation: none !important; opacity: 1; transform: none; }
 }

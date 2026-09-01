@@ -112,7 +112,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
           <div className="container">
             <div className="flex items-end justify-between gap-6">
               <h2 className="font-display text-3xl font-black tracking-tightest">Другие проекты</h2>
-              <Link href="/projects" className="text-sm text-accent-600 transition hover:text-accent-500">
+              <Link href="/projects" className="text-sm text-stone-100 transition hover:text-stone-100">
                 Всё портфолио →
               </Link>
             </div>

@@ -91,7 +91,7 @@ function QuoteDialog({
       <button
         aria-label="Закрыть"
         onClick={onClose}
-        className="absolute inset-0 bg-graphite-950/50 backdrop-blur-sm animate-fade-in"
+        className="absolute inset-0 bg-graphite-950/50  animate-fade-in"
       />
       <div className="relative z-10 w-full max-w-lg animate-scale-in overflow-hidden rounded-none bg-white shadow-lift sm:rounded-none">
         <div className="flex items-start justify-between gap-6 border-b border-stone-200 px-7 py-6">
@@ -112,7 +112,7 @@ function QuoteDialog({
 
         {state === 'sent' ? (
           <div className="px-7 py-12 text-center">
-            <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-accent-100 text-accent-600">
+            <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-stone-100 text-stone-100">
               <Check className="h-7 w-7" />
             </div>
             <h4 className="mt-6 font-display text-2xl font-black">Заявка принята</h4>

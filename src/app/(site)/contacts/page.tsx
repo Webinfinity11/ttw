@@ -56,9 +56,9 @@ export default async function ContactsPage() {
                 <a
                   key={channel.label}
                   href={channel.href}
-                  className="group bg-white p-7 transition-colors hover:bg-white/60"
+                  className="group bg-white p-7 transition-colors hover:bg-graphite-900"
                 >
-                  <span className="flex h-11 w-11 items-center justify-center rounded-none bg-stone-100 text-accent-600 transition-colors group-hover:bg-accent-500 group-hover:text-white">
+                  <span className="flex h-11 w-11 items-center justify-center rounded-none bg-stone-100 text-stone-100 transition-colors group-hover:bg-stone-100 group-hover:text-white">
                     <channel.icon className="h-5 w-5" />
                   </span>
                   <p className="mt-6 text-[11px] font-semibold uppercase tracking-[0.2em] text-graphite-300">
@@ -71,7 +71,7 @@ export default async function ContactsPage() {
 
             <div className="mt-6 rounded-none border border-stone-200 bg-white p-8">
               <div className="flex items-start gap-4">
-                <MapPin className="mt-0.5 h-5 w-5 shrink-0 text-accent-500" />
+                <MapPin className="mt-0.5 h-5 w-5 shrink-0 text-stone-100" />
                 <div>
                   <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-graphite-300">
                     Адрес
@@ -80,7 +80,7 @@ export default async function ContactsPage() {
                 </div>
               </div>
               <div className="mt-6 flex items-start gap-4 border-t border-stone-200 pt-6">
-                <Clock className="mt-0.5 h-5 w-5 shrink-0 text-accent-500" />
+                <Clock className="mt-0.5 h-5 w-5 shrink-0 text-stone-100" />
                 <div>
                   <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-graphite-300">
                     Часы работы
@@ -94,7 +94,7 @@ export default async function ContactsPage() {
               <div className="relative flex h-64 items-center justify-center bg-stone-200">
                 <div className="absolute inset-0 grid-lines opacity-60" />
                 <div className="relative text-center">
-                  <MapPin className="mx-auto h-8 w-8 text-accent-500" />
+                  <MapPin className="mx-auto h-8 w-8 text-stone-100" />
                   <p className="mt-3 text-sm text-graphite-500">
                     Здесь будет карта {settings.city}
                   </p>

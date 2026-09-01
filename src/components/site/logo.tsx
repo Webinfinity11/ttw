@@ -28,7 +28,7 @@ export function Logo({
         tone === 'dark' ? 'text-stone-50' : 'text-graphite-900',
       )}
     >
-      <LogoMark className={tone === 'dark' ? 'text-accent-300' : 'text-accent-500'} />
+      <LogoMark className={tone === 'dark' ? 'text-stone-200' : 'text-stone-100'} />
       <span className="flex flex-col leading-none">
         <span className="text-[15px] font-semibold uppercase tracking-[0.16em]">{first}</span>
         {rest.length > 0 && (

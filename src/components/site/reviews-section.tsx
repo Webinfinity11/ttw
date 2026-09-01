@@ -1,25 +1,6 @@
-import Image from 'next/image';
-import { Star } from 'lucide-react';
 import type { Review } from '@/lib/types';
-import { cn, formatDate, initials } from '@/lib/cn';
+import { formatDate, initials } from '@/lib/cn';
 import { Reveal } from '@/components/ui/reveal';
-import { SectionHeading } from '@/components/ui/section-heading';
-
-function Rating({ value, className }: { value: number; className?: string }) {
-  return (
-    <div className={cn('flex gap-0.5', className)}>
-      {Array.from({ length: 5 }).map((_, index) => (
-        <Star
-          key={index}
-          className={cn(
-            'h-3.5 w-3.5',
-            index < value ? 'fill-accent-400 text-accent-400' : 'text-stone-300',
-          )}
-        />
-      ))}
-    </div>
-  );
-}
 
 export function ReviewsSection({ reviews }: { reviews: Review[] }) {
   const average =
@@ -28,53 +9,45 @@ export function ReviewsSection({ reviews }: { reviews: Review[] }) {
       : '—';
 
   return (
-    <section className="bg-stone-100 py-24 lg:py-32">
-      <div className="container">
-        <SectionHeading
-          eyebrow="Отзывы"
-          title="Что говорят клиенты"
-          action={
-            <div className="flex items-center gap-4 rounded-none border border-stone-300 bg-white px-6 py-4">
-              <span className="font-display text-4xl font-black tracking-tightest">{average}</span>
+    <section className="pt-32 lg:pt-44">
+      <h2 className="display text-center text-[15vw] leading-none sm:text-[10vw] lg:text-[4.8rem]">
+        ОТЗЫВЫ
+      </h2>
+
+      <div className="container mt-8 flex justify-center gap-8">
+        <span className="meta">СРЕДНЯЯ ОЦЕНКА {average}</span>
+        <span className="meta">{reviews.length} ОТЗЫВА</span>
+      </div>
+
+      <div className="mt-16 border-t border-graphite-700">
+        {reviews.map((review, index) => (
+          <Reveal
+            key={review.id}
+            delay={index * 50}
+            className="grid items-start gap-6 border-b border-graphite-700 px-5 py-9 lg:grid-cols-[260px_1fr] lg:px-10"
+          >
+            <div className="flex items-center gap-4">
+              <span className="flex h-11 w-11 items-center justify-center rounded-full border border-graphite-700 text-[13px] text-stone-200">
+                {initials(review.name)}
+              </span>
               <div>
-                <Rating value={5} />
-                <p className="mt-1.5 text-xs text-graphite-500">{reviews.length} отзыва на сайте</p>
+                <p className="text-[16px] text-stone-100">{review.name}</p>
+                <p className="meta mt-1">{formatDate(review.date).toUpperCase()}</p>
               </div>
             </div>
-          }
-        />
 
-        <div className="mt-16 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-          {reviews.map((review, index) => (
-            <Reveal
-              key={review.id}
-              delay={index * 70}
-              className="flex h-full flex-col rounded-none border border-stone-200 bg-white p-8"
-            >
-              <Rating value={review.rating} />
-              <p className="mt-5 flex-1 text-[15px] leading-relaxed text-graphite-700">
-                «{review.text}»
+            <div>
+              <p className="text-[13px] tracking-[0.14em] text-stone-100">
+                {'★'.repeat(review.rating)}
+                <span className="text-graphite-700">{'★'.repeat(5 - review.rating)}</span>
               </p>
-              <div className="mt-7 flex items-center gap-3.5 border-t border-stone-200 pt-6">
-                {review.photo ? (
-                  <span className="relative h-11 w-11 shrink-0 overflow-hidden rounded-full">
-                    <Image src={review.photo} alt={review.name} fill sizes="44px" className="object-cover" />
-                  </span>
-                ) : (
-                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-accent-500 font-display text-sm font-bold text-white">
-                    {initials(review.name)}
-                  </span>
-                )}
-                <div className="min-w-0">
-                  <p className="truncate text-sm font-semibold">{review.name}</p>
-                  <p className="truncate text-xs text-graphite-300">
-                    {review.role} · {formatDate(review.date)}
-                  </p>
-                </div>
-              </div>
-            </Reveal>
-          ))}
-        </div>
+              <p className="mt-3 max-w-3xl text-[17px] leading-[1.65] text-stone-200">
+                {review.text}
+              </p>
+              <p className="meta mt-3">{review.role?.toUpperCase()}</p>
+            </div>
+          </Reveal>
+        ))}
       </div>
     </section>
   );

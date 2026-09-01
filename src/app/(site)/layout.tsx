@@ -1,7 +1,6 @@
 import { Footer } from '@/components/site/footer';
 import { Header } from '@/components/site/header';
 import { QuoteProvider } from '@/components/site/quote-dialog';
-import { TopBar } from '@/components/site/topbar';
 import { getServices, getSettings } from '@/lib/data/content';
 
 export default async function SiteLayout({ children }: { children: React.ReactNode }) {
@@ -10,7 +9,6 @@ export default async function SiteLayout({ children }: { children: React.ReactNo
   return (
     <QuoteProvider services={services.map((s) => s.title)} phone={settings.phone}>
       <div className="flex min-h-screen flex-col">
-        <TopBar settings={settings} />
         <Header phone={settings.phone} companyName={settings.companyName} />
         <main className="flex-1">{children}</main>
         <Footer settings={settings} services={services} />

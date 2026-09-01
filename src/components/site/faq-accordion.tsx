@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import { Plus } from 'lucide-react';
 import type { FaqItem } from '@/lib/types';
 import { cn } from '@/lib/cn';
 
@@ -9,42 +8,44 @@ export function FaqAccordion({ items }: { items: FaqItem[] }) {
   const [openId, setOpenId] = useState<string | null>(items[0]?.id ?? null);
 
   return (
-    <div className="divide-y divide-stone-300 border-y border-stone-300">
-      {items.map((item) => {
+    <div className="border-t border-graphite-700">
+      {items.map((item, index) => {
         const open = openId === item.id;
         return (
-          <div key={item.id}>
+          <div key={item.id} className="border-b border-graphite-700">
             <button
               onClick={() => setOpenId(open ? null : item.id)}
-              className="flex w-full items-start justify-between gap-6 py-6 text-left"
+              className="grid w-full items-center gap-4 py-7 text-left lg:grid-cols-[120px_1fr_60px]"
             >
+              <span className="meta hidden lg:block">
+                ВОПРОС {String(index + 1).padStart(2, '0')}
+              </span>
               <span
                 className={cn(
-                  'text-lg font-medium tracking-tight transition-colors',
-                  open ? 'text-graphite-900' : 'text-graphite-700',
+                  'text-[20px] font-medium transition-colors lg:text-[24px]',
+                  open ? 'text-stone-100' : 'text-stone-300',
                 )}
               >
                 {item.question}
               </span>
               <span
                 className={cn(
-                  'mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border transition-all duration-300',
-                  open
-                    ? 'rotate-45 border-graphite-900 bg-graphite-900 text-white'
-                    : 'border-stone-300 text-graphite-500',
+                  'justify-self-end text-[34px] font-light leading-none transition-transform duration-300',
+                  open ? 'rotate-90 text-stone-100' : 'text-stone-300',
                 )}
               >
-                <Plus className="h-4 w-4" />
+                ›
               </span>
             </button>
+
             <div
               className={cn(
                 'grid transition-all duration-300 ease-out',
-                open ? 'grid-rows-[1fr] pb-7 opacity-100' : 'grid-rows-[0fr] opacity-0',
+                open ? 'grid-rows-[1fr] pb-8 opacity-100' : 'grid-rows-[0fr] opacity-0',
               )}
             >
               <div className="overflow-hidden">
-                <p className="max-w-3xl text-[15px] leading-relaxed text-graphite-500">
+                <p className="max-w-3xl text-[16px] leading-[1.75] text-stone-200 lg:pl-[136px]">
                   {item.answer}
                 </p>
               </div>

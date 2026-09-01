@@ -9,31 +9,28 @@ export function PricesTable({ prices }: { prices: PriceItem[] }) {
   }, {});
 
   return (
-    <div className="space-y-12">
+    <div className="space-y-16">
       {Object.entries(groups).map(([category, items], groupIndex) => (
         <Reveal key={category} delay={groupIndex * 60}>
-          <div className="flex items-center gap-4">
-            <h3 className="text-[11px] font-semibold uppercase tracking-[0.22em] text-accent-600">
-              {category}
-            </h3>
-            <span className="h-px flex-1 bg-stone-300" />
+          <div className="flex items-baseline gap-6">
+            <h3 className="meta">{category.toUpperCase()}</h3>
+            <span className="h-px flex-1 bg-graphite-700" />
+            <span className="meta">{items.length}</span>
           </div>
 
-          <div className="mt-5 overflow-hidden rounded-none border border-stone-200 bg-white">
-            {items.map((item, index) => (
+          <div className="mt-4 border-t border-graphite-700">
+            {items.map((item) => (
               <div
                 key={item.id}
-                className={`flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 px-6 py-5 transition-colors hover:bg-stone-50 ${
-                  index > 0 ? 'border-t border-stone-200' : ''
-                }`}
+                className="flex flex-wrap items-baseline justify-between gap-x-8 gap-y-1 border-b border-graphite-700 py-5 transition-colors hover:bg-graphite-900"
               >
-                <div className="min-w-[200px] flex-1">
-                  <p className="text-[15px] font-medium text-graphite-900">{item.title}</p>
-                  {item.note && <p className="mt-1 text-xs text-graphite-300">{item.note}</p>}
+                <div className="min-w-[220px] flex-1">
+                  <p className="text-[18px] text-stone-100">{item.title}</p>
+                  {item.note && <p className="mt-1 text-[13px] text-stone-400">{item.note}</p>}
                 </div>
-                <p className="whitespace-nowrap text-sm text-graphite-500">
+                <p className="whitespace-nowrap text-[15px] text-stone-200">
                   от{' '}
-                  <strong className="font-display text-2xl font-extrabold tracking-tight text-graphite-900">
+                  <strong className="display text-[26px] font-extrabold text-stone-100">
                     {formatPrice(item.price)}
                   </strong>{' '}
                   / {item.unit}

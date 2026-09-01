@@ -107,7 +107,7 @@ export default async function AboutPage() {
                 delay={index * 70}
                 className="rounded-none border border-stone-200 bg-stone-50 p-8 lg:p-10"
               >
-                <span className="flex h-12 w-12 items-center justify-center rounded-none bg-white text-accent-600">
+                <span className="flex h-12 w-12 items-center justify-center rounded-none bg-white text-stone-100">
                   <value.icon className="h-5 w-5" />
                 </span>
                 <h3 className="mt-7 text-lg font-semibold tracking-tight">{value.title}</h3>

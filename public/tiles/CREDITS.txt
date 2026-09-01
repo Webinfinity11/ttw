@@ -43,3 +43,12 @@ texture-4.jpg | Colin Watts | 7cm9oKHLFHY | colorful square tiles arranged in a 
 hero-bath-1.jpg | HUUM | zyh1IR_KBbA | modern bathroom with wooden sauna and marble shower
 hero-bath-2.jpg | Hermann Wittekopf - kmkb | cRTimsf19YY | a close up of a tiled wall in a bathroom
 hero-tile-1.jpg | Julia Taubitz | Jp-IPkxgEA8 | a metallic trash can against a tiled wall
+
+--- patterns ---
+pat-1.jpg | Anna Hunko | DH6QClAOB4M | geometric patterned tiles with ornate circular designs
+pat-2.jpg | Bernd 📷 Dittrich | yY4v5HMA9Ek | diamond pattern mosaic with white, black, brown, and teal ti
+pat-3.jpg | Fabian Kleiser | 9UDEqHjeXYY | ornate patterned tiles on a floor
+pat-4.jpg | Ted Balmer | rYe0pSNm34o | a close up of a tiled floor with hexagonal tiles
+pat-5.jpg | Darren Richardson | 1zKFtv-TmWM | black and silver round analog watch on white ceramic wall ti
+pat-6.jpg | Mitchell Luo | _NzW-__ohkM | brown wooden parquet floor tiles
+pat-7.jpg | Colin Watts | y8q16Yzlufc | square beige and brown textured wall tiles with grout

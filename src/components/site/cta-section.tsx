@@ -1,40 +1,42 @@
 import Image from 'next/image';
 import type { SiteSettings } from '@/lib/types';
+import { galleryPhoto } from '@/lib/images';
 import { Reveal } from '@/components/ui/reveal';
 import { QuoteButton } from './quote-dialog';
 
 export function CtaSection({ settings }: { settings: SiteSettings }) {
   return (
-    <section className="relative overflow-hidden bg-graphite-950">
-      <Image
-        src="/tiles/hero-marble.jpg"
-        alt=""
-        fill
-        sizes="100vw"
-        className="object-cover opacity-70 contrast-[1.15] [object-position:50%_70%]"
-      />
-      <div className="absolute inset-0 bg-gradient-to-r from-graphite-950 via-graphite-950/82 to-graphite-950/45" />
-      <div className="absolute inset-0 tile-grid-lg" />
-      <div className="absolute inset-0 bg-[radial-gradient(90%_120%_at_85%_50%,rgba(14,138,118,0.3),transparent_60%)]" />
-
-      <Reveal className="container relative flex flex-wrap items-center justify-between gap-12 py-20 lg:py-24">
-        <div>
-          <h2 className="display max-w-[22ch] text-3xl leading-[1.12] text-white sm:text-[2.9rem]">
-            Бесплатный замер и смета в течение суток
-          </h2>
-          <p className="mt-4 text-lg text-stone-300/75">
-            Выезд по {settings.city} и пригороду. Ответим в WhatsApp, Telegram или по телефону.
-          </p>
+    <section className="container pt-32 lg:pt-44">
+      <Reveal className="relative overflow-hidden rounded-2xl">
+        <div className="relative h-[420px] w-full lg:h-[460px]">
+          <Image
+            src={galleryPhoto('hero-bath-1.jpg')}
+            alt=""
+            fill
+            sizes="100vw"
+            className="object-cover"
+          />
+          <div className="absolute inset-0 bg-graphite-950/72" />
         </div>
 
-        <div className="flex flex-wrap items-center gap-6">
-          <a
-            href={`tel:${settings.phone.replace(/\s/g, '')}`}
-            className="display text-3xl text-white transition-colors hover:text-accent-300"
-          >
-            {settings.phone}
-          </a>
-          <QuoteButton className="btn-accent px-11 py-5">Заказать звонок</QuoteButton>
+        <div className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center">
+          <span className="meta">БЕСПЛАТНЫЙ ЗАМЕР ПО {settings.city.toUpperCase()}</span>
+          <h2 className="display mt-6 max-w-[18ch] text-[9vw] leading-[0.98] sm:text-[6vw] lg:text-[3.6rem]">
+            СМЕТА В ТЕЧЕНИЕ СУТОК
+          </h2>
+          <p className="mt-6 max-w-xl text-[16px] leading-[1.7] text-stone-200">
+            Расскажите о помещении — подберём формат плитки, раскладку и способ подготовки
+            основания.
+          </p>
+          <div className="mt-9 flex flex-col gap-4 sm:flex-row">
+            <QuoteButton className="btn-light">Рассчитать смету</QuoteButton>
+            <a
+              href={`tel:${settings.phone.replace(/\s/g, '')}`}
+              className="btn-outline-light"
+            >
+              {settings.phone}
+            </a>
+          </div>
         </div>
       </Reveal>
     </section>

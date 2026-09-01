@@ -1,74 +1,48 @@
 import Link from 'next/link';
-import { Instagram, Mail, MessageCircle, Send } from 'lucide-react';
 import type { Service, SiteSettings } from '@/lib/types';
-import { LogoMark } from './logo';
 
 export function Footer({ settings, services }: { settings: SiteSettings; services: Service[] }) {
   const year = new Date().getFullYear();
 
-  const socials = [
-    { icon: Instagram, href: '#', label: 'Instagram' },
-    { icon: Send, href: `https://t.me/${settings.telegram.replace('@', '')}`, label: 'Telegram' },
-    {
-      icon: MessageCircle,
-      href: `https://wa.me/${settings.whatsapp.replace(/\D/g, '')}`,
-      label: 'WhatsApp',
-    },
-    { icon: Mail, href: `mailto:${settings.email}`, label: 'Email' },
-  ];
-
   return (
-    <footer className="bg-graphite-950 text-stone-300/70">
-      <div className="container grid gap-14 py-20 lg:grid-cols-[1.4fr_1fr_1fr_1.2fr] lg:gap-14">
+    <footer className="mt-32 border-t border-graphite-700 lg:mt-44">
+      <div className="container grid gap-12 py-16 lg:grid-cols-[1.4fr_1fr_1fr_1.2fr]">
         <div>
-          <div className="mb-6 flex items-center gap-3.5">
-            <LogoMark className="h-9 w-9 text-accent-400" />
-            <span className="display text-2xl text-white">{settings.companyName.split(' ')[0]}</span>
-          </div>
-          <p className="max-w-[38ch] text-[16px] leading-[1.8]">{settings.about}</p>
-          <div className="mt-7 flex gap-2.5">
-            {socials.map((social) => (
-              <a
-                key={social.label}
-                href={social.href}
-                aria-label={social.label}
-                className="flex h-10 w-10 items-center justify-center rounded-full bg-white/[0.07] text-stone-100 transition hover:bg-accent-500 hover:text-white"
-              >
-                <social.icon className="h-4 w-4" />
-              </a>
-            ))}
-          </div>
+          <p className="display text-[26px] leading-none">{settings.companyName.toUpperCase()}</p>
+          <p className="mt-5 max-w-[38ch] text-[15px] leading-[1.7] text-stone-200">
+            {settings.about}
+          </p>
         </div>
 
         <div>
-          <p className="mb-5 font-display text-[19px] font-extrabold text-white">Услуги</p>
-          <div className="flex flex-col gap-3 text-[16px]">
+          <p className="meta">УСЛУГИ</p>
+          <div className="mt-5 flex flex-col gap-3 text-[15px] text-stone-200">
             {services.slice(0, 6).map((service) => (
               <Link
                 key={service.id}
                 href={`/services/${service.slug}`}
-                className="transition hover:text-accent-300"
+                className="transition-colors hover:text-stone-400"
               >
                 {service.title}
               </Link>
             ))}
-            <Link href="/services" className="text-accent-300 transition hover:text-accent-200">
-              Все услуги →
+            <Link href="/services" className="text-stone-100 underline underline-offset-4">
+              Все услуги
             </Link>
           </div>
         </div>
 
         <div>
-          <p className="mb-5 font-display text-[19px] font-extrabold text-white">Компания</p>
-          <div className="flex flex-col gap-3 text-[16px]">
+          <p className="meta">КОМПАНИЯ</p>
+          <div className="mt-5 flex flex-col gap-3 text-[15px] text-stone-200">
             {[
-              { href: '/projects', label: 'Портфолио' },
+              { href: '/projects', label: 'Проекты' },
               { href: '/prices', label: 'Цены' },
               { href: '/about', label: 'О нас' },
               { href: '/contacts', label: 'Контакты' },
               { href: '/admin', label: 'Админ-панель' },
             ].map((item) => (
-              <Link key={item.href} href={item.href} className="transition hover:text-accent-300">
+              <Link key={item.href} href={item.href} className="transition-colors hover:text-stone-400">
                 {item.label}
               </Link>
             ))}
@@ -76,16 +50,28 @@ export function Footer({ settings, services }: { settings: SiteSettings; service
         </div>
 
         <div>
-          <p className="mb-5 font-display text-[19px] font-extrabold text-white">Контакты</p>
-          <div className="flex flex-col gap-3 text-[16px]">
+          <p className="meta">КОНТАКТЫ</p>
+          <div className="mt-5 flex flex-col gap-3 text-[15px] text-stone-200">
             <a
               href={`tel:${settings.phone.replace(/\s/g, '')}`}
-              className="transition hover:text-accent-300"
+              className="text-[20px] text-stone-100 transition-colors hover:text-stone-400"
             >
               {settings.phone}
             </a>
-            <a href={`mailto:${settings.email}`} className="transition hover:text-accent-300">
+            <a href={`mailto:${settings.email}`} className="transition-colors hover:text-stone-400">
               {settings.email}
+            </a>
+            <a
+              href={`https://wa.me/${settings.whatsapp.replace(/\D/g, '')}`}
+              className="transition-colors hover:text-stone-400"
+            >
+              WhatsApp
+            </a>
+            <a
+              href={`https://t.me/${settings.telegram.replace('@', '')}`}
+              className="transition-colors hover:text-stone-400"
+            >
+              Telegram {settings.telegram}
             </a>
             <span>{settings.address}</span>
             <span>{settings.workingHours}</span>
@@ -93,12 +79,12 @@ export function Footer({ settings, services }: { settings: SiteSettings; service
         </div>
       </div>
 
-      <div className="border-t border-white/10">
-        <div className="container flex flex-wrap justify-between gap-4 py-6 text-[15px]">
+      <div className="border-t border-graphite-700">
+        <div className="container flex flex-wrap justify-between gap-4 py-6 text-[13px] uppercase tracking-[0.06em] text-stone-400">
           <span>
-            © {year} {settings.companyName}. Плиточные работы в {settings.city}.
+            © {year} {settings.companyName} · Плиточные работы в {settings.city}
           </span>
-          <span>Демо-версия сайта. Изображения — placeholder.</span>
+          <span>Демо-версия сайта</span>
         </div>
       </div>
     </footer>

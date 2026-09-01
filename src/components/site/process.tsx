@@ -1,64 +1,38 @@
 import { Reveal } from '@/components/ui/reveal';
-import { SectionHeading } from '@/components/ui/section-heading';
 
-const STEPS = [
-  {
-    step: '01',
-    title: 'Заявка и консультация',
-    text: 'Обсуждаем задачу по телефону или в мессенджере, даём ориентир по цене и срокам.',
-  },
-  {
-    step: '02',
-    title: 'Замер и смета',
-    text: 'Приезжаем на объект, проверяем геометрию и основание, считаем объёмы и материалы.',
-  },
-  {
-    step: '03',
-    title: 'Договор и раскладка',
-    text: 'Фиксируем цену и сроки, согласовываем раскладку плитки и точки начала укладки.',
-  },
-  {
-    step: '04',
-    title: 'Подготовка основания',
-    text: 'Демонтаж, выравнивание, стяжка и гидроизоляция — этап, который определяет результат.',
-  },
-  {
-    step: '05',
-    title: 'Укладка и затирка',
-    text: 'Кладём плитку, запиливаем углы, затираем швы и герметизируем примыкания.',
-  },
-  {
-    step: '06',
-    title: 'Сдача объекта',
-    text: 'Финальная мойка, уборка, вывоз мусора и гарантия 3 года на выполненные работы.',
-  },
+const STEPS: Array<[string, string, string, string]> = [
+  ['01', 'СРОК: 1 ДЕНЬ', 'ЗАЯВКА И ЗАМЕР', 'Обсуждаем задачу, приезжаем на объект, проверяем геометрию и основание.'],
+  ['02', 'СРОК: 1 ДЕНЬ', 'СМЕТА И ДОГОВОР', 'Считаем объёмы и материалы, фиксируем цену и сроки, согласуем раскладку.'],
+  ['03', 'СРОК: 2–5 ДНЕЙ', 'ПОДГОТОВКА ОСНОВАНИЯ', 'Демонтаж, выравнивание, стяжка и гидроизоляция — этап, который решает всё.'],
+  ['04', 'СРОК: 5–12 ДНЕЙ', 'УКЛАДКА И ЗАТИРКА', 'Кладём плитку, запиливаем углы, затираем швы и герметизируем примыкания.'],
+  ['05', 'СРОК: 1 ДЕНЬ', 'СДАЧА ОБЪЕКТА', 'Финальная мойка, уборка, вывоз мусора и гарантия три года на работы.'],
 ];
 
 export function Process() {
   return (
-    <section className="bg-white py-24 lg:py-32">
-      <div className="container">
-        <SectionHeading
-          eyebrow="Как работаем"
-          title="Шесть шагов от заявки до сдачи"
-          description="Каждый этап заканчивается приёмкой: вы всегда понимаете, что сделано и что дальше."
-        />
+    <section className="pt-32 lg:pt-44">
+      <h2 className="display text-center text-[15vw] leading-none sm:text-[10vw] lg:text-[4.8rem]">
+        КАК РАБОТАЕМ
+      </h2>
 
-        <div className="mt-16 grid gap-px overflow-hidden rounded-none border border-stone-200 bg-stone-200 md:grid-cols-2 lg:grid-cols-3">
-          {STEPS.map((item, index) => (
-            <Reveal
-              key={item.step}
-              delay={index * 60}
-              className="group relative bg-white p-8 transition-colors hover:bg-stone-50 lg:p-10"
-            >
-              <span className="font-display text-5xl font-black tracking-tightest text-stone-300 transition-colors duration-300 group-hover:text-accent-400">
-                {item.step}
-              </span>
-              <h3 className="mt-6 text-lg font-semibold tracking-tight">{item.title}</h3>
-              <p className="mt-3 text-sm leading-relaxed text-graphite-500">{item.text}</p>
-            </Reveal>
-          ))}
-        </div>
+      <div className="mt-20 border-t border-graphite-700 lg:mt-24">
+        {STEPS.map(([num, duration, title, text]) => (
+          <Reveal
+            key={num}
+            className="grid min-h-[120px] items-center border-b border-graphite-700 px-5 py-7 lg:grid-cols-2 lg:px-10"
+          >
+            <div className="flex flex-col gap-3 lg:gap-8">
+              <span className="meta">{duration}</span>
+              <span className="meta">ЭТАП {num}</span>
+            </div>
+            <div className="mt-5 lg:mt-0">
+              <div className="text-[22px] font-medium tracking-[0.01em] text-stone-300 lg:text-[28px]">
+                {title}
+              </div>
+              <p className="mt-2 max-w-[460px] text-[14px] leading-[1.5] text-stone-200">{text}</p>
+            </div>
+          </Reveal>
+        ))}
       </div>
     </section>
   );

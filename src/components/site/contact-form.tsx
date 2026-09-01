@@ -18,7 +18,7 @@ export function ContactForm({ services }: { services: string[] }) {
   if (state === 'sent') {
     return (
       <div className="flex h-full min-h-[380px] flex-col items-center justify-center rounded-none border border-stone-200 bg-white p-10 text-center">
-        <span className="flex h-14 w-14 items-center justify-center rounded-full bg-accent-100 text-accent-600">
+        <span className="flex h-14 w-14 items-center justify-center rounded-full bg-stone-100 text-stone-100">
           <Check className="h-7 w-7" />
         </span>
         <h3 className="mt-6 font-display text-2xl font-black">Спасибо, заявка отправлена</h3>

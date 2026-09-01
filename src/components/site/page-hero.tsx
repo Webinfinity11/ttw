@@ -1,6 +1,4 @@
-import Image from 'next/image';
 import Link from 'next/link';
-import { ChevronRight } from 'lucide-react';
 import type { ReactNode } from 'react';
 
 interface PageHeroProps {
@@ -13,52 +11,41 @@ interface PageHeroProps {
 
 export function PageHero({ eyebrow, title, description, breadcrumbs = [], children }: PageHeroProps) {
   return (
-    <section className="relative overflow-hidden bg-graphite-950">
-      <Image
-        src="/tiles/hero-marble.jpg"
-        alt=""
-        fill
-        priority
-        sizes="100vw"
-        className="object-cover opacity-75 contrast-[1.15] [object-position:50%_35%]"
-      />
-      <div className="absolute inset-0 bg-gradient-to-r from-graphite-950 via-graphite-950/80 to-graphite-950/40" />
-      <div className="absolute inset-0 tile-grid-lg" />
-      <div className="absolute inset-0 bg-[radial-gradient(100%_120%_at_80%_40%,rgba(14,138,118,0.28),transparent_62%)]" />
+    <section className="container pt-12 lg:pt-16">
+      <nav className="flex flex-wrap items-center gap-2 text-[13px] uppercase tracking-[0.06em] text-stone-400">
+        <Link href="/" className="transition-colors hover:text-stone-100">
+          Главная
+        </Link>
+        {breadcrumbs.map((crumb) => (
+          <span key={crumb.label} className="flex items-center gap-2">
+            <span>/</span>
+            {crumb.href ? (
+              <Link href={crumb.href} className="transition-colors hover:text-stone-100">
+                {crumb.label}
+              </Link>
+            ) : (
+              <span className="text-stone-200">{crumb.label}</span>
+            )}
+          </span>
+        ))}
+      </nav>
 
-      <div className="container relative py-16 lg:py-20">
-        <nav className="flex flex-wrap items-center gap-1.5 text-[13px] text-stone-300/50">
-          <Link href="/" className="transition hover:text-accent-300">
-            Главная
-          </Link>
-          {breadcrumbs.map((crumb) => (
-            <span key={crumb.label} className="flex items-center gap-1.5">
-              <ChevronRight className="h-3 w-3" />
-              {crumb.href ? (
-                <Link href={crumb.href} className="transition hover:text-accent-300">
-                  {crumb.label}
-                </Link>
-              ) : (
-                <span className="text-stone-300/80">{crumb.label}</span>
-              )}
-            </span>
-          ))}
-        </nav>
-
-        <div className="mt-8 max-w-3xl animate-fade-up">
-          {eyebrow && (
-            <span className="inline-block border-b-2 border-accent-500 pb-2 font-display text-[13px] font-semibold uppercase tracking-[0.14em] text-white">
-              {eyebrow}
-            </span>
-          )}
-          <h1 className="display mt-6 text-4xl leading-[1.05] text-white sm:text-6xl">{title}</h1>
+      <div className="flex items-end justify-between gap-10 border-b border-graphite-700 pb-10 pt-8">
+        <div className="max-w-4xl">
+          {eyebrow && <span className="meta">{eyebrow.toUpperCase()}</span>}
+          <h1 className="display mt-5 text-[10vw] uppercase leading-[0.95] sm:text-[7vw] lg:text-[4.4rem]">
+            {title}
+          </h1>
           {description && (
-            <p className="mt-6 text-lg leading-[1.75] text-stone-300/75">{description}</p>
+            <p className="mt-6 max-w-2xl text-[16px] leading-[1.7] text-stone-200">{description}</p>
           )}
         </div>
-
-        {children && <div className="mt-10">{children}</div>}
+        <span className="hidden pb-3 text-[64px] font-light leading-none text-stone-100 lg:block">
+          ↘
+        </span>
       </div>
+
+      {children && <div className="mt-10">{children}</div>}
     </section>
   );
 }
