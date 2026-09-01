@@ -13,6 +13,7 @@ const NAV = [
   { href: '/', label: 'Главная' },
   { href: '/about', label: 'О нас' },
   { href: '/services', label: 'Сервисы' },
+  { href: '/projects', label: 'Проекты' },
   { href: '/contacts', label: 'Контакт' },
 ];
 
