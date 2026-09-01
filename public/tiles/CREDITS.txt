@@ -66,3 +66,10 @@ alt-3.jpg | Juhani Pelli | n2Zf3kdcTZA | a close up of a gray marble surface
 alt-4.jpg | Ekaterina Novitskaya | gLroHoWh_as | a dark grey wall with a mottled and uneven painted texture
 alt-5.jpg | Eszter Sólyom | wDaWqcolhWU | a light grey wall with a mottled plaster texture
 alt-6.jpg | Ryan Schram | XocJnmjB3Mg | a close up view of a granite surface
+
+--- new slabs ---
+new-2.jpg | Scott Webb | Hs6Odf-ishw | a black and white photo of a marble wall
+new-3.jpg | H&CO | qHESeZNrkxE | close-up of a speckled terrazzo surface with a shadow
+new-4.jpg | Hans | m9h_7B6RBiM | brown sandstone with wavy horizontal layers and a textured s
+new-5.jpg | Pawel Czerwinski | g0eRErPBoTA | deep blue marbled abstract texture
+new-6.jpg | Mohamed B. | g7iR_EFIqfw | a wooden plank wall with a black background
