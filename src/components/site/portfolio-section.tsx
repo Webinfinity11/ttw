@@ -36,7 +36,7 @@ export function PortfolioSection({ projects }: { projects: Project[] }) {
                   alt={project.title}
                   fill
                   sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
-                  className="object-cover"
+                  className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
                 />
               </div>
 
@@ -50,7 +50,7 @@ export function PortfolioSection({ projects }: { projects: Project[] }) {
                     {project.area} м² · {project.duration} · {project.location}
                   </p>
                 </div>
-                <span className="text-[34px] font-light leading-none text-stone-300 transition-transform duration-300">
+                <span className="text-[34px] font-light leading-none text-stone-300 transition-transform duration-300 group-hover:translate-x-1 group-hover:text-stone-100 transition-transform duration-300">
                   ›
                 </span>
               </div>

@@ -127,7 +127,7 @@ export default function AdminSettingsPage() {
                   value={values.telegram}
                   onChange={(event) => set('telegram', event.target.value)}
                   className="field-input"
-                  placeholder="@kerama_tbilisi"
+                  placeholder="@tiling_work"
                 />
               </Field>
               <Field label="Email">

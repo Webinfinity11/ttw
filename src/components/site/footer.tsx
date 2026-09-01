@@ -6,11 +6,22 @@ export function Footer({ settings, services }: { settings: SiteSettings; service
 
   return (
     <footer className="mt-32 border-t border-graphite-700 lg:mt-44">
-      {/* Крупная подпись во всю ширину */}
-      <div className="container overflow-hidden border-b border-graphite-700 py-10">
-        <p className="display whitespace-nowrap text-[13vw] uppercase leading-[0.9] text-stone-100 lg:text-[8.5vw]">
-          {settings.companyName} · Плитка
-        </p>
+      {/* Бесконечная бегущая строка с названием */}
+      <div className="overflow-hidden border-b border-graphite-700 py-9">
+        <div className="flex w-max animate-marquee">
+          {[0, 1].map((copy) => (
+            <div key={copy} className="flex shrink-0 items-center" aria-hidden={copy === 1}>
+              {Array.from({ length: 6 }).map((_, index) => (
+                <span key={index} className="flex items-center">
+                  <span className="display whitespace-nowrap px-8 text-[9vw] uppercase leading-[0.9] text-stone-100 lg:text-[5.5rem]">
+                    {settings.companyName}
+                  </span>
+                  <span className="text-[2.2vw] text-stone-400 lg:text-[1.6rem]">✳</span>
+                </span>
+              ))}
+            </div>
+          ))}
+        </div>
       </div>
 
       <div className="container grid gap-12 py-16 lg:grid-cols-[1.4fr_1fr_1fr_1.2fr]">

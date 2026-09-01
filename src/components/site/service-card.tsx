@@ -12,7 +12,7 @@ export function ServiceCard({ service, className }: { service: Service; classNam
           alt={service.title}
           fill
           sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
-          className="object-cover"
+          className="object-cover transition-transform duration-700 group-hover:scale-[1.05]"
         />
       </div>
 
@@ -32,7 +32,7 @@ export function ServiceCard({ service, className }: { service: Service; classNam
             </strong>{' '}
             / {service.unit}
           </span>
-          <span className="text-[30px] font-light leading-none text-stone-300 transition-transform duration-300">
+          <span className="text-[30px] font-light leading-none text-stone-300 transition-transform duration-300 group-hover:translate-x-1 group-hover:text-stone-100 transition-transform duration-300">
             ›
           </span>
         </div>

@@ -4,7 +4,7 @@ import { AdminShell } from '@/components/admin/shell';
 import { ToastProvider } from '@/components/admin/toast';
 
 export const metadata: Metadata = {
-  title: 'Админ-панель — KERAMA Tbilisi',
+  title: 'Админ-панель — Tiling Work',
 };
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {

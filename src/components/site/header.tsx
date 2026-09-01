@@ -32,8 +32,8 @@ export function Header({ phone, companyName }: { phone: string; companyName: str
             <LogoMark className="h-6 w-6 text-stone-100" />
           </span>
           <span className="leading-none">
-            <span className="block text-[17px] font-semibold uppercase tracking-[0.18em] text-stone-100">
-              {companyName.split(' ')[0]}
+            <span className="block text-[17px] font-semibold uppercase tracking-[0.16em] text-stone-100">
+              {companyName}
             </span>
             <span className="mt-1 block text-[10px] uppercase tracking-[0.3em] text-stone-400">
               Плитка · Тбилиси

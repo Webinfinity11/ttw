@@ -1,11 +1,11 @@
 import type { SiteSettings } from '@/lib/types';
 
 export const mockSettings: SiteSettings = {
-  companyName: 'KERAMA Tbilisi',
+  companyName: 'Tiling Work',
   phone: '+995 555 123 456',
   whatsapp: '+995 555 123 456',
-  telegram: '@kerama_tbilisi',
-  email: 'hello@kerama.ge',
+  telegram: '@tiling_work',
+  email: 'hello@tilingwork.ge',
   city: 'Тбилиси',
   workingHours: 'Пн–Сб, 09:00–19:00',
   address: 'Тбилиси, Ваке, ул. Абашидзе 22',

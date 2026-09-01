@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'KERAMA Tbilisi — укладка плитки и керамогранита',
+  title: 'Tiling Work — укладка плитки и керамогранита в Тбилиси',
   description:
     'Профессиональная укладка плитки, керамогранита и XXL-плит в Тбилиси. Ванные под ключ, гидроизоляция, запил под 45°.',
 };

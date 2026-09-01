@@ -61,6 +61,10 @@ const config: Config = {
           to: { opacity: '1', transform: 'translateY(0)' },
         },
         'fade-in': { from: { opacity: '0' }, to: { opacity: '1' } },
+        marquee: {
+          from: { transform: 'translate3d(0, 0, 0)' },
+          to: { transform: 'translate3d(-50%, 0, 0)' },
+        },
         'scale-in': {
           from: { opacity: '0', transform: 'scale(.97)' },
           to: { opacity: '1', transform: 'scale(1)' },
@@ -70,6 +74,7 @@ const config: Config = {
         'fade-up': 'fade-up .7s cubic-bezier(.22,.61,.36,1) both',
         'fade-in': 'fade-in .5s ease both',
         'scale-in': 'scale-in .35s cubic-bezier(.22,.61,.36,1) both',
+        marquee: 'marquee 30s linear infinite',
       },
     },
   },
