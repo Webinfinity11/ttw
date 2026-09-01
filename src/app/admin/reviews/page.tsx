@@ -16,8 +16,7 @@ import {
   SearchInput,
   Toggle,
 } from '@/components/admin/ui';
-import { cn, formatDate } from '@/lib/cn';
-import { photo } from '@/lib/images';
+import { cn, formatDate, initials } from '@/lib/cn';
 import type { Review } from '@/lib/types';
 
 const EMPTY: Omit<Review, 'id'> = {
@@ -25,7 +24,7 @@ const EMPTY: Omit<Review, 'id'> = {
   role: '',
   text: '',
   rating: 5,
-  photo: photo('new-review', 400, 400),
+  photo: '',
   date: new Date().toISOString().slice(0, 10),
   published: true,
 };
@@ -128,10 +127,16 @@ export default function AdminReviewsPage() {
               className="flex flex-col rounded-2xl border border-graphite-100 bg-white p-6 transition hover:shadow-soft"
             >
               <div className="flex items-start gap-3.5">
-                <span className="relative h-12 w-12 shrink-0 overflow-hidden rounded-full bg-graphite-50">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={review.photo} alt={review.name} className="h-full w-full object-cover" />
-                </span>
+                {review.photo ? (
+                  <span className="relative h-12 w-12 shrink-0 overflow-hidden rounded-full bg-graphite-50">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={review.photo} alt={review.name} className="h-full w-full object-cover" />
+                  </span>
+                ) : (
+                  <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-accent-500 text-sm font-bold text-white">
+                    {initials(review.name)}
+                  </span>
+                )}
                 <div className="min-w-0 flex-1">
                   <p className="truncate text-sm font-semibold text-graphite-900">{review.name}</p>
                   <p className="truncate text-xs text-graphite-300">
@@ -285,7 +290,7 @@ function ReviewModal({
           </Field>
         </div>
 
-        <Field label="Фотография (URL)">
+        <Field label="Фотография (URL)" hint="Можно оставить пустым — тогда покажем инициалы">
           <input
             value={values.photo}
             onChange={(event) => set('photo', event.target.value)}

@@ -1,5 +1,5 @@
 import type { Project } from '@/lib/types';
-import { photo } from '@/lib/images';
+import { galleryPhoto } from '@/lib/images';
 
 export const mockProjects: Project[] = [
   {
@@ -9,8 +9,8 @@ export const mockProjects: Project[] = [
     description:
       'Тёплый травертин 60×120 на стенах и полу, скрытая инсталляция, ниша с подсветкой и запил под 45° по всем внешним углам.',
     category: 'Ванные',
-    image: photo('prj-vake-1', 1400, 1050),
-    images: [photo('prj-vake-2', 1400, 1050), photo('prj-vake-3', 1400, 1050), photo('prj-vake-4', 1400, 1050)],
+    image: galleryPhoto('bath-1.jpg'),
+    images: [galleryPhoto('bath-2.jpg'), galleryPhoto('texture-2.jpg'), galleryPhoto('work-1.jpg')],
     area: 8,
     materials: 'Керамогранит Travertino 60×120, эпоксидная затирка, гидроизоляция Mapei',
     location: 'Ваке, Тбилиси',
@@ -25,8 +25,8 @@ export const mockProjects: Project[] = [
     description:
       'Классический кирпичик со смещением 1/3, вырезы под шесть розеток, герметизация примыкания к столешнице.',
     category: 'Кухни',
-    image: photo('prj-sab-1', 1400, 1050),
-    images: [photo('prj-sab-2', 1400, 1050), photo('prj-sab-3', 1400, 1050)],
+    image: galleryPhoto('kitchen-1.jpg'),
+    images: [galleryPhoto('kitchen-3.jpg'), galleryPhoto('texture-4.jpg')],
     area: 6,
     materials: 'Керамика 7.5×15, затирка Kerakoll, силикон в тон',
     location: 'Сабуртало, Тбилиси',
@@ -41,8 +41,8 @@ export const mockProjects: Project[] = [
     description:
       'Крупноформатные плиты с минимальным швом 1.5 мм, нивелирующая система, бесшовный переход стена–пол.',
     category: 'XXL',
-    image: photo('prj-xxl-1', 1400, 1050),
-    images: [photo('prj-xxl-2', 1400, 1050), photo('prj-xxl-3', 1400, 1050), photo('prj-xxl-4', 1400, 1050)],
+    image: galleryPhoto('floor-5.jpg'),
+    images: [galleryPhoto('floor-4.jpg'), galleryPhoto('floor-1.jpg'), galleryPhoto('texture-3.jpg')],
     area: 46,
     materials: 'Керамогранит 160×320 мм, клей C2TE S1, СВП',
     location: 'Дигоми, Тбилиси',
@@ -57,8 +57,8 @@ export const mockProjects: Project[] = [
     description:
       'Мозаика 25×25 мм на полу душевой с уклоном к трапу, эпоксидная затирка, двухслойная гидроизоляция.',
     category: 'Мозаика',
-    image: photo('prj-mos-1', 1400, 1050),
-    images: [photo('prj-mos-2', 1400, 1050), photo('prj-mos-3', 1400, 1050)],
+    image: galleryPhoto('mosaic-1.jpg'),
+    images: [galleryPhoto('mosaic-3.jpg'), galleryPhoto('bath-3.jpg')],
     area: 4,
     materials: 'Мозаика 25×25, эпоксидная затирка, трап Viega',
     location: 'Ортачала, Тбилиси',
@@ -73,8 +73,8 @@ export const mockProjects: Project[] = [
     description:
       'Уклон 2%, дренажные каналы по периметру, эластичная гидроизоляция и морозостойкий клей.',
     category: 'Террасы',
-    image: photo('prj-ter-1', 1400, 1050),
-    images: [photo('prj-ter-2', 1400, 1050), photo('prj-ter-3', 1400, 1050)],
+    image: galleryPhoto('terrace-1.jpg'),
+    images: [galleryPhoto('terrace-3.jpg'), galleryPhoto('floor-1.jpg')],
     area: 24,
     materials: 'Керамогранит 60×60 R11, клей C2TE S2, дренаж ACO',
     location: 'Мтацминда, Тбилиси',
@@ -89,8 +89,8 @@ export const mockProjects: Project[] = [
     description:
       'Три марша: ступени с запилом под 45°, единый свес 20 мм, противоскользящие пропилы.',
     category: 'Лестницы',
-    image: photo('prj-stair-1', 1400, 1050),
-    images: [photo('prj-stair-2', 1400, 1050), photo('prj-stair-3', 1400, 1050)],
+    image: galleryPhoto('stairs-2.jpg'),
+    images: [galleryPhoto('stairs-1.jpg'), galleryPhoto('stairs-3.jpg')],
     area: 18,
     materials: 'Керамогранит 30×120, запил 45°, антислип-насечки',
     location: 'Ваке, Тбилиси',
@@ -105,8 +105,8 @@ export const mockProjects: Project[] = [
     description:
       'Тёмный керамогранит под бетон, скрытые люки-невидимки, идеальное совпадение швов стены и пола.',
     category: 'Ванные',
-    image: photo('prj-graph-1', 1400, 1050),
-    images: [photo('prj-graph-2', 1400, 1050), photo('prj-graph-3', 1400, 1050)],
+    image: galleryPhoto('bath-4.jpg'),
+    images: [galleryPhoto('bath-5.jpg'), galleryPhoto('texture-1.jpg')],
     area: 5,
     materials: 'Керамогранит 60×120 под бетон, эпоксидная затирка',
     location: 'Исани, Тбилиси',
@@ -121,8 +121,8 @@ export const mockProjects: Project[] = [
     description:
       'Облицовка острова плитами с запилом по всем рёбрам и продолжением рисунка на боковины.',
     category: 'Керамогранит',
-    image: photo('prj-island-1', 1400, 1050),
-    images: [photo('prj-island-2', 1400, 1050), photo('prj-island-3', 1400, 1050)],
+    image: galleryPhoto('kitchen-2.jpg'),
+    images: [galleryPhoto('floor-2.jpg'), galleryPhoto('texture-4.jpg')],
     area: 12,
     materials: 'Керамогранит 120×280, запил 45°, скрытый крепёж',
     location: 'Ваке, Тбилиси',
@@ -137,8 +137,8 @@ export const mockProjects: Project[] = [
     description:
       'Керамогранит под дерево с уклоном к сливу, тёплый плинтус из подрезанной плитки.',
     category: 'Террасы',
-    image: photo('prj-balc-1', 1400, 1050),
-    images: [photo('prj-balc-2', 1400, 1050)],
+    image: galleryPhoto('terrace-2.jpg'),
+    images: [galleryPhoto('terrace-3.jpg')],
     area: 9,
     materials: 'Керамогранит 20×120 под дерево, морозостойкая затирка',
     location: 'Ваке, Тбилиси',
@@ -153,8 +153,8 @@ export const mockProjects: Project[] = [
     description:
       'Панно из мозаики за раковиной, подрезка сеткой по месту, шов 1 мм.',
     category: 'Мозаика',
-    image: photo('prj-guest-1', 1400, 1050),
-    images: [photo('prj-guest-2', 1400, 1050)],
+    image: galleryPhoto('mosaic-2.jpg'),
+    images: [galleryPhoto('mosaic-3.jpg')],
     area: 3,
     materials: 'Стеклянная мозаика, эпоксидная затирка',
     location: 'Сабуртало, Тбилиси',
@@ -169,8 +169,8 @@ export const mockProjects: Project[] = [
     description:
       'Полированный керамогранит под мрамор с подбором рисунка «книга» и минимальным швом.',
     category: 'Керамогранит',
-    image: photo('prj-hall-1', 1400, 1050),
-    images: [photo('prj-hall-2', 1400, 1050), photo('prj-hall-3', 1400, 1050)],
+    image: galleryPhoto('floor-3.jpg'),
+    images: [galleryPhoto('floor-5.jpg'), galleryPhoto('texture-2.jpg')],
     area: 32,
     materials: 'Керамогранит 120×120 под мрамор, книжный подбор',
     location: 'Ваке, Тбилиси',
@@ -185,8 +185,8 @@ export const mockProjects: Project[] = [
     description:
       'Наружные ступени из морозостойкого керамогранита с капельником и антислип-обработкой.',
     category: 'Лестницы',
-    image: photo('prj-entry-1', 1400, 1050),
-    images: [photo('prj-entry-2', 1400, 1050)],
+    image: galleryPhoto('stairs-3.jpg'),
+    images: [galleryPhoto('stairs-1.jpg')],
     area: 11,
     materials: 'Керамогранит R11, капельник, морозостойкий клей',
     location: 'Дигоми, Тбилиси',

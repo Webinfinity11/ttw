@@ -26,3 +26,13 @@ export function formatDateTime(value: string): string {
     minute: '2-digit',
   });
 }
+
+/** «Нино Гвазава» -> «НГ» — для аватара без фотографии. */
+export function initials(name: string): string {
+  return name
+    .split(' ')
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((part) => part[0]?.toUpperCase() ?? '')
+    .join('');
+}

@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { Check } from 'lucide-react';
-import { photo } from '@/lib/images';
+import { galleryPhoto } from '@/lib/images';
 import { Reveal } from '@/components/ui/reveal';
 
 const PERKS = [
@@ -20,8 +20,8 @@ export function AboutSection() {
         <Reveal className="relative">
           <div className="relative h-[420px] w-full lg:h-[560px]">
             <Image
-              src={photo('about-object', 1000, 1250)}
-              alt="Санузел с крупноформатным керамогранитом"
+              src={galleryPhoto('work-1.jpg')}
+              alt="Затирка швов на уложенной плитке"
               fill
               sizes="(max-width: 1024px) 100vw, 46vw"
               className="object-cover"

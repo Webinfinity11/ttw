@@ -219,24 +219,6 @@
   }
 }
 
-/* Блик пробегает по панели, когда все плитки встали */
-@keyframes board-shine {
-  0% {
-    opacity: 0;
-    transform: translateX(-130%) skewX(-18deg);
-  }
-  12% {
-    opacity: 1;
-  }
-  85% {
-    opacity: 0.9;
-  }
-  100% {
-    opacity: 0;
-    transform: translateX(230%) skewX(-18deg);
-  }
-}
-
 .tile-enter {
   animation-duration: 0.85s;
   animation-timing-function: cubic-bezier(0.18, 0.82, 0.25, 1.06);
@@ -252,14 +234,9 @@
   animation: frame-in 0.7s cubic-bezier(0.22, 0.61, 0.36, 1) both;
 }
 
-.board-shine {
-  animation: board-shine 1.5s ease-in-out 1.75s both;
-}
-
 @media (prefers-reduced-motion: reduce) {
   .tile-enter,
-  .frame-enter,
-  .board-shine {
+  .frame-enter {
     animation: none !important;
     opacity: 1;
   }

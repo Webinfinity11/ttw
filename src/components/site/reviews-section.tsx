@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { Star } from 'lucide-react';
 import type { Review } from '@/lib/types';
-import { cn, formatDate } from '@/lib/cn';
+import { cn, formatDate, initials } from '@/lib/cn';
 import { Reveal } from '@/components/ui/reveal';
 import { SectionHeading } from '@/components/ui/section-heading';
 
@@ -56,9 +56,15 @@ export function ReviewsSection({ reviews }: { reviews: Review[] }) {
                 «{review.text}»
               </p>
               <div className="mt-7 flex items-center gap-3.5 border-t border-stone-200 pt-6">
-                <span className="relative h-11 w-11 shrink-0 overflow-hidden rounded-full">
-                  <Image src={review.photo} alt={review.name} fill sizes="44px" className="object-cover" />
-                </span>
+                {review.photo ? (
+                  <span className="relative h-11 w-11 shrink-0 overflow-hidden rounded-full">
+                    <Image src={review.photo} alt={review.name} fill sizes="44px" className="object-cover" />
+                  </span>
+                ) : (
+                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-accent-500 font-display text-sm font-bold text-white">
+                    {initials(review.name)}
+                  </span>
+                )}
                 <div className="min-w-0">
                   <p className="truncate text-sm font-semibold">{review.name}</p>
                   <p className="truncate text-xs text-graphite-300">

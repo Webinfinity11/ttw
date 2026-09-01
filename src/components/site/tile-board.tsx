@@ -55,16 +55,16 @@ function TilePlate({
  */
 export function TileBoard() {
   return (
-    <div className="relative hidden min-h-[580px] items-center justify-center lg:flex">
-      <div className="frame-enter relative h-[460px] w-[460px] overflow-hidden border border-white/25 bg-white/[0.06] p-6 backdrop-blur-[2px] [transform:rotate(-8deg)]">
-        <div className="grid h-full w-full grid-cols-2 grid-rows-2 gap-5">
+    <div className="relative hidden min-h-[560px] items-center justify-center lg:flex">
+      {/* квадрат и выкладка наклонены вместе, под одним углом */}
+      <div className="relative flex items-center justify-center [transform:rotate(-8deg)]">
+        <div className="frame-enter absolute h-[510px] w-[510px] border border-white/25 bg-white/[0.06] backdrop-blur-[2px]" />
+
+        <div className="relative grid h-[320px] w-[440px] grid-cols-2 grid-rows-2 gap-6">
           {TILES.map((tile, index) => (
             <TilePlate key={tile.label} tile={tile} index={index} priority={index < 2} />
           ))}
         </div>
-
-        {/* блик, пробегающий по панели после того, как плитки встали */}
-        <span className="board-shine pointer-events-none absolute inset-y-0 -left-1/3 w-1/3 bg-gradient-to-r from-transparent via-white/25 to-transparent" />
       </div>
 
       {/* ярлыки прилетают последними, когда выкладка собрана */}

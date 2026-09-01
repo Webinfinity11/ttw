@@ -1,5 +1,4 @@
 import type { Review } from '@/lib/types';
-import { photo } from '@/lib/images';
 
 export const mockReviews: Review[] = [
   {
@@ -8,7 +7,7 @@ export const mockReviews: Review[] = [
     role: 'Квартира в Ваке',
     text: 'Делали ванную под ключ. Отдельное спасибо за запил под 45° — углы выглядят так, будто плита цельная. Всё в срок, каждый вечер убранная площадка.',
     rating: 5,
-    photo: photo('rev-nino', 400, 400),
+    photo: '',
     date: '2026-07-18',
     published: true,
   },
@@ -18,7 +17,7 @@ export const mockReviews: Review[] = [
     role: 'Дом в Дигоми',
     text: 'Укладывали XXL-плиты 160×320 в гостиной. Перед укладкой полностью вывели плоскость пола, шов минимальный, стыки не чувствуются ногой.',
     rating: 5,
-    photo: photo('rev-alex', 400, 400),
+    photo: '',
     date: '2026-06-02',
     published: true,
   },
@@ -28,7 +27,7 @@ export const mockReviews: Review[] = [
     role: 'Кухня, Сабуртало',
     text: 'Фартук «кабанчик» со смещением. Розетки вписаны идеально, ни одного скола. Приятно, что сразу предупредили про запас плитки на подрез.',
     rating: 5,
-    photo: photo('rev-maria', 400, 400),
+    photo: '',
     date: '2026-05-21',
     published: true,
   },
@@ -38,7 +37,7 @@ export const mockReviews: Review[] = [
     role: 'Санузел, Исани',
     text: 'Хороший мастер, работает аккуратно. Небольшая задержка на два дня из-за поставки плитки, но предупредили заранее и компенсировали темпом.',
     rating: 4,
-    photo: photo('rev-georgiy', 400, 400),
+    photo: '',
     date: '2026-04-09',
     published: true,
   },
@@ -48,7 +47,7 @@ export const mockReviews: Review[] = [
     role: 'Терраса, Мтацминда',
     text: 'Терраса пережила первую зиму без единой трещины. Уклон сделан правильно, вода уходит полностью.',
     rating: 5,
-    photo: photo('rev-elene', 400, 400),
+    photo: '',
     date: '2026-03-14',
     published: true,
   },
@@ -58,7 +57,7 @@ export const mockReviews: Review[] = [
     role: 'Лестница, Ваке',
     text: 'Облицовка лестницы в три марша. Свес везде одинаковый, ступени не скользят. Рекомендую.',
     rating: 5,
-    photo: photo('rev-david', 400, 400),
+    photo: '',
     date: '2026-02-27',
     published: false,
   },
