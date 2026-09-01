@@ -210,3 +210,38 @@
   .word-rise,
   .line-draw { animation: none !important; opacity: 1; transform: none; }
 }
+
+/* --- Вход первого экрана --- */
+@keyframes wipe-up {
+  from { clip-path: inset(100% 0 0 0); transform: scale(1.1); }
+  to { clip-path: inset(0 0 0 0); transform: scale(1); }
+}
+@keyframes rise-in {
+  from { opacity: 0; transform: translateY(26px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes grow-x {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+@keyframes arrow-in {
+  from { opacity: 0; transform: translate(-18px, -18px); }
+  to { opacity: 1; transform: none; }
+}
+
+.wipe-up { animation: wipe-up 1.15s cubic-bezier(0.16, 0.84, 0.3, 1) both; }
+.rise-in { animation: rise-in 0.9s cubic-bezier(0.22, 0.61, 0.36, 1) both; }
+.grow-x { transform-origin: left; animation: grow-x 0.9s cubic-bezier(0.22, 0.61, 0.36, 1) both; }
+.arrow-in { animation: arrow-in 0.9s cubic-bezier(0.22, 0.61, 0.36, 1) both; }
+
+@media (prefers-reduced-motion: reduce) {
+  .wipe-up,
+  .rise-in,
+  .grow-x,
+  .arrow-in {
+    animation: none !important;
+    opacity: 1;
+    transform: none;
+    clip-path: none;
+  }
+}

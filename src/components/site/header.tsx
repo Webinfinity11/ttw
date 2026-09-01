@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 import { Menu, X } from 'lucide-react';
 import { cn } from '@/lib/cn';
 import { useQuote } from './quote-dialog';
+import { LogoMark } from './logo';
 import { ThemeToggle } from './theme';
 
 const NAV = [
@@ -16,7 +17,7 @@ const NAV = [
   { href: '/about', label: 'О нас' },
 ];
 
-export function Header({ phone }: { phone: string; companyName: string }) {
+export function Header({ phone, companyName }: { phone: string; companyName: string }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const pathname = usePathname();
   const { open } = useQuote();
@@ -25,8 +26,23 @@ export function Header({ phone }: { phone: string; companyName: string }) {
 
   return (
     <header className="sticky top-0 z-50 border-b border-graphite-700 bg-graphite-950">
-      <div className="container flex items-center justify-between gap-8 py-6">
-        <nav className="hidden items-center gap-8 text-[14px] uppercase tracking-[0.06em] lg:flex">
+      <div className="container flex items-center justify-between gap-6 py-5">
+        {/* Логотип */}
+        <Link href="/" className="group flex shrink-0 items-center gap-3">
+          <span className="flex h-10 w-10 items-center justify-center border border-graphite-700 transition-colors group-hover:border-stone-300">
+            <LogoMark className="h-6 w-6 text-stone-100" />
+          </span>
+          <span className="leading-none">
+            <span className="block text-[17px] font-semibold uppercase tracking-[0.18em] text-stone-100">
+              {companyName.split(' ')[0]}
+            </span>
+            <span className="mt-1 block text-[10px] uppercase tracking-[0.3em] text-stone-400">
+              Плитка · Тбилиси
+            </span>
+          </span>
+        </Link>
+
+        <nav className="hidden items-center gap-8 text-[14px] uppercase tracking-[0.06em] xl:flex">
           {NAV.map((item) => {
             const active = item.href === '/' ? pathname === '/' : pathname.startsWith(item.href);
             return (
@@ -35,7 +51,9 @@ export function Header({ phone }: { phone: string; companyName: string }) {
                 href={item.href}
                 className={cn(
                   'transition-colors',
-                  active ? 'text-stone-100 underline underline-offset-[6px]' : 'text-stone-200 hover:text-stone-400',
+                  active
+                    ? 'text-stone-100 underline underline-offset-[6px]'
+                    : 'text-stone-200 hover:text-stone-400',
                 )}
               >
                 {item.label}
@@ -44,33 +62,30 @@ export function Header({ phone }: { phone: string; companyName: string }) {
           })}
         </nav>
 
-        <Link href="/" className="text-[15px] uppercase tracking-[0.14em] lg:hidden">
-          Kerama
-        </Link>
-
-        <div className="flex items-center gap-8 text-[14px] uppercase tracking-[0.06em]">
+        <div className="flex items-center gap-4">
           <a
             href={`tel:${phone.replace(/\s/g, '')}`}
-            className="hidden text-stone-200 transition-colors hover:text-stone-400 md:block"
+            className="hidden text-[14px] uppercase tracking-[0.06em] text-stone-200 transition-colors hover:text-stone-400 md:block"
           >
             {phone}
           </a>
-          <Link
-            href="/contacts"
-            className="hidden text-stone-200 transition-colors hover:text-stone-400 lg:block"
-          >
-            Контакты
-          </Link>
+
+          {/* Кнопка заявки */}
           <button
             onClick={() => open()}
-            className="hidden text-stone-100 underline underline-offset-[6px] transition-colors hover:text-stone-400 sm:block"
+            className="group hidden items-center gap-3 bg-stone-100 py-3 pl-6 pr-4 text-[14px] font-medium text-graphite-950 transition-colors hover:bg-stone-200 sm:inline-flex"
           >
-            Смета
+            Рассчитать смету
+            <span className="text-[18px] leading-none transition-transform duration-300 group-hover:translate-x-1">
+              ›
+            </span>
           </button>
+
           <ThemeToggle />
+
           <button
             onClick={() => setMenuOpen((value) => !value)}
-            className="text-stone-100 lg:hidden"
+            className="text-stone-100 xl:hidden"
             aria-label="Меню"
           >
             {menuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
@@ -79,7 +94,7 @@ export function Header({ phone }: { phone: string; companyName: string }) {
       </div>
 
       {menuOpen && (
-        <div className="border-t border-graphite-700 bg-graphite-950 lg:hidden">
+        <div className="border-t border-graphite-700 bg-graphite-950 xl:hidden">
           <div className="container flex flex-col py-3">
             {NAV.concat({ href: '/contacts', label: 'Контакты' }).map((item) => (
               <Link
