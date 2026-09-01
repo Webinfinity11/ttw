@@ -98,8 +98,8 @@
   }
 
   .field-dark {
-    @apply w-full rounded-none border border-graphite-700 bg-graphite-900 px-4 py-3.5 text-[15px] text-stone-100
-           outline-none transition placeholder:text-graphite-500 focus:border-stone-300;
+    @apply w-full rounded-none border border-graphite-700 bg-graphite-950 px-4 py-3.5 text-[15px] text-stone-100
+           outline-none transition placeholder:text-graphite-500 focus:border-stone-300 focus:bg-graphite-900;
   }
 
   .btn {

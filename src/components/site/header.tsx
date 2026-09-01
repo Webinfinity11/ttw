@@ -11,10 +11,9 @@ import { ThemeToggle } from './theme';
 
 const NAV = [
   { href: '/', label: 'Главная' },
-  { href: '/services', label: 'Услуги' },
-  { href: '/projects', label: 'Проекты' },
-  { href: '/prices', label: 'Цены' },
   { href: '/about', label: 'О нас' },
+  { href: '/services', label: 'Сервисы' },
+  { href: '/contacts', label: 'Контакт' },
 ];
 
 export function Header({ phone, companyName }: { phone: string; companyName: string }) {
@@ -96,7 +95,7 @@ export function Header({ phone, companyName }: { phone: string; companyName: str
       {menuOpen && (
         <div className="border-t border-graphite-700 bg-graphite-950 xl:hidden">
           <div className="container flex flex-col py-3">
-            {NAV.concat({ href: '/contacts', label: 'Контакты' }).map((item) => (
+            {NAV.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}

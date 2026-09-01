@@ -86,7 +86,7 @@ export function ContactForm({ services }: { services: string[] }) {
         />
       </div>
 
-      <button type="submit" disabled={state === 'sending'} className="btn-dark mt-6 w-full py-3.5">
+      <button type="submit" disabled={state === 'sending'} className="btn-light mt-6 w-full py-4">
         {state === 'sending' ? (
           <>
             <Loader2 className="h-4 w-4 animate-spin" /> Отправляем
