@@ -38,3 +38,8 @@ texture-1.jpg | Bozhin Karaivanov | K681pLrE1Is | a white tiled wall with a blac
 texture-2.jpg | Pawel Czerwinski | CEr4ljpMSh4 | a close up of a pink marble tile wall
 texture-3.jpg | Mike Hindle | _VKzAyPvI7c | a white brick wall textured with light gray bricks
 texture-4.jpg | Colin Watts | 7cm9oKHLFHY | colorful square tiles arranged in a grid pattern
+
+--- hero ---
+hero-bath-1.jpg | HUUM | zyh1IR_KBbA | modern bathroom with wooden sauna and marble shower
+hero-bath-2.jpg | Hermann Wittekopf - kmkb | cRTimsf19YY | a close up of a tiled wall in a bathroom
+hero-tile-1.jpg | Julia Taubitz | Jp-IPkxgEA8 | a metallic trash can against a tiled wall
