@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { galleryPhoto } from '@/lib/images';
 import { CountUp } from './count-up';
+import { Entrance } from './entrance';
 import { QuoteButton } from './quote-dialog';
 
 const HEADLINE = ['УКЛАДКА ПЛИТКИ', 'В ТБИЛИСИ'];
@@ -30,18 +31,18 @@ const STATS = [
 
 /**
  * Первый экран помещается в высоту окна.
- * Вход быстрый: строки заголовка поднимаются из-под маски,
- * следом линейка, пояснения, шторки на кадрах, счётчики и кнопки.
+ * Вход стартует только после загрузки шрифта (см. <Entrance/>)
+ * и анимирует исключительно transform/opacity — без рывков.
  */
 export function Hero() {
   return (
     <section className="pt-6 lg:h-[calc(100svh-84px)] lg:pt-7">
-      <div className="container flex h-full flex-col">
+      <Entrance className="container flex h-full flex-col">
         <div className="flex shrink-0 items-end justify-between gap-10 pb-6 lg:pb-5">
           <h1 className="display text-[10.5vw] leading-[1.02] sm:text-[8vw] lg:text-[3.9rem] xl:text-[4.7rem] 2xl:text-[5.2rem]">
             {HEADLINE.map((line, index) => (
               <span key={line} className="block overflow-hidden pb-[0.06em]">
-                <span className="word-rise" style={{ animationDelay: `${0.05 + index * 0.1}s` }}>
+                <span className="word-rise" style={{ animationDelay: `${index * 0.11}s` }}>
                   {line}
                 </span>
               </span>
@@ -49,7 +50,7 @@ export function Hero() {
           </h1>
           <span
             className="arrow-in hidden pb-2 text-[56px] font-light leading-none text-stone-100 lg:block"
-            style={{ animationDelay: '0.3s' }}
+            style={{ animationDelay: '0.34s' }}
           >
             ↘
           </span>
@@ -57,7 +58,7 @@ export function Hero() {
 
         <div
           className="grow-x h-px w-full shrink-0 origin-left bg-graphite-700"
-          style={{ animationDelay: '0.25s' }}
+          style={{ animationDelay: '0.24s' }}
         />
         <div className="grid shrink-0 border-b border-graphite-700 sm:grid-cols-2 lg:grid-cols-4">
           {NOTES.map((note, index) => (
@@ -66,29 +67,35 @@ export function Hero() {
               className={`rise-in px-0 py-4 pr-6 text-[13px] leading-[1.45] text-stone-200 sm:px-5 sm:first:pl-0 ${
                 index < NOTES.length - 1 ? 'lg:border-r lg:border-graphite-700' : ''
               }`}
-              style={{ animationDelay: `${0.35 + index * 0.06}s` }}
+              style={{ animationDelay: `${0.3 + index * 0.07}s` }}
             >
               {note}
             </p>
           ))}
         </div>
 
-        {/* Лента фактур забирает всё свободное место по высоте */}
+        {/* Лента фактур: каждый кадр выезжает шторкой, фото внутри доезжает масштабом */}
         <div className="my-6 grid h-[200px] shrink-0 grid-cols-2 overflow-hidden rounded-2xl lg:my-5 lg:h-auto lg:min-h-[120px] lg:flex-1 lg:shrink lg:grid-cols-4">
           {STRIP.map((item, index) => (
-            <div
-              key={item.src}
-              className="wipe-up relative"
-              style={{ animationDelay: `${0.55 + index * 0.08}s` }}
-            >
-              <Image
-                src={item.src}
-                alt={item.alt}
-                fill
-                priority={index < 2}
-                sizes="(max-width: 1024px) 50vw, 25vw"
-                className="object-cover"
-              />
+            <div key={item.src} className="relative overflow-hidden">
+              <div
+                className="curtain-up absolute inset-0"
+                style={{ animationDelay: `${0.45 + index * 0.09}s` }}
+              >
+                <div
+                  className="photo-settle relative h-full w-full"
+                  style={{ animationDelay: `${0.45 + index * 0.09}s` }}
+                >
+                  <Image
+                    src={item.src}
+                    alt={item.alt}
+                    fill
+                    priority={index < 2}
+                    sizes="(max-width: 1024px) 50vw, 25vw"
+                    className="object-cover"
+                  />
+                </div>
+              </div>
             </div>
           ))}
         </div>
@@ -99,10 +106,10 @@ export function Hero() {
               <div
                 key={stat.label}
                 className="fade-scale"
-                style={{ animationDelay: `${0.85 + index * 0.06}s` }}
+                style={{ animationDelay: `${0.85 + index * 0.07}s` }}
               >
                 <div className="display text-[40px] leading-none xl:text-[46px]">
-                  <CountUp value={stat.value} delay={900 + index * 60} duration={900} />
+                  <CountUp value={stat.value} delay={950 + index * 70} duration={1100} />
                 </div>
                 <div className="mt-1.5 text-[15px] font-medium leading-[1.3] text-stone-200">
                   {stat.label}
@@ -113,7 +120,7 @@ export function Hero() {
 
           <div
             className="fade-scale mt-6 flex flex-col gap-3 sm:flex-row sm:items-center"
-            style={{ animationDelay: '1.1s' }}
+            style={{ animationDelay: '1.15s' }}
           >
             <QuoteButton className="btn-light py-3.5">Рассчитать смету</QuoteButton>
             <Link href="/projects" className="btn-outline-light py-3.5">
@@ -122,7 +129,7 @@ export function Hero() {
             <span className="meta sm:ml-3">Бесплатный замер по Тбилиси</span>
           </div>
         </div>
-      </div>
+      </Entrance>
     </section>
   );
 }

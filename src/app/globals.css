@@ -211,43 +211,84 @@
   .line-draw { animation: none !important; opacity: 1; transform: none; }
 }
 
-/* --- Вход первого экрана: быстрые, как было изначально --- */
+/* --- Вход первого экрана --- */
 @keyframes word-rise {
-  from { opacity: 0; transform: translateY(110%); }
-  to { opacity: 1; transform: none; }
+  from { transform: translate3d(0, 108%, 0); }
+  to { transform: translate3d(0, 0, 0); }
 }
-@keyframes wipe-up {
-  from { clip-path: inset(100% 0 0 0); transform: scale(1.06); }
-  to { clip-path: inset(0 0 0 0); transform: scale(1); }
+@keyframes curtain-up {
+  from { transform: translate3d(0, 100%, 0); }
+  to { transform: translate3d(0, 0, 0); }
+}
+@keyframes photo-settle {
+  from { transform: scale(1.14); }
+  to { transform: scale(1); }
 }
 @keyframes rise-in {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: none; }
+  from { opacity: 0; transform: translate3d(0, 16px, 0); }
+  to { opacity: 1; transform: translate3d(0, 0, 0); }
 }
 @keyframes fade-scale {
-  from { opacity: 0; transform: scale(0.97); }
-  to { opacity: 1; transform: none; }
+  from { opacity: 0; transform: scale(0.98); }
+  to { opacity: 1; transform: scale(1); }
 }
 @keyframes grow-x {
   from { transform: scaleX(0); }
   to { transform: scaleX(1); }
 }
 @keyframes arrow-in {
-  from { opacity: 0; transform: translate(-12px, -12px); }
-  to { opacity: 1; transform: none; }
+  from { opacity: 0; transform: translate3d(-10px, -10px, 0); }
+  to { opacity: 1; transform: translate3d(0, 0, 0); }
 }
 
-.word-rise { display: block; animation: word-rise 0.55s cubic-bezier(0.22, 0.61, 0.36, 1) both; }
-.wipe-up { animation: wipe-up 0.6s cubic-bezier(0.16, 0.84, 0.3, 1) both; }
-.rise-in { animation: rise-in 0.5s cubic-bezier(0.22, 0.61, 0.36, 1) both; }
-.fade-scale { animation: fade-scale 0.5s cubic-bezier(0.22, 0.61, 0.36, 1) both; }
-.grow-x { transform-origin: left; animation: grow-x 0.5s cubic-bezier(0.22, 0.61, 0.36, 1) both; }
-.arrow-in { animation: arrow-in 0.5s cubic-bezier(0.22, 0.61, 0.36, 1) both; }
-.line-draw { transform-origin: left; animation: grow-x 0.5s cubic-bezier(0.22, 0.61, 0.36, 1) both; }
+/* Плавная кривая: разгон почти мгновенный, длинное мягкое торможение */
+.entrance {
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.entrance .word-rise,
+.entrance .curtain-up,
+.entrance .photo-settle,
+.entrance .rise-in,
+.entrance .fade-scale,
+.entrance .grow-x,
+.entrance .arrow-in {
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  animation-fill-mode: both;
+  animation-play-state: paused;
+}
+
+/* До готовности шрифтов ничего не двигается */
+.entrance:not(.is-ready) .rise-in,
+.entrance:not(.is-ready) .fade-scale,
+.entrance:not(.is-ready) .arrow-in {
+  opacity: 0;
+}
+
+.entrance.is-ready .word-rise,
+.entrance.is-ready .curtain-up,
+.entrance.is-ready .photo-settle,
+.entrance.is-ready .rise-in,
+.entrance.is-ready .fade-scale,
+.entrance.is-ready .grow-x,
+.entrance.is-ready .arrow-in {
+  animation-play-state: running;
+}
+
+.word-rise { display: block; animation: word-rise 0.85s var(--ease-out-soft, ease-out) both; }
+.curtain-up { animation: curtain-up 0.95s var(--ease-out-soft, ease-out) both; }
+.photo-settle { animation: photo-settle 1.4s var(--ease-out-soft, ease-out) both; }
+.rise-in { animation: rise-in 0.75s var(--ease-out-soft, ease-out) both; }
+.fade-scale { animation: fade-scale 0.75s var(--ease-out-soft, ease-out) both; }
+.grow-x { transform-origin: left; animation: grow-x 0.75s var(--ease-out-soft, ease-out) both; }
+.arrow-in { animation: arrow-in 0.75s var(--ease-out-soft, ease-out) both; }
+.line-draw { transform-origin: left; animation: grow-x 0.75s var(--ease-out-soft, ease-out) both; }
 
 @media (prefers-reduced-motion: reduce) {
   .word-rise,
-  .wipe-up,
+  .curtain-up,
+  .photo-settle,
   .rise-in,
   .fade-scale,
   .grow-x,
@@ -256,6 +297,5 @@
     animation: none !important;
     opacity: 1;
     transform: none;
-    clip-path: none;
   }
 }
