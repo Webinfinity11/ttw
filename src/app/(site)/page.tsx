@@ -1,35 +1,27 @@
 import { AboutSection } from '@/components/site/about-section';
 import { Advantages } from '@/components/site/advantages';
-import { CategoriesSection } from '@/components/site/categories-section';
 import { CtaSection } from '@/components/site/cta-section';
 import { Hero } from '@/components/site/hero';
 import { PortfolioSection } from '@/components/site/portfolio-section';
-import { PricesSection } from '@/components/site/prices-section';
-import { Process } from '@/components/site/process';
-import { ReviewsSection } from '@/components/site/reviews-section';
 import { ServicesSection } from '@/components/site/services-section';
-import { getPrices, getProjects, getReviews, getServices, getSettings } from '@/lib/data/content';
+import { TileCarousel } from '@/components/site/tile-carousel';
+import { getProjects, getServices, getSettings } from '@/lib/data/content';
 
 export default async function HomePage() {
-  const [services, projects, prices, reviews, settings] = await Promise.all([
+  const [services, projects, settings] = await Promise.all([
     getServices(),
     getProjects(),
-    getPrices(),
-    getReviews(),
     getSettings(),
   ]);
 
   return (
     <>
       <Hero />
-      <CategoriesSection projects={projects} />
       <ServicesSection services={services} />
       <AboutSection />
       <PortfolioSection projects={projects} />
       <Advantages />
-      <PricesSection prices={prices} />
-      <Process />
-      <ReviewsSection reviews={reviews} />
+      <TileCarousel />
       <CtaSection settings={settings} />
     </>
   );
