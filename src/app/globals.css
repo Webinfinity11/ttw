@@ -212,12 +212,24 @@
 }
 
 /* --- Вход первого экрана --- */
-@keyframes wipe-up {
-  from { clip-path: inset(100% 0 0 0); transform: scale(1.1); }
-  to { clip-path: inset(0 0 0 0); transform: scale(1); }
+@keyframes char-in {
+  from { opacity: 0; filter: blur(12px); transform: translateY(0.4em); }
+  to { opacity: 1; filter: blur(0); transform: none; }
 }
-@keyframes rise-in {
-  from { opacity: 0; transform: translateY(26px); }
+@keyframes wipe-right {
+  from { clip-path: inset(0 100% 0 0); }
+  to { clip-path: inset(0 0 0 0); }
+}
+@keyframes wipe-left {
+  from { clip-path: inset(0 0 0 100%); }
+  to { clip-path: inset(0 0 0 0); }
+}
+@keyframes slide-right {
+  from { opacity: 0; transform: translateX(-26px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes fade-scale {
+  from { opacity: 0; transform: scale(0.96); }
   to { opacity: 1; transform: none; }
 }
 @keyframes grow-x {
@@ -225,22 +237,29 @@
   to { transform: scaleX(1); }
 }
 @keyframes arrow-in {
-  from { opacity: 0; transform: translate(-18px, -18px); }
-  to { opacity: 1; transform: none; }
+  from { opacity: 0; filter: blur(8px); transform: translate(-14px, -14px); }
+  to { opacity: 1; filter: blur(0); transform: none; }
 }
 
-.wipe-up { animation: wipe-up 1.15s cubic-bezier(0.16, 0.84, 0.3, 1) both; }
-.rise-in { animation: rise-in 0.9s cubic-bezier(0.22, 0.61, 0.36, 1) both; }
+.char-in { display: inline-block; animation: char-in 0.75s cubic-bezier(0.2, 0.7, 0.3, 1) both; }
+.wipe-right { animation: wipe-right 1s cubic-bezier(0.16, 0.84, 0.3, 1) both; }
+.wipe-left { animation: wipe-left 1s cubic-bezier(0.16, 0.84, 0.3, 1) both; }
+.slide-right { animation: slide-right 0.8s cubic-bezier(0.22, 0.61, 0.36, 1) both; }
+.fade-scale { animation: fade-scale 0.9s cubic-bezier(0.22, 0.61, 0.36, 1) both; }
 .grow-x { transform-origin: left; animation: grow-x 0.9s cubic-bezier(0.22, 0.61, 0.36, 1) both; }
 .arrow-in { animation: arrow-in 0.9s cubic-bezier(0.22, 0.61, 0.36, 1) both; }
 
 @media (prefers-reduced-motion: reduce) {
-  .wipe-up,
-  .rise-in,
+  .char-in,
+  .wipe-right,
+  .wipe-left,
+  .slide-right,
+  .fade-scale,
   .grow-x,
   .arrow-in {
     animation: none !important;
     opacity: 1;
+    filter: none;
     transform: none;
     clip-path: none;
   }

@@ -17,7 +17,7 @@ const NAV = [
   { href: '/about', label: 'О нас' },
 ];
 
-export function Header({ phone, companyName }: { phone: string; companyName: string }) {
+export function Header({ companyName }: { phone: string; companyName: string }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const pathname = usePathname();
   const { open } = useQuote();
@@ -63,13 +63,6 @@ export function Header({ phone, companyName }: { phone: string; companyName: str
         </nav>
 
         <div className="flex items-center gap-4">
-          <a
-            href={`tel:${phone.replace(/\s/g, '')}`}
-            className="hidden text-[14px] uppercase tracking-[0.06em] text-stone-200 transition-colors hover:text-stone-400 md:block"
-          >
-            {phone}
-          </a>
-
           {/* Кнопка заявки */}
           <button
             onClick={() => open()}
