@@ -6,12 +6,12 @@ import { QuoteButton } from './quote-dialog';
 
 const HEADLINE = ['УКЛАДКА ПЛИТКИ', 'В ТБИЛИСИ'];
 
-/** Кадры верхней ленты — одиночные плиты: одна плитка на кадр. */
+/** Кадры верхней ленты — фактуры, где плитка видна крупно. */
 const STRIP = [
-  { src: galleryPhoto('new-2.jpg'), alt: 'Плита чёрного мрамора с белыми прожилками' },
-  { src: galleryPhoto('new-4.jpg'), alt: 'Плита песчаника со слоистым рисунком' },
-  { src: galleryPhoto('new-3.jpg'), alt: 'Плита терраццо' },
-  { src: galleryPhoto('slab-3.jpg'), alt: 'Плита керамогранита под бетон' },
+  { src: galleryPhoto('pat-1.jpg'), alt: 'Узорная цементная плитка' },
+  { src: galleryPhoto('pat-3.jpg'), alt: 'Плитка с орнаментом' },
+  { src: galleryPhoto('pat-4.jpg'), alt: 'Шестиугольная плитка' },
+  { src: galleryPhoto('pat-7.jpg'), alt: 'Каменная плитка' },
 ];
 
 const NOTES = [
