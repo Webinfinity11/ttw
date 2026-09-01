@@ -9,9 +9,9 @@ const HEADLINE = ['УКЛАДКА ПЛИТКИ', 'В ТБИЛИСИ'];
 /** Кадры верхней ленты — одиночные плиты: одна плитка на кадр. */
 const STRIP = [
   { src: '/tiles/marble-black-gold.webp', alt: 'Плита чёрного мрамора с золотыми прожилками' },
+  { src: galleryPhoto('alt-2.jpg'), alt: 'Плита оникса с подсветкой' },
+  { src: galleryPhoto('alt-3.jpg'), alt: 'Плита серого мрамора' },
   { src: galleryPhoto('slab-2.jpg'), alt: 'Плита травертина' },
-  { src: '/tiles/marble.jpg', alt: 'Плита белого мрамора' },
-  { src: galleryPhoto('slab-3.jpg'), alt: 'Плита керамогранита под бетон' },
 ];
 
 const NOTES = [

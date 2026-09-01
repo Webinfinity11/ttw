@@ -58,3 +58,11 @@ slab-1.jpg | Augustine Wong | LfU6_b3Oj4E | a white marble counter top with a lo
 slab-2.jpg | Zoshua Colah | gOAv_st16GM | a close up view of a textured surface of cement
 slab-3.jpg | Annie Spratt | ctXf1GVyf9A | a close up of a gray concrete surface
 slab-4.jpg | Declan Sun | RaTyAZrysv4 | a display of various marble and stone samples
+
+--- alt slabs ---
+alt-1.jpg | Declan Sun | RaTyAZrysv4 | a display of various marble and stone samples
+alt-2.jpg | Kier in Sight Archives | 4lmg1vc-i3w | backlit translucent stone slab with golden veins and crystal
+alt-3.jpg | Juhani Pelli | n2Zf3kdcTZA | a close up of a gray marble surface
+alt-4.jpg | Ekaterina Novitskaya | gLroHoWh_as | a dark grey wall with a mottled and uneven painted texture
+alt-5.jpg | Eszter Sólyom | wDaWqcolhWU | a light grey wall with a mottled plaster texture
+alt-6.jpg | Ryan Schram | XocJnmjB3Mg | a close up view of a granite surface
