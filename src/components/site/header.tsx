@@ -28,7 +28,7 @@ export function Header({ phone, companyName }: { phone: string; companyName: str
       <div className="container flex items-center justify-between gap-6 py-5">
         {/* Логотип */}
         <Link href="/" className="group flex shrink-0 items-center gap-3">
-          <span className="flex h-10 w-10 items-center justify-center border border-graphite-700 transition-colors group-hover:border-stone-300">
+          <span className="flex h-10 w-10 items-center justify-center border border-graphite-700 transition-colors">
             <LogoMark className="h-6 w-6 text-stone-100" />
           </span>
           <span className="leading-none">
@@ -75,7 +75,7 @@ export function Header({ phone, companyName }: { phone: string; companyName: str
             className="group hidden items-center gap-3 bg-stone-100 py-3 pl-6 pr-4 text-[14px] font-medium text-graphite-950 transition-colors hover:bg-stone-200 sm:inline-flex"
           >
             Рассчитать смету
-            <span className="text-[18px] leading-none transition-transform duration-300 group-hover:translate-x-1">
+            <span className="text-[18px] leading-none transition-transform duration-300">
               ›
             </span>
           </button>

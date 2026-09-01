@@ -166,10 +166,10 @@ export function TileCarousel() {
               fill
               priority={index < 2}
               sizes="(max-width: 640px) 80vw, (max-width: 1024px) 58vw, 40vw"
-              className="select-none object-cover transition-transform duration-[1400ms] ease-out group-hover:scale-[1.06]"
+              className="select-none object-cover transition-transform duration-[1400ms] ease-out"
               draggable={false}
             />
-            <span className="pointer-events-none absolute inset-0 bg-gradient-to-t from-graphite-950/45 via-transparent to-transparent opacity-70 transition-opacity duration-700 group-hover:opacity-0" />
+            <span className="pointer-events-none absolute inset-0 bg-gradient-to-t from-graphite-950/45 via-transparent to-transparent opacity-70 transition-opacity duration-700" />
             <span className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-white/10" />
           </div>
         ))}

@@ -8,11 +8,25 @@ export function PortfolioSection({ projects }: { projects: Project[] }) {
 
   return (
     <section className="pt-32 lg:pt-44">
-      <h2 className="display text-center text-[15vw] leading-none sm:text-[10vw] lg:text-[4.8rem]">
-        ПРОЕКТЫ
-      </h2>
+      <div className="container">
+        <div className="flex flex-wrap items-end justify-between gap-x-10 gap-y-6 border-b border-graphite-700 pb-8">
+          <h2 className="display text-[12vw] uppercase leading-[0.94] sm:text-[8vw] lg:text-[4.2rem]">
+            Проекты
+          </h2>
+          <div className="flex items-end gap-8">
+            <p className="max-w-sm text-[14px] leading-[1.6] text-stone-200">
+              Ванные, кухни, крупный формат, мозаика, террасы и лестницы — с описанием материалов,
+              площади и срока.
+            </p>
+            <div className="text-right">
+              <div className="display text-[44px] leading-none">{projects.length}</div>
+              <div className="meta mt-1">ОБЪЕКТОВ</div>
+            </div>
+          </div>
+        </div>
+      </div>
 
-      <div className="container mt-16 grid gap-x-6 gap-y-12 md:grid-cols-2 xl:grid-cols-3">
+      <div className="container mt-14 grid gap-x-6 gap-y-12 md:grid-cols-2 xl:grid-cols-3">
         {items.map((project, index) => (
           <Reveal key={project.id} delay={index * 60}>
             <Link href={`/projects/${project.slug}`} className="group block">
@@ -22,7 +36,7 @@ export function PortfolioSection({ projects }: { projects: Project[] }) {
                   alt={project.title}
                   fill
                   sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
-                  className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+                  className="object-cover"
                 />
               </div>
 
@@ -36,7 +50,7 @@ export function PortfolioSection({ projects }: { projects: Project[] }) {
                     {project.area} м² · {project.duration} · {project.location}
                   </p>
                 </div>
-                <span className="text-[34px] font-light leading-none text-stone-300 transition-transform duration-300 group-hover:translate-x-1 group-hover:text-stone-100">
+                <span className="text-[34px] font-light leading-none text-stone-300 transition-transform duration-300">
                   ›
                 </span>
               </div>

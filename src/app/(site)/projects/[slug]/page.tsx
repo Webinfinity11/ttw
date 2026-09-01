@@ -78,7 +78,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
                     alt={`${project.title} — фото ${index + 1}`}
                     fill
                     sizes="(max-width: 1024px) 100vw, 45vw"
-                    className="object-cover transition-transform duration-700 hover:scale-105"
+                    className="object-cover"
                   />
                 </Reveal>
               ))}

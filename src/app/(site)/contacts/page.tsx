@@ -62,7 +62,7 @@ export default async function ContactsPage() {
             <Reveal key={channel.label} delay={index * 50}>
               <a
                 href={channel.href}
-                className="group grid items-center gap-2 border-b border-graphite-700 py-7 transition-colors hover:bg-graphite-900 lg:grid-cols-[200px_1fr_auto] lg:gap-8 lg:px-4"
+                className="group grid items-center gap-2 border-b border-graphite-700 py-7 transition-colors lg:grid-cols-[200px_1fr_auto] lg:gap-8 lg:px-4"
               >
                 <span className="meta">{channel.label}</span>
                 <span className="display text-[26px] leading-none sm:text-[32px]">
@@ -70,7 +70,7 @@ export default async function ContactsPage() {
                 </span>
                 <span className="flex items-center gap-6">
                   <span className="hidden text-[14px] text-stone-200 lg:block">{channel.note}</span>
-                  <span className="text-[30px] font-light leading-none text-stone-300 transition-transform duration-300 group-hover:translate-x-1 group-hover:text-stone-100">
+                  <span className="text-[30px] font-light leading-none text-stone-300 transition-transform duration-300">
                     ›
                   </span>
                 </span>

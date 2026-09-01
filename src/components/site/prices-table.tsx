@@ -22,7 +22,7 @@ export function PricesTable({ prices }: { prices: PriceItem[] }) {
             {items.map((item) => (
               <div
                 key={item.id}
-                className="flex flex-wrap items-baseline justify-between gap-x-8 gap-y-1 border-b border-graphite-700 py-5 transition-colors hover:bg-graphite-900"
+                className="flex flex-wrap items-baseline justify-between gap-x-8 gap-y-1 border-b border-graphite-700 py-5 transition-colors"
               >
                 <div className="min-w-[220px] flex-1">
                   <p className="text-[18px] text-stone-100">{item.title}</p>

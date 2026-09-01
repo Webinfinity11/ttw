@@ -6,6 +6,13 @@ export function Footer({ settings, services }: { settings: SiteSettings; service
 
   return (
     <footer className="mt-32 border-t border-graphite-700 lg:mt-44">
+      {/* Крупная подпись во всю ширину */}
+      <div className="container overflow-hidden border-b border-graphite-700 py-10">
+        <p className="display whitespace-nowrap text-[13vw] uppercase leading-[0.9] text-stone-100 lg:text-[8.5vw]">
+          {settings.companyName} · Плитка
+        </p>
+      </div>
+
       <div className="container grid gap-12 py-16 lg:grid-cols-[1.4fr_1fr_1fr_1.2fr]">
         <div>
           <p className="display text-[26px] leading-none">{settings.companyName.toUpperCase()}</p>
