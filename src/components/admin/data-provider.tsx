@@ -5,7 +5,9 @@ import type { ReactNode } from 'react';
 import type {
   DataSnapshot,
   FaqItem,
+  HomeContent,
   Lead,
+  PagesContent,
   PriceItem,
   Project,
   Review,
@@ -34,6 +36,7 @@ interface AdminContextValue {
   leads: Lead[];
   faq: FaqItem[];
   settings: SiteSettings;
+  pages: PagesContent;
   crud: {
     services: Crud<Service>;
     projects: Crud<Project>;
@@ -43,6 +46,7 @@ interface AdminContextValue {
     faq: Crud<FaqItem>;
   };
   updateSettings(patch: Partial<SiteSettings>): Promise<void>;
+  updateHome(home: HomeContent): Promise<void>;
   resetDemoData(): Promise<void>;
 }
 
@@ -127,6 +131,12 @@ export function AdminDataProvider({ children }: { children: ReactNode }) {
     setSnapshot((prev) => ({ ...prev, settings }));
   }, []);
 
+  /** Содержимое главной сохраняется целиком: блоки правятся одной формой. */
+  const updateHome = useCallback(async (home: HomeContent) => {
+    const pages = await mockApi.pages.updateHome(home);
+    setSnapshot((prev) => ({ ...prev, pages }));
+  }, []);
+
   const resetDemoData = useCallback(async () => {
     setSnapshot(await mockApi.reset());
   }, []);
@@ -140,8 +150,10 @@ export function AdminDataProvider({ children }: { children: ReactNode }) {
     leads: snapshot.leads,
     faq: snapshot.faq,
     settings: snapshot.settings,
+    pages: snapshot.pages,
     crud,
     updateSettings,
+    updateHome,
     resetDemoData,
   };
 

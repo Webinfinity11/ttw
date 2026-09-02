@@ -1,10 +1,19 @@
-import type { FaqItem, PriceItem, Project, Review, Service, SiteSettings } from '@/lib/types';
+import type {
+  FaqItem,
+  HomeContent,
+  PriceItem,
+  Project,
+  Review,
+  Service,
+  SiteSettings,
+} from '@/lib/types';
 import { mockServices } from '@/lib/mock/services';
 import { mockProjects } from '@/lib/mock/projects';
 import { mockPrices } from '@/lib/mock/prices';
 import { mockReviews } from '@/lib/mock/reviews';
 import { mockFaq } from '@/lib/mock/faq';
 import { mockSettings } from '@/lib/mock/settings';
+import { mockPages } from '@/lib/mock/pages';
 
 /**
  * Источник данных для публичного сайта.
@@ -46,4 +55,9 @@ export async function getFaq(): Promise<FaqItem[]> {
 
 export async function getSettings(): Promise<SiteSettings> {
   return mockSettings;
+}
+
+/** Тексты и фотографии главной страницы. */
+export async function getHomeContent(): Promise<HomeContent> {
+  return mockPages.home;
 }

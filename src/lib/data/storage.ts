@@ -6,6 +6,7 @@ import { mockReviews } from '@/lib/mock/reviews';
 import { mockLeads } from '@/lib/mock/leads';
 import { mockFaq } from '@/lib/mock/faq';
 import { mockSettings } from '@/lib/mock/settings';
+import { mockPages } from '@/lib/mock/pages';
 
 const STORAGE_KEY = 'plitka-admin-db:v1';
 
@@ -18,6 +19,7 @@ export function seedSnapshot(): DataSnapshot {
     leads: mockLeads,
     faq: mockFaq,
     settings: mockSettings,
+    pages: mockPages,
   };
 }
 

@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 import {
   CircleHelp,
   ExternalLink,
+  FileText,
   Images,
   Inbox,
   LayoutDashboard,
@@ -22,6 +23,7 @@ import { useAdminData } from './data-provider';
 
 const NAV = [
   { href: '/admin', label: 'Dashboard', icon: LayoutDashboard, exact: true },
+  { href: '/admin/pages', label: 'Страницы', icon: FileText },
   { href: '/admin/services', label: 'Услуги', icon: Layers },
   { href: '/admin/projects', label: 'Проекты', icon: Images },
   { href: '/admin/prices', label: 'Цены', icon: Tag },

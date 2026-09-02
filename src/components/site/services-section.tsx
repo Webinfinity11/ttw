@@ -1,11 +1,17 @@
-import type { Service } from '@/lib/types';
+import type { SectionIntro, Service } from '@/lib/types';
 import { Reveal } from '@/components/ui/reveal';
 
 /**
  * Сервисы — полный список без фотографий, цен и переходов.
  * Слева номер, в центре название, справа категория работ.
  */
-export function ServicesSection({ services }: { services: Service[] }) {
+export function ServicesSection({
+  services,
+  intro,
+}: {
+  services: Service[];
+  intro: SectionIntro;
+}) {
   const half = Math.ceil(services.length / 2);
   const columns = [services.slice(0, half), services.slice(half)];
 
@@ -17,16 +23,13 @@ export function ServicesSection({ services }: { services: Service[] }) {
         {/* Шапка секции */}
         <div className="flex flex-wrap items-end justify-between gap-x-10 gap-y-6">
           <h2 className="display text-[12vw] uppercase leading-[0.94] sm:text-[8vw] lg:text-[4.2rem]">
-            Сервисы
+            {intro.title}
           </h2>
           <div className="flex items-end gap-8">
-            <p className="max-w-sm text-[14px] leading-[1.6] text-stone-200">
-              Берём объект целиком: от демонтажа старой плитки и стяжки до эпоксидной затирки,
-              запила под 45° и облицовки ступеней.
-            </p>
+            <p className="max-w-sm text-[14px] leading-[1.6] text-stone-200">{intro.subtitle}</p>
             <div className="text-right">
               <div className="display text-[44px] leading-none">{services.length}</div>
-              <div className="meta mt-1">ВИДОВ РАБОТ</div>
+              <div className="meta mt-1">{intro.counterLabel}</div>
             </div>
           </div>
         </div>

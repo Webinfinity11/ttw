@@ -2,29 +2,14 @@
 
 import Image from 'next/image';
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { galleryPhoto } from '@/lib/images';
+import type { CarouselBlock } from '@/lib/types';
 import { cn } from '@/lib/cn';
-
-const PHOTOS = [
-  galleryPhoto('hero-bath-1.jpg'),
-  '/tiles/marble-black-gold.webp',
-  galleryPhoto('pat-1.jpg'),
-  galleryPhoto('mosaic-2.jpg'),
-  galleryPhoto('pat-4.jpg'),
-  galleryPhoto('floor-5.jpg'),
-  galleryPhoto('pat-6.jpg'),
-  galleryPhoto('bath-1.jpg'),
-  galleryPhoto('pat-3.jpg'),
-  '/tiles/terrazzo.jpg',
-  galleryPhoto('hero-bath-2.jpg'),
-  galleryPhoto('bath-4.jpg'),
-];
 
 /**
  * Крупная лента фактур без подписей.
  * Карточки «дышат»: чем ближе кадр к центру экрана, тем он крупнее и ярче.
  */
-export function TileCarousel() {
+export function TileCarousel({ content }: { content: CarouselBlock }) {
   const trackRef = useRef<HTMLDivElement>(null);
   const frame = useRef<number | null>(null);
   const drag = useRef<{ startX: number; startLeft: number; moved: boolean } | null>(null);
@@ -86,9 +71,9 @@ export function TileCarousel() {
       <div className="container">
         <div className="flex flex-wrap items-end justify-between gap-8 border-b border-graphite-700 pb-9">
           <div>
-            <span className="meta">ФАКТУРЫ И МАТЕРИАЛЫ</span>
+            <span className="meta">{content.eyebrow}</span>
             <h2 className="display mt-4 text-[12vw] uppercase leading-[0.94] sm:text-[8vw] lg:text-[4.2rem]">
-              Галерея
+              {content.title}
             </h2>
           </div>
 
@@ -154,15 +139,15 @@ export function TileCarousel() {
         className="mt-12 flex snap-x snap-mandatory gap-5 overflow-x-auto px-5 pb-8 lg:gap-6 lg:px-10 [&::-webkit-scrollbar]:hidden"
         style={{ scrollbarWidth: 'none', cursor: 'grab' }}
       >
-        {PHOTOS.map((src, index) => (
+        {content.photos.map((photo, index) => (
           <div
-            key={src}
+            key={index}
             data-card
             className="group relative aspect-[4/5] w-[80vw] shrink-0 snap-center overflow-hidden rounded-2xl bg-graphite-900 transition-[transform,opacity] duration-500 ease-out sm:aspect-[4/3] sm:w-[58vw] lg:w-[42vw] xl:w-[36vw]"
           >
             <Image
-              src={src}
-              alt=""
+              src={photo.src}
+              alt={photo.alt}
               fill
               priority={index < 2}
               sizes="(max-width: 640px) 80vw, (max-width: 1024px) 58vw, 40vw"

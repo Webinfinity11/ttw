@@ -132,4 +132,93 @@ export interface DataSnapshot {
   leads: Lead[];
   faq: FaqItem[];
   settings: SiteSettings;
+  pages: PagesContent;
+}
+
+/* ————————————————— Содержимое страниц —————————————————
+ *
+ * Тексты и фотографии, которые раньше были зашиты в компоненты.
+ * Каждый блок соответствует одной секции на странице, поэтому в админке
+ * они редактируются ровно в том порядке, в каком идут на сайте.
+ */
+
+/** Кадр с подписью для незрячих и поисковиков. */
+export interface Photo {
+  src: string;
+  alt: string;
+}
+
+export interface Stat {
+  value: string;
+  label: string;
+}
+
+export interface Perk {
+  title: string;
+  text: string;
+}
+
+/** Первый экран главной. */
+export interface HeroBlock {
+  /** Заголовок построчно — каждая строка выезжает отдельно. */
+  headline: string[];
+  /** Пояснения в строку под заголовком. */
+  notes: string[];
+  /** Лента одиночных плит. */
+  photos: Photo[];
+  /** Счётчики, которые прокручиваются при загрузке. */
+  stats: Stat[];
+  primaryCta: string;
+  secondaryCta: string;
+  footnote: string;
+}
+
+/** Блок «О компании» на главной. */
+export interface AboutBlock {
+  eyebrow: string;
+  /** Заголовок построчно. */
+  title: string[];
+  text: string;
+  photo: Photo;
+  badgeValue: string;
+  badgeLabel: string;
+  perks: Perk[];
+  facts: Stat[];
+  linkLabel: string;
+}
+
+/** Блок «Почему мы». */
+export interface AdvantagesBlock {
+  title: string;
+  subtitle: string;
+  items: Perk[];
+}
+
+/** Лента фактур внизу главной. */
+export interface CarouselBlock {
+  eyebrow: string;
+  title: string;
+  photos: Photo[];
+}
+
+/** Заголовок секции услуг и портфолио на главной. */
+export interface SectionIntro {
+  title: string;
+  subtitle: string;
+  /** Подпись под цифрой справа: «ВИДОВ РАБОТ», «ОБЪЕКТОВ». */
+  counterLabel: string;
+}
+
+export interface HomeContent {
+  hero: HeroBlock;
+  services: SectionIntro;
+  about: AboutBlock;
+  portfolio: SectionIntro;
+  advantages: AdvantagesBlock;
+  carousel: CarouselBlock;
+}
+
+/** Содержимое всех страниц. Новые страницы добавляются полями сюда. */
+export interface PagesContent {
+  home: HomeContent;
 }
