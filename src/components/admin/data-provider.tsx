@@ -5,7 +5,6 @@ import type { ReactNode } from 'react';
 import type {
   DataSnapshot,
   FaqItem,
-  HomeContent,
   Lead,
   PagesContent,
   PriceItem,
@@ -46,7 +45,7 @@ interface AdminContextValue {
     faq: Crud<FaqItem>;
   };
   updateSettings(patch: Partial<SiteSettings>): Promise<void>;
-  updateHome(home: HomeContent): Promise<void>;
+  updatePages(patch: Partial<PagesContent>): Promise<void>;
   resetDemoData(): Promise<void>;
 }
 
@@ -131,9 +130,9 @@ export function AdminDataProvider({ children }: { children: ReactNode }) {
     setSnapshot((prev) => ({ ...prev, settings }));
   }, []);
 
-  /** Содержимое главной сохраняется целиком: блоки правятся одной формой. */
-  const updateHome = useCallback(async (home: HomeContent) => {
-    const pages = await mockApi.pages.updateHome(home);
+  /** Содержимое страниц сохраняется целиком: блоки правятся одной формой. */
+  const updatePages = useCallback(async (patch: Partial<PagesContent>) => {
+    const pages = await mockApi.pages.update(patch);
     setSnapshot((prev) => ({ ...prev, pages }));
   }, []);
 
@@ -153,7 +152,7 @@ export function AdminDataProvider({ children }: { children: ReactNode }) {
     pages: snapshot.pages,
     crud,
     updateSettings,
-    updateHome,
+    updatePages,
     resetDemoData,
   };
 

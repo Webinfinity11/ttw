@@ -7,7 +7,7 @@ import { PageHero } from '@/components/site/page-hero';
 import { ProjectCard } from '@/components/site/project-card';
 import { QuoteButton } from '@/components/site/quote-dialog';
 import { Reveal } from '@/components/ui/reveal';
-import { getProject, getProjects, getSettings } from '@/lib/data/content';
+import { getPages, getProject, getProjects, getSettings } from '@/lib/data/content';
 
 export async function generateStaticParams() {
   const projects = await getProjects();
@@ -16,20 +16,23 @@ export async function generateStaticParams() {
 
 export default async function ProjectPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const [project, projects, settings] = await Promise.all([
+  const [project, projects, settings, pages] = await Promise.all([
     getProject(slug),
     getProjects(),
     getSettings(),
+    getPages(),
   ]);
 
   if (!project) notFound();
 
+  const { intro, detail } = pages.projects;
+
   const related = projects.filter((item) => item.id !== project.id).slice(0, 3);
   const facts = [
-    { label: 'Площадь', value: `${project.area} м²` },
-    { label: 'Категория', value: project.category },
-    { label: 'Срок', value: project.duration },
-    { label: 'Локация', value: project.location },
+    { label: detail.areaLabel, value: `${project.area} м²` },
+    { label: detail.categoryLabel, value: project.category },
+    { label: detail.durationLabel, value: project.duration },
+    { label: detail.locationLabel, value: project.location },
   ];
 
   return (
@@ -38,7 +41,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
         eyebrow={project.category}
         title={project.title}
         description={project.description}
-        breadcrumbs={[{ href: '/projects', label: 'Проекты' }, { label: project.title }]}
+        breadcrumbs={[{ href: '/projects', label: intro.breadcrumb }, { label: project.title }]}
       />
 
       <section className="bg-graphite-950 py-16 lg:py-20">
@@ -86,19 +89,19 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
 
             <aside className="space-y-6">
               <div className="rounded-none border border-graphite-700 bg-graphite-900 p-8">
-                <h2 className="font-display text-2xl font-black tracking-tight">Материалы</h2>
+                <h2 className="font-display text-2xl font-black tracking-tight">{detail.materialsTitle}</h2>
                 <p className="mt-4 text-sm leading-relaxed text-stone-200">{project.materials}</p>
               </div>
 
               <div className="rounded-none bg-graphite-950 p-8 text-stone-50">
                 <h2 className="font-display text-2xl font-black leading-snug">
-                  Хотите так же у себя?
+                  {detail.ctaTitle}
                 </h2>
                 <p className="mt-3 text-sm leading-relaxed text-stone-200/60">
-                  Приедем на замер, подберём материал и посчитаем смету под ваш объект.
+                  {detail.ctaText}
                 </p>
                 <QuoteButton className="btn-accent mt-7 w-full py-3.5">
-                  Обсудить проект
+                  {detail.ctaLabel}
                   <ArrowRight className="h-4 w-4" />
                 </QuoteButton>
               </div>
@@ -111,9 +114,9 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
         <section className="bg-graphite-900 py-20">
           <div className="container">
             <div className="flex items-end justify-between gap-6">
-              <h2 className="font-display text-3xl font-black tracking-tightest">Другие проекты</h2>
+              <h2 className="font-display text-3xl font-black tracking-tightest">{detail.relatedTitle}</h2>
               <Link href="/projects" className="text-sm text-stone-100 transition hover:text-stone-100">
-                Всё портфолио →
+                {detail.relatedLinkLabel} →
               </Link>
             </div>
             <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-3">

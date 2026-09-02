@@ -5,6 +5,7 @@ import type {
   Project,
   Review,
   Service,
+  PagesContent,
   SiteSettings,
 } from '@/lib/types';
 import { mockServices } from '@/lib/mock/services';
@@ -60,4 +61,9 @@ export async function getSettings(): Promise<SiteSettings> {
 /** Тексты и фотографии главной страницы. */
 export async function getHomeContent(): Promise<HomeContent> {
   return mockPages.home;
+}
+
+/** Тексты и фотографии внутренних страниц. */
+export async function getPages(): Promise<PagesContent> {
+  return mockPages;
 }

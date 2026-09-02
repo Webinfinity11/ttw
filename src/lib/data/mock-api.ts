@@ -1,4 +1,4 @@
-import type { DataSnapshot, HomeContent, PagesContent, SiteSettings } from '@/lib/types';
+import type { DataSnapshot, PagesContent, SiteSettings } from '@/lib/types';
 import { createId, loadSnapshot, persistSnapshot, resetSnapshot } from './storage';
 
 /**
@@ -110,11 +110,11 @@ export const mockApi = {
       await latency(80);
       return loadSnapshot().pages;
     },
-    /** Сохраняет содержимое главной целиком — блоки правятся одной формой. */
-    async updateHome(home: HomeContent): Promise<PagesContent> {
+    /** Сохраняет содержимое одной или нескольких страниц. */
+    async update(patch: Partial<PagesContent>): Promise<PagesContent> {
       await latency();
       const snapshot = loadSnapshot();
-      const pages = { ...snapshot.pages, home };
+      const pages = { ...snapshot.pages, ...patch };
       persistSnapshot({ ...snapshot, pages });
       return pages;
     },

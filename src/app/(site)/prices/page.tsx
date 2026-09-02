@@ -4,22 +4,30 @@ import { FaqAccordion } from '@/components/site/faq-accordion';
 import { PageHero } from '@/components/site/page-hero';
 import { PricesTable } from '@/components/site/prices-table';
 import { SectionHeading } from '@/components/ui/section-heading';
-import { getFaq, getPrices, getSettings } from '@/lib/data/content';
+import { getFaq, getPages, getPrices, getSettings } from '@/lib/data/content';
 
-export const metadata: Metadata = {
-  title: 'Цены на плиточные работы в Тбилиси',
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const pages = await getPages();
+  return { title: pages.prices.metaTitle };
+}
 
 export default async function PricesPage() {
-  const [prices, faq, settings] = await Promise.all([getPrices(), getFaq(), getSettings()]);
+  const [prices, faq, settings, pages] = await Promise.all([
+    getPrices(),
+    getFaq(),
+    getSettings(),
+    getPages(),
+  ]);
+
+  const intro = pages.prices;
 
   return (
     <>
       <PageHero
-        eyebrow="Цены"
-        title="Прайс на плиточные работы"
-        description="Стоимость указана за работу без материалов. Итоговая смета фиксируется в договоре после бесплатного замера."
-        breadcrumbs={[{ label: 'Цены' }]}
+        eyebrow={intro.eyebrow}
+        title={intro.title}
+        description={intro.description}
+        breadcrumbs={[{ label: intro.breadcrumb }]}
       />
 
       <section className="bg-graphite-950 py-16 lg:py-24">

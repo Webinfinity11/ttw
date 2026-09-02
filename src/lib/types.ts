@@ -221,4 +221,90 @@ export interface HomeContent {
 /** Содержимое всех страниц. Новые страницы добавляются полями сюда. */
 export interface PagesContent {
   home: HomeContent;
+  services: ServicesPageContent;
+  projects: ProjectsPageContent;
+  prices: PageIntro;
+  contacts: PageIntro;
+  about: AboutPageContent;
+}
+
+/** Шапка внутренней страницы: хлебные крошки, надзаголовок, название, описание. */
+export interface PageIntro {
+  /** Заголовок вкладки браузера и подпись в результатах поиска. */
+  metaTitle: string;
+  eyebrow: string;
+  title: string;
+  description: string;
+  /** Подпись в цепочке «Главная / …» вверху страницы. */
+  breadcrumb: string;
+}
+
+/** Этап работы: срок и описание. */
+export interface ProcessStep {
+  duration: string;
+  title: string;
+  text: string;
+}
+
+/** Раздел с заголовком, пояснением и списком пунктов. */
+export interface ListSection {
+  title: string;
+  subtitle: string;
+  items: Perk[];
+}
+
+/** Страница «О нас» целиком. */
+export interface AboutPageContent {
+  intro: PageIntro;
+  story: {
+    photo: Photo;
+    eyebrow: string;
+    title: string;
+    /** Текст истории — по абзацу на строку. */
+    paragraphs: string[];
+    facts: Stat[];
+  };
+  values: ListSection;
+  process: {
+    title: string;
+    subtitle: string;
+    steps: ProcessStep[];
+  };
+}
+
+/** Подписи на странице отдельной услуги — одинаковы для всех услуг. */
+export interface ServiceDetailContent {
+  priceLabel: string;
+  /** Примечание под ценой. */
+  priceNote: string;
+  ctaLabel: string;
+  phoneLabel: string;
+  relatedTitle: string;
+  relatedLinkLabel: string;
+}
+
+/** Раздел «Услуги»: шапка списка и подписи на странице услуги. */
+export interface ServicesPageContent {
+  intro: PageIntro;
+  detail: ServiceDetailContent;
+}
+
+/** Подписи на странице отдельного проекта — одинаковы для всех объектов. */
+export interface ProjectDetailContent {
+  areaLabel: string;
+  categoryLabel: string;
+  durationLabel: string;
+  locationLabel: string;
+  materialsTitle: string;
+  ctaTitle: string;
+  ctaText: string;
+  ctaLabel: string;
+  relatedTitle: string;
+  relatedLinkLabel: string;
+}
+
+/** Раздел «Проекты»: шапка портфолио и подписи на странице объекта. */
+export interface ProjectsPageContent {
+  intro: PageIntro;
+  detail: ProjectDetailContent;
 }

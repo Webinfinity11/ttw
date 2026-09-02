@@ -18,6 +18,7 @@ import {
   Thumb,
   Toggle,
 } from '@/components/admin/ui';
+import { PhotoField } from '@/components/admin/photo-picker';
 import { cn, formatPrice } from '@/lib/cn';
 import { photo } from '@/lib/images';
 import { slugify } from '@/lib/slug';
@@ -350,20 +351,15 @@ function ServiceModal({
           </Field>
         </div>
 
-        <Field label="Изображение (URL)" hint="Позже здесь будет загрузка файлов в хранилище">
-          <input
-            value={values.image}
-            onChange={(event) => set('image', event.target.value)}
-            className="field-input"
+        <div>
+          <span className="field-label">Фотография</span>
+          <PhotoField
+            src={values.image}
+            alt={values.title}
+            withAlt={false}
+            onChange={(next) => set('image', next.src)}
           />
-        </Field>
-
-        {values.image && (
-          <div className="relative h-40 overflow-hidden rounded-xl border border-graphite-100">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={values.image} alt="Превью" className="h-full w-full object-cover" />
-          </div>
-        )}
+        </div>
 
         <Field label="Преимущества" hint="Через запятую — выводятся на странице услуги">
           <input

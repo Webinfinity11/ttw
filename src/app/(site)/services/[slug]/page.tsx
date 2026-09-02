@@ -8,7 +8,7 @@ import { QuoteButton } from '@/components/site/quote-dialog';
 import { ServiceCard } from '@/components/site/service-card';
 import { Reveal } from '@/components/ui/reveal';
 import { formatPrice } from '@/lib/cn';
-import { getService, getServices, getSettings } from '@/lib/data/content';
+import { getPages, getService, getServices, getSettings } from '@/lib/data/content';
 
 export async function generateStaticParams() {
   const services = await getServices();
@@ -17,13 +17,16 @@ export async function generateStaticParams() {
 
 export default async function ServicePage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const [service, services, settings] = await Promise.all([
+  const [service, services, settings, pages] = await Promise.all([
     getService(slug),
     getServices(),
     getSettings(),
+    getPages(),
   ]);
 
   if (!service) notFound();
+
+  const { intro, detail } = pages.services;
 
   const related = services
     .filter((item) => item.id !== service.id && item.category === service.category)
@@ -35,7 +38,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
         eyebrow={service.category}
         title={service.title}
         description={service.description}
-        breadcrumbs={[{ href: '/services', label: 'Услуги' }, { label: service.title }]}
+        breadcrumbs={[{ href: '/services', label: intro.breadcrumb }, { label: service.title }]}
       />
 
       <section className="bg-graphite-950 py-16 lg:py-24">
@@ -73,7 +76,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
           <aside>
             <div className="sticky top-28 rounded-none border border-graphite-700 bg-graphite-900 p-8">
               <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-stone-400">
-                Стоимость работы
+                {detail.priceLabel}
               </p>
               <p className="mt-4 font-display text-5xl font-black tracking-tightest">
                 {formatPrice(service.price)}
@@ -82,18 +85,17 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
                 </span>
               </p>
               <p className="mt-4 text-sm leading-relaxed text-stone-200">
-                Цена указана «от» и зависит от формата плитки, состояния основания и раскладки.
-                Итоговая смета — после бесплатного замера.
+                {detail.priceNote}
               </p>
 
               <QuoteButton service={service.title} className="btn-dark mt-8 w-full py-3.5">
-                Рассчитать стоимость
+                {detail.ctaLabel}
                 <ArrowRight className="h-4 w-4" />
               </QuoteButton>
 
               <div className="mt-8 space-y-3 border-t border-graphite-700 pt-6 text-sm text-stone-200">
                 <p>
-                  Телефон:{' '}
+                  {detail.phoneLabel}{' '}
                   <a
                     href={`tel:${settings.phone.replace(/\s/g, '')}`}
                     className="font-medium text-stone-100"
@@ -113,10 +115,10 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
           <div className="container">
             <div className="flex items-end justify-between gap-6">
               <h2 className="font-display text-3xl font-black tracking-tightest">
-                Смежные услуги
+                {detail.relatedTitle}
               </h2>
               <Link href="/services" className="text-sm text-stone-100 transition hover:text-stone-100">
-                Все услуги →
+                {detail.relatedLinkLabel} →
               </Link>
             </div>
             <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-3">

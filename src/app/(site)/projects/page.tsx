@@ -2,22 +2,29 @@ import type { Metadata } from 'next';
 import { CtaSection } from '@/components/site/cta-section';
 import { PageHero } from '@/components/site/page-hero';
 import { ProjectsGallery } from '@/components/site/projects-gallery';
-import { getProjects, getSettings } from '@/lib/data/content';
+import { getPages, getProjects, getSettings } from '@/lib/data/content';
 
-export const metadata: Metadata = {
-  title: 'Проекты — портфолио плиточных работ',
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const pages = await getPages();
+  return { title: pages.projects.intro.metaTitle };
+}
 
 export default async function ProjectsPage() {
-  const [projects, settings] = await Promise.all([getProjects(), getSettings()]);
+  const [projects, settings, pages] = await Promise.all([
+    getProjects(),
+    getSettings(),
+    getPages(),
+  ]);
+
+  const intro = pages.projects.intro;
 
   return (
     <>
       <PageHero
-        eyebrow="Портфолио"
-        title="Проекты"
-        description="Ванные и кухни, крупноформатный керамогранит, мозаика, террасы и лестницы — объекты, сданные в Тбилиси."
-        breadcrumbs={[{ label: 'Проекты' }]}
+        eyebrow={intro.eyebrow}
+        title={intro.title}
+        description={intro.description}
+        breadcrumbs={[{ label: intro.breadcrumb }]}
       />
 
       <section className="bg-graphite-950 py-16 lg:py-20">

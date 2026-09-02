@@ -3,24 +3,31 @@ import { CtaSection } from '@/components/site/cta-section';
 import { PageHero } from '@/components/site/page-hero';
 import { ServiceCard } from '@/components/site/service-card';
 import { Reveal } from '@/components/ui/reveal';
-import { getServices, getSettings } from '@/lib/data/content';
+import { getPages, getServices, getSettings } from '@/lib/data/content';
 
-export const metadata: Metadata = {
-  title: 'Услуги — плиточные работы в Тбилиси',
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const pages = await getPages();
+  return { title: pages.services.intro.metaTitle };
+}
 
 export default async function ServicesPage() {
-  const [services, settings] = await Promise.all([getServices(), getSettings()]);
+  const [services, settings, pages] = await Promise.all([
+    getServices(),
+    getSettings(),
+    getPages(),
+  ]);
+
+  const intro = pages.services.intro;
 
   const categories = Array.from(new Set(services.map((service) => service.category)));
 
   return (
     <>
       <PageHero
-        eyebrow="Услуги"
-        title="Всё, что связано с плиткой"
-        description="21 вид работ: от подготовки основания и гидроизоляции до крупноформатного керамогранита, запила под 45° и эпоксидной затирки."
-        breadcrumbs={[{ label: 'Услуги' }]}
+        eyebrow={intro.eyebrow}
+        title={intro.title}
+        description={intro.description}
+        breadcrumbs={[{ label: intro.breadcrumb }]}
       />
 
       <section className="bg-graphite-950 py-16 lg:py-24">

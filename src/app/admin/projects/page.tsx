@@ -16,6 +16,8 @@ import {
   SearchInput,
   Toggle,
 } from '@/components/admin/ui';
+import { PhotoField } from '@/components/admin/photo-picker';
+import { PhotoList } from '@/components/admin/block-editors';
 import { cn } from '@/lib/cn';
 import { photo } from '@/lib/images';
 import { slugify } from '@/lib/slug';
@@ -359,41 +361,24 @@ function ProjectModal({
           />
         </Field>
 
-        <Field label="Обложка (URL)">
-          <input
-            value={values.image}
-            onChange={(event) => set('image', event.target.value)}
-            className="field-input"
+        <div>
+          <span className="field-label">Обложка</span>
+          <PhotoField
+            src={values.image}
+            alt={values.title}
+            withAlt={false}
+            onChange={(next) => set('image', next.src)}
           />
-        </Field>
+        </div>
 
-        <Field label="Фотографии проекта" hint="По одной ссылке в строке">
-          <textarea
-            rows={4}
-            value={gallery}
-            onChange={(event) => setGallery(event.target.value)}
-            className="field-input resize-none font-mono text-xs"
-          />
-        </Field>
-
-        {(values.image || galleryList.length > 0) && (
-          <div className="grid grid-cols-4 gap-2">
-            {[values.image, ...galleryList].filter(Boolean).map((src, index) => (
-              <div
-                key={`${src}-${index}`}
-                className="relative aspect-square overflow-hidden rounded-lg border border-graphite-100"
-              >
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={src} alt="" className="h-full w-full object-cover" />
-                {index === 0 && (
-                  <span className="absolute bottom-1 left-1 rounded bg-graphite-950/70 px-1.5 py-0.5 text-[10px] text-white">
-                    обложка
-                  </span>
-                )}
-              </div>
-            ))}
-          </div>
-        )}
+        <PhotoList
+          label="Фотографии проекта"
+          hint="Показываются на странице проекта после обложки."
+          items={galleryList.map((src) => ({ src, alt: '' }))}
+          onChange={(items) => setGallery(items.map((item) => item.src).join('\n'))}
+          withAlt={false}
+          addLabel="Добавить фотографию"
+        />
 
         <div className="flex items-center justify-between rounded-xl border border-graphite-100 bg-graphite-50/60 px-4 py-3">
           <div>

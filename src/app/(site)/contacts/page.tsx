@@ -3,14 +3,21 @@ import { ContactForm } from '@/components/site/contact-form';
 import { MapBlock } from '@/components/site/map-block';
 import { PageHero } from '@/components/site/page-hero';
 import { Reveal } from '@/components/ui/reveal';
-import { getServices, getSettings } from '@/lib/data/content';
+import { getPages, getServices, getSettings } from '@/lib/data/content';
 
-export const metadata: Metadata = {
-  title: 'Контакт — плиточные работы в Тбилиси',
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const pages = await getPages();
+  return { title: pages.contacts.metaTitle };
+}
 
 export default async function ContactsPage() {
-  const [settings, services] = await Promise.all([getSettings(), getServices()]);
+  const [settings, services, pages] = await Promise.all([
+    getSettings(),
+    getServices(),
+    getPages(),
+  ]);
+
+  const intro = pages.contacts;
 
   const channels = [
     {
@@ -49,10 +56,10 @@ export default async function ContactsPage() {
   return (
     <>
       <PageHero
-        eyebrow="Связаться"
-        title="Контакт"
-        description={`Работаем по всему городу ${settings.city} и в пригороде. Замер бесплатный, смета — в течение суток.`}
-        breadcrumbs={[{ label: 'Контакт' }]}
+        eyebrow={intro.eyebrow}
+        title={intro.title}
+        description={intro.description}
+        breadcrumbs={[{ label: intro.breadcrumb }]}
       />
 
       {/* Каналы связи крупными строками */}
