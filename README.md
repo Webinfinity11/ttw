@@ -1,11 +1,11 @@
-# KERAMA Tbilisi — сайт плиточника + админ-панель
+# Tiling Work — сайт плиточника + админ-панель
 
 Next.js 15 (App Router) · TypeScript · Tailwind CSS · mock-данные.
 
 ## Запуск
 
 ```bash
-cd C:\Users\levka\projects\plitka-tbilisi
+cd C:\Users\levka\projects\tiling-work
 npm install      # уже выполнено
 npm run dev      # http://localhost:3000
 ```
