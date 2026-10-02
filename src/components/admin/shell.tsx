@@ -11,6 +11,7 @@ import {
   Inbox,
   LayoutDashboard,
   Layers,
+  LogOut,
   Menu,
   Settings,
   Star,
@@ -36,6 +37,11 @@ const NAV = [
 export function AdminShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
+
+  async function logout() {
+    await fetch('/api/admin/logout', { method: 'POST' }).catch(() => {});
+    window.location.href = '/admin/login';
+  }
   const { leads, settings } = useAdminData();
 
   const newLeads = leads.filter((lead) => lead.status === 'new').length;
@@ -165,6 +171,15 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
                 </span>
                 <span className="hidden text-sm text-graphite-700 sm:block">Администратор</span>
               </div>
+              <button
+                type="button"
+                onClick={logout}
+                title="Выйти"
+                className="inline-flex items-center gap-2 rounded-full border border-graphite-100 px-3 py-2 text-sm text-graphite-500 transition hover:border-graphite-300 hover:text-graphite-900 sm:px-4"
+              >
+                <LogOut className="h-4 w-4" />
+                <span className="hidden sm:inline">Выйти</span>
+              </button>
             </div>
           </div>
         </header>
