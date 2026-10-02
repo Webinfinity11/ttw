@@ -54,15 +54,17 @@ export function StatCard({
       className={cn(
         'relative overflow-hidden rounded-2xl border p-6 transition-shadow hover:shadow-soft',
         tone === 'dark'
-          ? 'border-graphite-900 bg-graphite-950 text-stone-50'
-          : 'border-graphite-100 bg-white',
+          ? 'border-graphite-900 bg-graphite-950 text-white'
+          : tone === 'accent'
+            ? 'border-accent-300 bg-accent-100 text-graphite-900'
+            : 'border-graphite-100 bg-white text-graphite-900',
       )}
     >
       <div className="flex items-start justify-between gap-4">
         <p
           className={cn(
             'text-[11px] font-semibold uppercase tracking-[0.18em]',
-            tone === 'dark' ? 'text-stone-200/50' : 'text-graphite-300',
+            tone === 'dark' ? 'text-stone-200/60' : 'text-graphite-500',
           )}
         >
           {label}
@@ -73,7 +75,7 @@ export function StatCard({
             tone === 'dark'
               ? 'bg-white/10 text-accent-300'
               : tone === 'accent'
-                ? 'bg-accent-100 text-accent-600'
+                ? 'bg-white text-accent-700'
                 : 'bg-graphite-50 text-graphite-500',
           )}
         >
@@ -82,7 +84,7 @@ export function StatCard({
       </div>
       <p className="mt-6 text-4xl font-light tracking-tight">{value}</p>
       {hint && (
-        <p className={cn('mt-2 text-xs', tone === 'dark' ? 'text-stone-200/50' : 'text-graphite-300')}>
+        <p className={cn('mt-2 text-xs', tone === 'dark' ? 'text-stone-200/60' : 'text-graphite-500')}>
           {hint}
         </p>
       )}

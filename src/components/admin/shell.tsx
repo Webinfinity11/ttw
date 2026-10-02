@@ -65,7 +65,7 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
             />
             <span className="flex-1">{item.label}</span>
             {item.counter === 'leads' && newLeads > 0 && (
-              <span className="rounded-full bg-accent-500 px-2 py-0.5 text-[11px] font-semibold text-white">
+              <span className="rounded-full bg-accent-300 px-2 py-0.5 text-[11px] font-semibold text-graphite-950">
                 {newLeads}
               </span>
             )}
@@ -114,7 +114,7 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
   );
 
   return (
-    <div className="min-h-screen bg-graphite-50/60">
+    <div className="min-h-screen bg-graphite-50 text-graphite-900">
       {/* Десктопный сайдбар */}
       <aside className="fixed inset-y-0 left-0 z-40 hidden w-[264px] lg:block">{sidebarBody}</aside>
 
